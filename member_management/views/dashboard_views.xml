@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Dashboard Form View -->
+    <record id="view_sica_dashboard" model="ir.ui.view">
+        <field name="name">sica.dashboard</field>
+        <field name="model">sica.member</field>
+        <field name="arch" type="xml">
+            <form string="SICA Dashboard">
+                <sheet>
+                    <div class="o_hr_dashboard">
+                        <div class="o_hr_dashboard_header">
+                            <h2>SICA Member Dashboard</h2>
+                        </div>
+                        <div class="row mt16">
+                            <!-- Total Members -->
+                            <div class="col-md-4">
+                                <div class="card text-center p-3" style="background:#4e73df;color:white;border-radius:8px;">
+                                    <h2 class="card-title">Total Members</h2>
+                                    <div class="card-body">
+                                        <h1>
+                                            <field name="member_id" readonly="1"/>
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Dashboard Action -->
+    <record id="action_sica_dashboard" model="ir.actions.act_window">
+        <field name="name">Dashboard</field>
+        <field name="res_model">sica.member</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{
+            'search_default_active_members': 1
+        }</field>
+    </record>
+</odoo>

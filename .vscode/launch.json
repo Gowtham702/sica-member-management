@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "odoo19",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceRoot}/odoo/odoo-bin",
+            "args": ["-c", "${workspaceFolder}/odoo.conf"],
+            "gevent": false,
+            "justMyCode": false,
+            "console": "integratedTerminal"
+        }
+    ]
+}

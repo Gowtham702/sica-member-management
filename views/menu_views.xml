@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root Menu: SICA Management -->
+    <menuitem id="menu_sica_root"
+        name="SICA Management"
+        sequence="10"
+        web_icon="member_management,static/src/img/icon.png"/>
+
+    <!-- Members Menu -->
+    <menuitem id="menu_sica_members"
+        name="Members"
+        parent="menu_sica_root"
+        action="action_sica_member"
+        sequence="10"/>
+
+    <!-- Membership Types Menu -->
+    <menuitem id="menu_sica_membership_types"
+        name="Membership Types"
+        parent="menu_sica_root"
+        action="action_sica_membership_type"
+        sequence="20"/>
+</odoo>

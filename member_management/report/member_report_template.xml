@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_member_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 class="text-center">SICA Member Details</h2>
+                        <hr/>
+                        <div class="row mt16">
+                            <div class="col-6">
+                                <t t-if="doc.profile_photo">
+                                    <img t-att-src="image_data_uri(doc.profile_photo)"
+                                        style="max-height:120px;border-radius:8px;"/>
+                                </t>
+                            </div>
+                            <div class="col-6 text-right">
+                                <h4>Member ID: <span t-field="doc.member_id"/></h4>
+                                <span t-field="doc.status" class="badge"
+                                    t-attf-style="background:#{doc.status == 'active' and '#28a745' or '#dc3545'};color:white;padding:4px 10px;border-radius:4px;"/>
+                            </div>
+                        </div>
+
+                        <table class="table table-bordered mt16">
+                            <tbody>
+                                <tr>
+                                    <th>Member Name</th>
+                                    <td><span t-field="doc.name"/></td>
+                                    <th>Mobile</th>
+                                    <td><span t-field="doc.mobile"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td><span t-field="doc.email"/></td>
+                                    <th>Company</th>
+                                    <td><span t-field="doc.company_name"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Designation</th>
+                                    <td><span t-field="doc.designation"/></td>
+                                    <th>Membership Type</th>
+                                    <td><span t-field="doc.membership_type_id"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Joining Date</th>
+                                    <td><span t-field="doc.joining_date"/></td>
+                                    <th>Expiry Date</th>
+                                    <td><span t-field="doc.expiry_date"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Address</th>
+                                    <td colspan="3"><span t-field="doc.address"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <t t-if="doc.notes">
+                            <h5>Notes</h5>
+                            <p><span t-field="doc.notes"/></p>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
