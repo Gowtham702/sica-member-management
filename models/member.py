@@ -53,6 +53,12 @@ class SicaMember(models.Model):
 
     notes = fields.Text(string='Notes')
 
+    is_active = fields.Boolean(string='Active', default=True)
+
+    def action_toggle_active(self):
+        for rec in self:
+            rec.is_active = not rec.is_active
+
     # -------------------------
     # ORM: Auto-generate Member ID
     # -------------------------
@@ -79,11 +85,13 @@ class SicaMember(models.Model):
     # -------------------------
     # ORM: Compute Status
     # -------------------------
-    @api.depends('expiry_date')
+    @api.depends('expiry_date', 'is_active')
     def _compute_status(self):
         today = fields.Date.today()
         for rec in self:
-            if rec.expiry_date and rec.expiry_date < today:
+            if not rec.is_active:
+                rec.status = 'expired'
+            elif rec.expiry_date and rec.expiry_date < today:
                 rec.status = 'expired'
             else:
                 rec.status = 'active'
@@ -108,6 +116,15 @@ class SicaMember(models.Model):
             'res_model': 'sica.member',
             'view_mode': 'list,form',
         }
+
+    def action_open_form(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'sica.member',
+            'view_mode': 'form',
+            'res_id': self.id,
+            'target': 'current',
+    }
 
     # -------------------------
     # Print Report Action

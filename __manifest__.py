@@ -20,4 +20,9 @@
     'installable': True,
     'application': True,
     'license': 'LGPL-3',
+	'assets': {
+        'web.assets_web': [
+            'member_management/static/src/css/member_style.css',
+        ],
+    },
 }
