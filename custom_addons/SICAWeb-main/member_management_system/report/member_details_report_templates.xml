@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="member_details_pdf_document">
+        <t t-call="web.html_container">
+            <t t-set="doc" t-value="doc"/>
+            <div class="page">
+                <table>
+                    <tr>
+                        <td style="width:50%">
+                            <img t-att-src="'data:image/png;base64,%s' % to_text(doc.company_id.logo)"
+                                 style="max-width:80%"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:20%">
+                            <h3>
+                                Member's Details
+                            </h3>
+                        </td>
+                    </tr>
+                </table>
+                <table style="width:40%">
+                    <tr>
+                        <td style="text-align:left;padding:10px;">
+                            <strong>Name</strong>
+                        </td>
+                        <td style="text-align:left;padding:10px;">
+                            <span t-field="doc.name"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;padding:10px;">
+                            <strong>Membership No.</strong>
+                        </td>
+                        <td style="text-align:left;padding:10px;">
+                            <span t-field="doc.membership_no"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;padding:10px;">
+                            <strong>Grade</strong>
+                        </td>
+                        <td style="text-align:left;padding:10px;">
+                            <span t-field="doc.grade"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;padding:10px;">
+                            <strong>Mobile/Tel No.</strong>
+                        </td>
+                        <td style="text-align:left;padding:10px;">
+                            <span t-field="doc.contact1"/> / <span t-field="doc.contact2"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;padding:10px;">
+                            <strong>Email-Id</strong>
+                        </td>
+                        <td style="text-align:left;padding:10px;">
+                            <span t-field="doc.email"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;padding:10px;">
+                            <strong>Member's Address</strong>
+                        </td>
+                        <td style="text-align:left;padding:10px;">
+                            <span t-esc="doc.get_residential_address()"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;padding:10px;">
+                            <strong>Blood Group</strong>
+                        </td>
+                        <td style="text-align:left;padding:10px;">
+                            <span t-field="doc.blood_group"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;padding:10px;">
+                            <strong>Nominee's Name 1</strong>
+                        </td>
+                        <td style="text-align:left;padding:10px;">
+                            <span t-field="doc.nominee1"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;padding:10px;">
+                            <strong>Nominee's Name 2</strong>
+                        </td>
+                        <td style="text-align:left;padding:10px;">
+                            <span t-field="doc.nominee2"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;padding:10px;">
+                            <strong>Paid Till</strong>
+                        </td>
+                        <td style="text-align:left;padding:10px;">
+                            <span t-field="doc.paid_till"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;padding:10px;">
+                            <strong>Remarks</strong>
+                        </td>
+                        <td style="text-align:left;padding:10px;">
+                            <span t-field="doc.remarks"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <template id="member_details_pdf">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="member_management_system.member_details_pdf_document"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

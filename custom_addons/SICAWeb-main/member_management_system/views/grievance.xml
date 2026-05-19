@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="grievance_reason_tree_view" model="ir.ui.view">
+        <field name="name">grievance.reason.tree</field>
+        <field name="model">grievance.reason</field>
+        <field name="arch" type="xml">
+            <tree string="Grievance" editable="bottom">
+                <field name="name"/>
+                <field name="is_production_update"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="grievance_reason_form_view" model="ir.ui.view">
+        <field name="name">grievance.reason.form</field>
+        <field name="model">grievance.reason</field>
+        <field name="arch" type="xml">
+            <form string="Grievance Reason" duplicate="false">
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" default_focus="1" placeholder="Reference"/>
+                        </h1>
+                    </div>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_grievance_reason" model="ir.actions.act_window">
+        <field name="name">Grievance Reason</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">grievance.reason</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click on Create Grievance Reason
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_grievance_reason" name="Grievance Reason" action="action_grievance_reason"
+              parent="menu_grievance" sequence="30"/>
+
+
+    <record id="grievance_report_tree_view" model="ir.ui.view">
+        <field name="name">grievance.report.tree</field>
+        <field name="model">grievance.report</field>
+        <field name="arch" type="xml">
+            <tree string="Grievance">
+                <field name="reference"/>
+                <field name="grievance_reason_id"/>
+                <field name="name"/>
+                <field name="member_name_no"/>
+                <field name="project_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="grievance_report_form_view" model="ir.ui.view">
+        <field name="name">grievance.report.form</field>
+        <field name="model">grievance.report</field>
+        <field name="arch" type="xml">
+            <form string="Grievance Reason" duplicate="false">
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="reference" default_focus="1" placeholder="Reference"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="grievance_reason_id"/>
+                            <field name="name"/>
+                            <field name="member_name_no"/>
+                            <field name="member_id"/>
+                            <field name="project_name"/>
+                            <field name="projection_house_name"/>
+                            <field name="outdoor_unit_name"/>
+                            <field name="location"/>
+                            <field name="issue_raised" invisible="1"/>
+                            <field name="issue_type"/>
+                            <field name="approximate_time_lost"/>
+                        </group>
+                        <group>
+                            <field name="contact_outdoor_unit_manager"/>
+                            <field name="has_outdoor_unit_manager_helpful_to_solve_issue" invisible="1"/>
+                            <field name="has_outdoor_unit_manager_helpful_to_the_solve_issue"/>
+                            <field name="issue_has_been_reported"/>
+                            <field name="name_contact_no_of_production_manager_executive_producer"/>
+                            <field name="brief_issue_faced_with_service_of_outdoor_unit_equipment"/>
+                        </group>
+
+                    </group>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_grievance_report" model="ir.actions.act_window">
+        <field name="name">Grievance Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">grievance.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click on Create Grievance Report
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_grievance_report" name="Grievance Report" action="action_grievance_report"
+              parent="menu_grievance" sequence="31"/>
+
+    <record id="shooting_update_form_view" model="ir.ui.view">
+        <field name="name">grievance.report.form</field>
+        <field name="model">daily.shooting.update</field>
+        <field name="arch" type="xml">
+            <form string="Shooting Update" duplicate="false">
+
+                <header>
+                    <!-- <button name="action_approve_dop" string="Approve by DoP" type="object" class="btn-primary"
+                            attrs="{'invisible': [('is_dop_approved', '=', True)]}"/> -->
+                    <button name="action_approve_admin" string="Approve by Admin" type="object" class="btn-primary" />
+                </header>
+                <!-- <field name="is_dop_approved" readonly="1"/>
+                <field name="is_admin_approved" readonly="1"/> -->
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="reference" default_focus="1" placeholder="Reference"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <!-- Group 1: Production Details -->
+                        <group string="Basic Information">
+                            <field name="email"/>
+                            <field name="date"/>
+                            <field name="member_id"/>
+                            <field name="member_name"/>
+                            <field name="member_contact_no"/>
+                            <field name="membership_no"/>
+                            <field name="category"/>
+                        </group>
+
+                        <!-- Group 2: Production Details -->
+                        <group string="Production Details">
+                            <field name="project_title"/>
+                            <field name="grievance_reason_id"/>
+                            <field name="format"/>
+                            <field name="designation"/>
+                            <field name="producer"/>
+                            <field name="project_house"/>
+                            <field name="production_executive"/>
+                            <field name="production_executive_contact_no"/>
+                            <field name="outdoor_unit_name"/>
+                            <field name="location"/>
+                        </group>
+                    </group>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="shooting_update_tree_view" model="ir.ui.view">
+        <field name="name">shooting.update.tree</field>
+        <field name="model">daily.shooting.update</field>
+        <field name="arch" type="xml">
+            <tree string="Grievance">
+                <field name="reference"/>
+                <field name="grievance_reason_id"/>
+                <field name="member_name"/>
+                <field name="membership_no"/>
+                <field name="category"/>
+                <field name="project_title"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_daily_shooting_update" model="ir.actions.act_window">
+        <field name="name">Daily Shooting Update</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">daily.shooting.update</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click on Create Shooting Update
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_daily_shooting_update" name="Daily Shooting Update" action="action_daily_shooting_update"
+              parent="menu_grievance" sequence="32"/>
+
+</odoo>

@@ -1,0 +1,32 @@
+.sica_title {
+    padding: 20px 20px;
+}
+
+.main-section {
+    padding-top: 20px;
+}
+
+.oh-card {
+    line-height: 30px;
+}
+
+.stat-head {
+    padding-top: 5px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/*.today_birthday {
+    height: 230px;
+    overflow: auto;
+}*/
+
+.row.main-section {
+    margin-right: 0px !important;
+}
+
+.oh_dashboards {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="withdraw_filter_view" model="ir.ui.view">
+            <field name="name">cash.withdraw.list.select</field>
+            <field name="model">cash.withdraw</field>
+            <field name="arch" type="xml">
+                <search string="Search Cash Withdraw">
+                    <field name="payment_option"/>
+                    <field name="payment_date"/>
+                    <separator/>
+                    <group expand="0" name="group_by" string="Group By">
+                        <filter name="group_payment_option" string="Payment Options" context="{'group_by': 'payment_option'}"/>
+                        <filter name="group_payment_date" string="Payment Date" context="{'group_by': 'payment_date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="withdraw_tree_view" model="ir.ui.view">
+            <field name="name">cash.withdraw.tree</field>
+            <field name="model">cash.withdraw</field>
+            <field name="arch" type="xml">
+                <tree string="Cash Withdraw">
+                    <field name="payment_date"/>
+                    <field name="payment_option"/>
+                    <field name="amount" sum="Total Amount"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="withdraw_form_view" model="ir.ui.view">
+            <field name="name">cash.withdraw.form</field>
+            <field name="model">cash.withdraw</field>
+            <field name="arch" type="xml">
+                <form string="Cash Withdraw" duplicate="false">
+                    <header>
+                        <button name="button_validate" type="object" class="btn-primary" states="draft" string="Validate" confirm="Are you sure to validate the voucher? You can not do any changes after validation"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,validated" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="amount"/>
+                                <field name="amount_in_words"/>
+                                <field name="payment_option"/>
+                                <field name="payment_date"/>
+                            </group>
+                            <group/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_cash_withdraw" model="ir.actions.act_window">
+            <field name="name">Cash Withdraw</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cash.withdraw</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click on Create button to create cash withdraw.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

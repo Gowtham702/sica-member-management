@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    <data>-->
+
+        <menuitem id="main_menu_sica" name="SICA" web_icon="member_management_system,static/description/icon.png" sequence="1">
+            <menuitem id="menu_member_management" action="member_management_system.action_res_member"/>
+            <menuitem id="menu_receipt_management" name="Receipt Management">
+                <menuitem id="menu_sica_cbt_receipt" action="action_sica_cbt_receipt"/>
+                <menuitem id="menu_other_receipt" action="action_other_receipt"/>
+                <menuitem id="menu_cash_deposit" action="action_cash_deposit"/>
+            </menuitem>
+            <menuitem id="menu_receipt_management" name="Receipt Management" groups="base.group_system">
+                <menuitem id="menu_sica_cbt_receipt" action="action_sica_cbt_receipt"/>
+                <menuitem id="menu_other_receipt" action="action_other_receipt"/>
+                <menuitem id="menu_cash_deposit" action="action_cash_deposit"/>
+            </menuitem>
+            <menuitem id="menu_expense_management" name="Expense Management" groups="base.group_system">
+                <menuitem id="menu_expense" action="action_expense"/>
+                <menuitem id="menu_cash_withdraw" action="action_cash_withdraw"/>
+            </menuitem>
+            <menuitem id="menu_reports" name="Reports" groups="base.group_system">
+                <menuitem id="menu_member_report" action="action_member_report"/>
+                <menuitem id="menu_sica_receipt_report" action="action_sica_receipt_report"/>
+                <menuitem id="menu_cbt_receipt_report" action="action_cbt_receipt_report"/>
+                <menuitem id="menu_other_receipt_report" action="action_other_receipt_report"/>
+                <menuitem id="menu_expense_report" action="action_expense_report"/>
+                <menuitem id="profit_loss" action="action_profit_loss_report"/>
+                <menuitem id="menu_member_import" name="data fix imports" action="action_member_import_wizard"/>
+            </menuitem>
+        </menuitem>
+        <menuitem id="action_configuration_settings"  name="Mobile Application 5" parent="main_menu_sica"/>
+        <menuitem id="action_configuration_settings3" name="Mobile Application 1" parent="main_menu_sica"/>
+        <menuitem id="menu_otp" name="OTP" parent="action_configuration_settings" sequence="1"/>
+        <menuitem id="menu_payment_gateway" name="Payment Gateway" parent="action_configuration_settings" sequence="2"/>
+        <menuitem id="menu_discuss" name="Discussion" parent="action_configuration_settings" sequence="3"/>
+        <menuitem id="menu_grievance" name="Grievance" parent="action_configuration_settings" sequence="4"/>
+        <menuitem id="menu_shooting" name="Shooting" parent="action_configuration_settings" sequence="5"/>
+        <menuitem id="action_configuration_settings2" name="Mobile Application 2" parent="main_menu_sica"/>
+        <menuitem id="menu_employment_scheme" name="Employment Scheme" parent="action_configuration_settings2" sequence="5"/>
+        <menuitem id="menu_mobile_photo" name="Mobile Banner Image" parent="action_configuration_settings2" sequence="6"/>
+        <menuitem id="menu_medium" name="Format" parent="action_configuration_settings2" sequence="7"/>
+        <menuitem id="menu_events" name="Events" parent="action_configuration_settings2" sequence="10"/>
+        <menuitem id="menu_sica_tickets" name="Support Tickets" parent="action_configuration_settings2" sequence="15"/>
+        <menuitem id="spd_categ" name="SPD" parent="action_configuration_settings2" sequence="12"/>
+        <menuitem id="sica_gallery" name="Gallery" parent="action_configuration_settings2" sequence="13"/>
+
+        <menuitem id="menu_res_member" name="Member" action="action_res_member"
+              parent="menu_member_management" sequence="-32"/>
+
+        <menuitem id="menu_member_work" name="Member Work" action="action_member_work"
+              parent="menu_member_management" sequence="32"/>
+
+        <menuitem id="menu_member_work_approve" name="Member Work Approve Status" action="action_member_work_approve"
+              parent="menu_member_management" sequence="33"/>
+
+        <menuitem id="menu_sica_news_blog_settings" name="News &amp; Blogs" parent="main_menu_sica" sequence="15"/>
+        <menuitem id="menu_sica_news_blog" name="News &amp; Blogs" parent="menu_sica_news_blog_settings"/>
+<!--    </data>-->
+</odoo>

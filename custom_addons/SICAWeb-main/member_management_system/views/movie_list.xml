@@ -1,0 +1,72 @@
+<odoo>
+    <!-- Tree View -->
+    <record id="view_movie_list_tree" model="ir.ui.view">
+        <field name="name">movie.list.tree</field>
+        <field name="model">movie.list</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence"/>
+                <field name="date"/>
+                <field name="movie_name"/>
+                <field name="dop_name"/>
+                <field name="production_companies"/>
+<!--                <field name="state"/>-->
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_movie_list_form" model="ir.ui.view">
+        <field name="name">movie.list.form</field>
+        <field name="model">movie.list</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="sequence"/>
+                            <field name="date"/>
+                            <field name="movie_name" required="1"/>
+                            <field name="dop_name"/>
+                            <field name="project_type"/>
+                            <field name="production_companies"/>
+                            <field name="team_member"/>
+                            <field name="member_type"/>
+                            <field name="channel_name"/>
+                            <field name="movie_link" widget="url"/>
+                            <field name="language"/>
+<!--                            <field name="member_state"/>-->
+                            <field name="membership_no"/>
+                            <field name="grade"/>
+                            <field name="release_state"/>
+<!--                            <field name="state"/>-->
+                        </group>
+                        <group>
+                            <field name="image" widget="image" class="oe_avatar" force_save="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Menu -->
+    <record id="action_movie_list_data" model="ir.actions.act_window">
+        <field name="name">Movies List</field>
+        <field name="res_model">movie.list</field>
+        <field name="context">{}</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Main Action -->
+    <record id="action_movie_excel_upload_wizard" model="ir.actions.act_window">
+        <field name="name">Import Movie Excel</field>
+        <field name="res_model">movie.excel.upload.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_movie_list" name="Movie List" parent="menu_sica_news_blog" action="action_movie_list_data" sequence='7'/>
+    <menuitem id="menu_upload_movie_list" name="Upload Movie List" parent="menu_sica_news_blog" action="action_movie_excel_upload_wizard" sequence='6'/>
+</odoo>

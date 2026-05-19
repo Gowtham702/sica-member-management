@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="member_job_seeker_tree_view" model="ir.ui.view">
+            <field name="name">res.member.tree</field>
+            <field name="model">member.job.seeker</field>
+            <field name="arch" type="xml">
+                <tree string="Job Seeker">
+                    <!--                    <field name="avatar_128" widget="image" string="Photo" optional="hide"/>-->
+                    <field name="name"/>
+                    <field name="create_date"/>
+                    <field name="member_id" widget="many2one_avatar" invisible="1"/>
+                    <field name="membership_no"/>
+                    <field name="member_name"/>
+                    <field name="mobile_number"/>
+                    <field name="designation" invisible="1"/>
+                    <field name="post_applying" invisible="1"/>
+                    <field name="experience" invisible="1"/>
+                    <field name="post_applying_id"/>
+                    <field name="medium_id" string="Format"/>
+                    <field name="skill_ids" string="Skills" widget="many2many_tags"/>
+                    <field name="start_date" string="Availability From"/>
+                    <field name="till_date" string="Availability Till"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="member_job_seeker_form_view" model="ir.ui.view">
+            <field name="name">res.member.form</field>
+            <field name="model">member.job.seeker</field>
+            <field name="arch" type="xml">
+                <form string="JOb Seeker" duplicate="false">
+                    <header>
+                        <button name="button_inactive" type="object" states="active" string="Deactivate"
+                                confirm="Are you sure to deactivate the member?"/>
+                        <button name="button_active" type="object" states="inactive" string="Activate"
+                                confirm="Are you sure to activate the member?"/>
+                        <field name="state" widget="statusbar" statusbar_visible="active,inactive" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <!--                        <div class="oe_button_box">-->
+                        <!--                            <button type="object" name="view_sica_cbt_receipts" class="oe_stat_button" icon="fa-book"-->
+                        <!--                                    attrs="{'invisible': [('sica_cbt_receipts', '=', 0)]}">-->
+                        <!--                                <field name="sica_cbt_receipts" string="SICA/CBT" widget="statinfo"/>-->
+                        <!--                            </button>-->
+                        <!--                        </div>-->
+                        <!--                        <field name="profile_pic" widget='image' class="oe_avatar"-->
+                        <!--                               options='{"preview_image": "profile_pic"}'/>-->
+                        <div class="oe_title">
+                            <label for="member_name"/>
+                            <h1>
+                                <field name="name" default_focus="1" placeholder="Reference"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="member_name"/>
+                                <field name="member_id" widget="many2one_avatar"/>
+                                <field name="membership_no"/>
+                                <field name="mobile_number"/>
+                                <field name="designation" invisible="1"/>
+                                <field name="experience" invisible="1"/>
+                                <field name="grade"/>
+                            </group>
+                            <group>
+                                <field name="post_applying_id"/>
+                                <field name="medium_id" string="Format"/>
+                                <field name="skill_ids" string="Skills" widget="many2many_tags"/>
+                                <field name="start_date" string="Availability From"/>
+                                <field name="till_date" string="Availability Till"/>
+                                <field name="available_date" invisible="1"/>
+                                <field name="document"/>
+                                <field name="document_binary"/>
+                                <field name="skill_1" invisible="1"/>
+                                <field name="skill_1" invisible="1"/>
+                                <field name="portifolio_link"/>
+                                <field name="portifolio_link_2"/>
+                                <field name="note"/>
+                            </group>
+                        </group>
+                        <notebook invisible="1">
+                            <page string="Medium">
+                                <field name="medium"/>
+                            </page>
+                            <page string="Post Apply">
+                                <field name="post_applying"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_member_job_seeker" model="ir.actions.act_window">
+            <field name="name">Member Job Seeker</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">member.job.seeker</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'group_by': ['post_applying_id']}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click on Create Job Seeker Record.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_member_job_seeker" name="Job Seeker" action="action_member_job_seeker"
+                  parent="menu_employment_scheme" sequence="-10"/>
+
+        <record id="action_member_job_title" model="ir.actions.act_window">
+            <field name="name">Job Post</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">job.title</field>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click on Create Job Title Record.
+                </p>
+            </field>
+        </record>
+
+        <record id="member_job_title_tree_view" model="ir.ui.view">
+            <field name="name">res.title.tree</field>
+            <field name="model">job.title</field>
+            <field name="arch" type="xml">
+                <tree string="Job Title" editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <menuitem id="menu_member_job_title" name="Job Post" action="action_member_job_title"
+                  parent="menu_employment_scheme" sequence="-100"/>
+    </data>
+</odoo>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="tech_talk_tree_view" model="ir.ui.view">
+        <field name="name">tech.talk.tree</field>
+        <field name="model">tech.talk</field>
+        <field name="arch" type="xml">
+            <tree string="Tech Talk" default_order="sequence asc">
+                <field name="sequence"/>
+                <field name="title" required="1"/>
+                <field name="date"/>
+                <field name="views"/>
+                <field name="link"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="tech_talk_form_view" model="ir.ui.view">
+        <field name="name">tech.talk.form</field>
+        <field name="model">tech.talk</field>
+        <field name="arch" type="xml">
+            <form string="Tech Talk">
+                <sheet>
+                    <group>
+                    <group>
+                        <field name="title" required="1"/>
+                        <field name="date"/>
+                        <field name="sequence"/>
+                        <field name="views"/>
+                        <field name="link"/>
+                    </group>
+                    <group>
+                        <field name="image" widget="image"  options="{'preview_image': 'image', 'size': [200, 200]}"/>
+                        <field name="image_note" readonly="1"/>
+                    </group>
+                    </group>
+                    <notebook>
+                        <page string="Links">
+                            <field name="tech_talk_line_ids">
+                                <tree editable="bottom">
+                                    <field name="title"/>
+                                    <field name="link"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_tech_talk" model="ir.actions.act_window">
+        <field name="name">Tech Talk</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tech.talk</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click on Create Tech Talk
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_tech_talk" name="Tech Talk" action="action_tech_talk"
+              parent="menu_sica_news_blog" sequence="1"/>
+</odoo>

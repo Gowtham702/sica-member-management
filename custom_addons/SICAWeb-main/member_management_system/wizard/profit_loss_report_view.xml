@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="views_profit_loss_report" model="ir.ui.view">
+        <field name="name">profit.loss.report.form</field>
+        <field name="model">profit.loss.report</field>
+        <field name="arch" type="xml">
+            <form string="Profit &amp; Loss Report">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="sica_cbt"/>
+                    </group>
+                    <group/>
+                </group>
+                <footer>
+                    <button string="Download Xlsx" name="download_excel_file" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_profit_loss_report" model="ir.actions.act_window">
+        <field name="name">Profit &amp; Loss Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">profit.loss.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

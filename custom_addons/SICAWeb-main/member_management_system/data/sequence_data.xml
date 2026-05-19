@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_shooting_dop" model="ir.sequence">
+            <field name="name">Shooting Dop</field>
+            <field name="code">shooting.dop</field>
+             <field name="prefix">SD/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_shooting_event" model="ir.sequence">
+            <field name="name">Shooting Event</field>
+            <field name="code">shooting.event</field>
+             <field name="prefix">SE/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_sica_shooting" model="ir.sequence">
+            <field name="name">Sica Shooting</field>
+            <field name="code">sica.shooting</field>
+             <field name="prefix">SS/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="seq_grievance" model="ir.sequence">
+            <field name="name">Grievance Report</field>
+            <field name="code">grievance.report</field>
+             <field name="prefix">GR/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_shooting_update" model="ir.sequence">
+            <field name="name">Shooting Update</field>
+            <field name="code">shooting.update</field>
+             <field name="prefix">SU/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_discussion_forum" model="ir.sequence">
+            <field name="name">Discussion Forum</field>
+            <field name="code">discussion.forum</field>
+             <field name="prefix">DF/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_member_job_provider" model="ir.sequence">
+            <field name="name">Job Provider</field>
+            <field name="code">job.provider</field>
+             <field name="prefix">JP/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="seq_member_job_seeker" model="ir.sequence">
+            <field name="name">Job Seeker</field>
+            <field name="code">job.seeker</field>
+             <field name="prefix">JS/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_member_payment_request" model="ir.sequence">
+            <field name="name">payment.request</field>
+            <field name="code">payment.request</field>
+             <field name="prefix">PR/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_member_payment" model="ir.sequence">
+            <field name="name">member.payment</field>
+            <field name="code">member.payment</field>
+             <field name="prefix">MP/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_res_member" model="ir.sequence">
+            <field name="name">Members</field>
+            <field name="code">res.member</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_sica_support" model="ir.sequence">
+            <field name="name">SICA Support Tickets</field>
+            <field name="code">sica.support</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+
+
+        <record id="seq_sica_receipt" model="ir.sequence">
+            <field name="name">SICA Receipt</field>
+            <field name="code">sica.receipt</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_cbt_receipt" model="ir.sequence">
+            <field name="name">CBT Receipt</field>
+            <field name="code">cbt.receipt</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_other_receipt" model="ir.sequence">
+            <field name="name">Other Receipt</field>
+            <field name="code">other.receipt</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_expense" model="ir.sequence">
+            <field name="name">Expense</field>
+            <field name="code">member.expense</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

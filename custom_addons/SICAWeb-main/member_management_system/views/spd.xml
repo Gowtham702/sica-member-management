@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="spd_category_tree_view" model="ir.ui.view">
+        <field name="name">spd.category.tree</field>
+        <field name="model">spd.category</field>
+        <field name="arch" type="xml">
+            <tree string="SPD Category" editable="bottom">
+                <field name="name" required="1"/>
+                <field name="description" required="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_spd_category_search" model="ir.ui.view">
+        <field name="name">spd.category.search</field>
+        <field name="model">spd.category</field>
+        <field name="arch" type="xml">
+            <search string="Search Category">
+                <field name="name"/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_spd_category" model="ir.actions.act_window">
+        <field name="name">SPD Category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">spd.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click on Create SPD Category
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_spd_category" name="SPD Category" action="action_spd_category"
+              parent="spd_categ" sequence="1"/>
+
+
+    <record id="spd_sub_category_tree_view" model="ir.ui.view">
+        <field name="name">spd.sub.category.tree</field>
+        <field name="model">spd.sub.category</field>
+        <field name="arch" type="xml">
+            <tree string="SPD Category">
+                <field name="name" required="1" string="Vendor Name"/>
+                <field name="company_name" required="0"/>
+                <field name="vendor_type" required="0"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'subscribed'" decoration-danger="state == 'unsubscribed'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="spd_sub_category_form_view" model="ir.ui.view">
+        <field name="name">spd.sub.category.form</field>
+        <field name="model">spd.sub.category</field>
+        <field name="arch" type="xml">
+            <form string="SPD Category">
+                <header>
+                    <button name="action_subscribe" string="Subscribe" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ['subscribed'])]}"/>
+                    <button name="action_unsubscribe" string="Unsubscribe" type="object" attrs="{'invisible': [('state', 'in', ['unsubscribed', 'draft'])]}"/>
+                    <button name="action_draft" string="Set to Draft" type="object" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,subscribed,unsubscribed"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <field name="active" invisible="1"/>
+                <group>
+                    <group>
+                        <field name="name" required="1" string="Vendor Name"/>
+                        <field name="company_name" required="0"/>
+                        <field name="vendor_type" required="0"/>
+                        <field name="phone_number" required="0"/>
+                        <field name="category_id" invisible="1"/>
+                        <field name="location"/>
+                    </group>
+                    <group>
+                        <field name="email" required="0"/>
+                        <field name="website" required="0"/>
+                        <field name="address" required="0"/>
+                        <field name="photo" required="0" widget="image"  options="{'preview_image': 'photo', 'size': [200, 200]}"/>
+                    </group>
+                </group>
+                    <notebook>
+                        <page string="Products">
+                            <field name="product_ids">
+                                <tree editable="bottom">
+                                    <field name="sequence"/>
+                                    <field name="name" required="1" string="Product Name"/>
+                                    <field name="category_id" string="Category"/>
+                                    <field name="description" string="Description"/>
+                                    <field name="quantity" string="Quantity"/>
+                                    <field name="image_link" string="Image Link"/>
+<!--                                    <field name="image" string="Image" widget="image"  options="{'preview_image': 'image', 'size': [50, 50]}"/>-->
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_spd_sub_category_search" model="ir.ui.view">
+        <field name="name">spd.sub.category.search</field>
+        <field name="model">spd.sub.category</field>
+        <field name="arch" type="xml">
+            <search string="Search Sub Category">
+                <field name="name"/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_spd_sub_category" model="ir.actions.act_window">
+        <field name="name">SPD sub Category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">spd.sub.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click on Create Sub SPD Category
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_spd_sub_category" name="SPD Sub Category" action="action_spd_sub_category"
+              parent="spd_categ" sequence="2"/>
+
+
+    <record id="spd_product_tree_view" model="ir.ui.view">
+        <field name="name">spd.product.tree</field>
+        <field name="model">spd.product</field>
+        <field name="arch" type="xml">
+            <tree string="SPD product">
+                <field name="name" required="1"/>
+                <field name="description" required="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="spd_product_form_view" model="ir.ui.view">
+        <field name="name">spd.product.form</field>
+        <field name="model">spd.product</field>
+        <field name="arch" type="xml">
+            <form string="SPD product">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="description" required="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Vendor">
+                            <field name="vendor_ids">
+                                <tree editable="bottom">
+                                    <field name="vendor_id"/>
+                                    <field name="company_name"/>
+                                    <field name="vendor_type"/>
+                                    <field name="email"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_spd_product" model="ir.actions.act_window">
+        <field name="name">SPD product</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">spd.product</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click on Create SPD product
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_spd_product" name="SPD Product" action="action_spd_product"
+              parent="spd_categ" sequence="3"/>
+
+
+    <record id="spd_banner_photo_tree_view" model="ir.ui.view">
+        <field name="name">spd.banner.photo.tree</field>
+        <field name="model">spd.banner.photo</field>
+        <field name="arch" type="xml">
+            <tree string="Banner Image">
+                <field name="sequence"/>
+                <field name="name"/>
+                <field name="promotion_link"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="spd_banner_form_view" model="ir.ui.view">
+        <field name="name">spd.banner.photo.tree</field>
+        <field name="model">spd.banner.photo</field>
+        <field name="arch" type="xml">
+            <form string="Banner Image">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="sequence"/>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="promotion_link"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="photo" class="oe_avatar" widget="image"  options="{'preview_image': 'photo', 'size': [200, 200]}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_spdbannerphoto_search" model="ir.ui.view">
+    <field name="name">spd.banner.photo.search</field>
+    <field name="model">spd.banner.photo</field>
+    <field name="arch" type="xml">
+        <search string="Search Banner Photos">
+            <!-- Basic search fields -->
+            <field name="name"/>
+            <field name="promotion_link"/>
+            <field name="description"/>
+
+            <!-- Filter for Active -->
+            <filter name="active" string="Active" domain="[('active', '=', True)]"/>
+
+            <!-- Filter for Archived / Inactive -->
+            <filter name="inactive" string="Archived" domain="[('active', '=', False)]"/>
+        </search>
+    </field>
+</record>
+
+
+    <record id="action_spd_banner_photo" model="ir.actions.act_window">
+        <field name="name">Spd Banner Image</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">spd.banner.photo</field>
+        <field name="view_mode">tree,form,search</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click on Create Mobile Photo
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_spd_banner_image" name="SPD Banner" action="action_spd_banner_photo"
+              parent="spd_categ" sequence="4"/>
+</odoo>

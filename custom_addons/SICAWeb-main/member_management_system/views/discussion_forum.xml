@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="discuss_category_tree_view" model="ir.ui.view">
+            <field name="name">discuss.category.tree</field>
+            <field name="model">discuss.category</field>
+            <field name="arch" type="xml">
+                <tree string="Discussion Category" editable="bottom">
+                    <!--                    <field name="avatar_128" widget="image" string="Photo" optional="hide"/>-->
+                    <field name="id" invisible="1"/>
+                    <field name="name" required="1"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="discuss_category_form_view" model="ir.ui.view">
+            <field name="name">discussion.category.form</field>
+            <field name="model">discuss.category</field>
+            <field name="arch" type="xml">
+                <form string="Discuss Category" duplicate="false">
+                    <header>
+                        <!--                        <button name="button_inactive" type="object" states="active" string="Deactivate"-->
+                        <!--                                confirm="Are you sure to deactivate the member?"/>-->
+                        <!--                        <button name="button_active" type="object" states="inactive" string="Activate"-->
+                        <!--                                confirm="Are you sure to activate the member?"/>-->
+                        <!--                        <field name="state" widget="statusbar" statusbar_visible="active,inactive" readonly="1"/>-->
+                    </header>
+                    <sheet>
+                        <!--                        <div class="oe_button_box">-->
+                        <!--                            <button type="object" name="view_sica_cbt_receipts" class="oe_stat_button" icon="fa-book"-->
+                        <!--                                    attrs="{'invisible': [('sica_cbt_receipts', '=', 0)]}">-->
+                        <!--                                <field name="sica_cbt_receipts" string="SICA/CBT" widget="statinfo"/>-->
+                        <!--                            </button>-->
+                        <!--                        </div>-->
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" default_focus="1" placeholder="Reference"/>
+                            </h1>
+                        </div>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_discuss_category" model="ir.actions.act_window">
+            <field name="name">Discuss Category</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">discuss.category</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click on Create Discussion Category.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_discuss_category" name="Discuss Category Forum" action="action_discuss_category"
+                  parent="menu_discuss" sequence="19"/>
+
+
+
+        <record id="discussion_forum_tree_view" model="ir.ui.view">
+            <field name="name">discussion.forum.tree</field>
+            <field name="model">discussion.forum</field>
+            <field name="arch" type="xml">
+                <tree string="JDiscussion Forum">
+                    <!--                    <field name="avatar_128" widget="image" string="Photo" optional="hide"/>-->
+                    <field name="id" invisible="1"/>
+                    <field name="name"/>
+                    <field name="member_id" widget="many2one_avatar"/>
+                    <field name="discussion_topic"/>
+                    <field name="category_id"/>
+                    <field name="user_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="discussion_forum_form_view" model="ir.ui.view">
+            <field name="name">discussion.forum.form</field>
+            <field name="model">discussion.forum</field>
+            <field name="arch" type="xml">
+                <form string="Discussion Forum" duplicate="false">
+                    <header>
+                        <!--                        <button name="button_inactive" type="object" states="active" string="Deactivate"-->
+                        <!--                                confirm="Are you sure to deactivate the member?"/>-->
+                        <!--                        <button name="button_active" type="object" states="inactive" string="Activate"-->
+                        <!--                                confirm="Are you sure to activate the member?"/>-->
+                        <!--                        <field name="state" widget="statusbar" statusbar_visible="active,inactive" readonly="1"/>-->
+                    </header>
+                    <sheet>
+                        <!--                        <div class="oe_button_box">-->
+                        <!--                            <button type="object" name="view_sica_cbt_receipts" class="oe_stat_button" icon="fa-book"-->
+                        <!--                                    attrs="{'invisible': [('sica_cbt_receipts', '=', 0)]}">-->
+                        <!--                                <field name="sica_cbt_receipts" string="SICA/CBT" widget="statinfo"/>-->
+                        <!--                            </button>-->
+                        <!--                        </div>-->
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" default_focus="1" placeholder="Reference" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="discussion_topic"/>
+                                <field name="category_id"/>
+                            </group>
+                            <group>
+                                <field name="member_id"/>
+                                <field name="user_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Comments">
+                                <field name="discussion_comment_ids">
+                                    <tree editable="bottom">
+                                        <field name="member_id"/>
+                                        <field name="comment"/>
+                                        <field name="document" invisible="1" string="Document Data"/>
+                                        <field name="image" widget="image" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_discussion_forum" model="ir.actions.act_window">
+            <field name="name">Discussion Forum</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">discussion.forum</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click on Create Discussion Forum.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_discussion_forum" name="Discussion Topic Forum" action="action_discussion_forum"
+                  parent="menu_discuss" sequence="20"/>
+
+
+        <record id="discussion_comment_form_view" model="ir.ui.view">
+            <field name="name">discussion.comment.form</field>
+            <field name="model">discussion.comment</field>
+            <field name="arch" type="xml">
+                <form string="Discussion Comment" duplicate="false">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="member_id"/>
+                                        <field name="comment"/>
+                                        <field name="document" invisible="1" string="Document Data"/>
+                                        <field name="image" widget="image" invisible="1"/>
+                            </group>
+                            <group>
+
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Child Comments">
+                                <field name="child_comment_ids">
+                                    <tree editable="bottom">
+                                        <field name="member_id"/>
+                                        <field name="comment"/>
+                                        <field name="document" invisible="1" string="Document Data"/>
+                                        <field name="image" widget="image" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="discussion_comment_tree_view" model="ir.ui.view">
+            <field name="name">discussion.comment.tree</field>
+            <field name="model">discussion.comment</field>
+            <field name="arch" type="xml">
+                <tree string="Discussion Comment" duplicate="false">
+                    <field name="member_id"/>
+                    <field name="comment"/>
+                    <field name="document" invisible="1" string="Document Data"/>
+                    <field name="image" widget="image" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_discussion_forum_comment" model="ir.actions.act_window">
+            <field name="name">Discussion Comment</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">discussion.comment</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click on Create Discussion Comment.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_discussion_comment" name="Discussion Comment" action="action_discussion_forum_comment"
+                  parent="menu_discuss" sequence="40"/>
+
+
+    </data>
+
+</odoo>

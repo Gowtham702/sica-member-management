@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="action_report_other_receipt_office_copy" model="ir.actions.report">
+            <field name="name">Office Copy</field>
+            <field name="model">other.receipt</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">member_management_system.receipt_other_receipt_office_copy</field>
+            <field name="report_file">member_management_system.receipt_other_receipt_office_copy</field>
+            <field name="print_report_name">"Other Receipt - Office Copy"</field>
+            <field name="binding_model_id" ref="model_other_receipt"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_report_other_receipt_member_copy" model="ir.actions.report">
+            <field name="name">Member Copy</field>
+            <field name="model">other.receipt</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">member_management_system.receipt_other_receipt_member_copy</field>
+            <field name="report_file">member_management_system.receipt_other_receipt_member_copy</field>
+            <field name="print_report_name">"Other Receipt - Member Copy"</field>
+            <field name="binding_model_id" ref="model_other_receipt"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

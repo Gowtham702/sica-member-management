@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="sica_cbt_document">
+        <t t-call="web.html_container">
+            <t t-set="doc" t-value="doc.with_context(lang=lang)"/>
+            <style>
+
+                .border_table table, .border_table th, .border_table td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                }
+
+
+                .split {
+                height: 100%;
+                width: 50%;
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                overflow-x: hidden;
+                }
+
+                .left {
+                left: 0;
+                border-right: 2px solid;
+                }
+
+                .right {
+                right: 0;
+                }
+
+                .centered {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                }
+
+                .centered img {
+                width: 150px;
+                border-radius: 50%;
+                }
+            </style>
+            <body>
+                <div class="split left">
+                    <t t-if="doc.sica_total">
+                        <div style="text-align:center;">
+                            <h4>
+                                <span style="border-bottom: solid 2px #000000;display: inline;padding-bottom:2px;">
+                                    SICA RECEIPT
+                                </span>
+                            </h4>
+                        </div>
+                        <table style="font-size:13px;">
+                            <tr>
+                                <td style="width:70%">
+                                    <img t-att-src="'data:image/png;base64,%s' % to_text(doc.company_id.logo)"
+                                         style="max-width:79%"/>
+                                    <div style="padding-left:3;">
+                                        Regd No.
+                                        <span t-field="doc.company_id.company_registry"/>
+                                    </div>
+                                </td>
+                                <td style="padding-right:5mm;text-align:right;width:30%">
+                                    <t t-if="doc.env.context.get('member_copy', False)">
+                                        <strong>Member Copy</strong>
+                                    </t>
+                                    <t t-if="not doc.env.context.get('member_copy', False)">
+                                        <strong>Office Copy</strong>
+                                    </t>
+                                    <br/>
+                                    <span t-field="doc.company_id.street"/>
+                                    <br/>
+                                    <span t-field="doc.company_id.street2"/>
+                                    <br/>
+                                    <span t-field="doc.company_id.city"/>
+                                    -
+                                    <span t-field="doc.company_id.zip"/>
+                                    <br/>
+                                    Tel:
+                                    <span t-field="doc.company_id.phone"/>
+                                    <br/>
+                                    Email:
+                                    <span t-field="doc.company_id.email"/>
+                                    <br/>
+                                    <strong>
+                                        <span t-field="doc.company_id.website"/>
+                                    </strong>
+                                </td>
+                            </tr>
+                        </table>
+                        <hr style="height:1px; background:black;margin-right:5mm;"/>
+                        <table style="text-align:left;font-size:13px;">
+                            <tr>
+                                <th style="padding-right:5mm;">
+                                    Receipt Number
+                                </th>
+                                <th style="padding-left:5mm;padding-right:5mm;">
+                                    :
+                                </th>
+                                <td>
+                                    <span t-field="doc.sica_receipt_no"/>
+                                </td>
+                                <th style="padding-left:10mm;">
+                                    Date
+                                </th>
+                                <th style="padding-left:5mm;padding-right:5mm;">
+                                    :
+                                </th>
+                                <td>
+                                    <span t-esc="doc.receipt_date.strftime('%d/%m/%Y')"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="padding-right:5mm;">
+                                    Member's Name
+                                </th>
+                                <th style="padding-left:5mm;padding-right:5mm;">
+                                    :
+                                </th>
+                                <td width="100%">
+                                    <span t-field="doc.member_id.name"/>
+                                </td>
+                                <td/>
+                                <td/>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <th style="padding-right:5mm;">
+                                    Membership Number
+                                </th>
+                                <th style="padding-left:5mm;padding-right:5mm;">
+                                    :
+                                </th>
+                                <td>
+                                    <span t-field="doc.member_id.membership_no"/>
+                                </td>
+                                <td/>
+                                <td/>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <th style="padding-right:5mm;">
+                                    Grade
+                                </th>
+                                <th style="padding-left:5mm;padding-right:5mm;">
+                                    :
+                                </th>
+                                <td>
+                                    <span t-field="doc.grade"/>
+                                </td>
+                                <td/>
+                                <td/>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <th style="padding-right:5mm;">
+                                    Mobile
+                                </th>
+                                <th style="padding-left:5mm;padding-right:5mm;">
+                                    :
+                                </th>
+                                <td>
+                                    <span t-field="doc.contact_no"/>
+                                </td>
+                                <td/>
+                                <td/>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <th style="padding-right:5mm;">
+                                    Mode of Payment
+                                </th>
+                                <th style="padding-left:5mm;padding-right:5mm;">
+                                    :
+                                </th>
+                                <td>
+                                    <span t-field="doc.payment_option"/>
+                                </td>
+                                <th style="padding-left:10mm;">
+                                    Ref. No
+                                </th>
+                                <th style="padding-left:5mm;padding-right:5mm;">
+                                    :
+                                </th>
+                                <td>
+                                    <span t-field="doc.payment_ref"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="padding-right:5mm;">
+                                    Subscription From
+                                </th>
+                                <th style="padding-left:5mm;padding-right:5mm;">
+                                    :
+                                </th>
+                                <td>
+                                    <t t-if="doc.subscription_start">
+                                        <span t-esc="doc.subscription_start.strftime('%d/%m/%Y')"/></t>
+                                </td>
+                                <th style="padding-left:10mm;">
+                                    To
+                                </th>
+                                <th style="padding-left:5mm;padding-right:5mm;">
+                                    :
+                                </th>
+                                <td>
+                                    <t t-if="doc.subscription_end">
+                                        <span t-esc="doc.subscription_end.strftime('%d/%m/%Y')"/></t>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <div class="border_table" style="padding-right:5mm;">
+                            <table width="100%" style="font-size:13px;">
+                                <tr>
+                                    <th style="padding:5px;">
+                                        S. No
+                                    </th>
+                                    <th style="padding:5px;">
+                                        Particulars
+                                    </th>
+                                    <th style="padding:5px;">
+                                        Amount
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        1
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        Subscription
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.subscription"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        2
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        MBF
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.mbf"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        3
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        FSF
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.fsf"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        4
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        AIFEC
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.aifec"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        5
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        UNI MEI
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.uni_mei"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        6
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        Membership Card Fees
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.mem_card_fee"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        7
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        Donation
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.sica_donation"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        8
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        Admission / Re-Admission
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.admission"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        9
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        Late Fees
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.late_fee"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        10
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        Miscellaneous
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.sica_misc"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        11
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        Dispute Amount
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.dispute_amount"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        12
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        <span t-field="doc.sica_field1"/>
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.sica_amount1"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        13
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        <span t-field="doc.sica_field2"/>
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.sica_amount2"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th/>
+                                    <th style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        Total
+                                    </th>
+                                    <th style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.sica_total"/>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="padding-top:5px;font-size:13px;">
+                            Rupees:
+                            <span t-field="doc.sica_amount_in_words"/>
+                            <br/>
+                            <br/>
+                            <strong>
+                                * This is system generated receipt, hence does not require any signature
+                            </strong>
+                        </div>
+                    </t>
+                </div>
+
+
+                <div class="split right">
+                    <t t-if="doc.cbt_total">
+                        <div style="text-align:center;">
+                            <h4>
+                                <span style="border-bottom: solid 2px #000000;display: inline;padding-bottom:2px;">
+                                    CAM BENEFIT TRUST RECEIPT
+                                </span>
+                            </h4>
+                        </div>
+                        <table style="font-size:13px;">
+                            <tr>
+                                <td style="padding-left:10mm;width:70%">
+                                    <img t-att-src="'data:image/png;base64,%s' % to_text(doc.company_id.logo)"
+                                         style="max-width:79%"/>
+                                    <div style="padding-left:3;">
+                                        Regd No.
+                                        <span t-field="doc.company_id.company_registry"/>
+                                    </div>
+                                </td>
+                                <td style="text-align:right;width:30%">
+                                    <t t-if="doc.env.context.get('member_copy', False)">
+                                        <strong>Member Copy</strong>
+                                    </t>
+                                    <t t-if="not doc.env.context.get('member_copy', False)">
+                                        <strong>Office Copy</strong>
+                                    </t>
+                                    <br/>
+                                    <span t-field="doc.company_id.street"/>
+                                    <br/>
+                                    <span t-field="doc.company_id.street2"/>
+                                    <br/>
+                                    <span t-field="doc.company_id.city"/>
+                                    -
+                                    <span t-field="doc.company_id.zip"/>
+                                    <br/>
+                                    Tel:
+                                    <span t-field="doc.company_id.phone"/>
+                                    <br/>
+                                    Email:
+                                    <span t-field="doc.company_id.email"/>
+                                    <br/>
+                                    <strong>
+                                        <span t-field="doc.company_id.website"/>
+                                    </strong>
+                                </td>
+                            </tr>
+                        </table>
+                        <hr style="height:1px; background:black;margin-left:5mm;"/>
+                        <table style="text-align:left;font-size:13px;">
+                            <tr>
+                                <th style="padding-left:10mm;">
+                                    Receipt Number
+                                </th>
+                                <th style="padding-left:5mm;padding-right:5mm;">
+                                    :
+                                </th>
+                                <td>
+                                    <span t-field="doc.cbt_receipt_no"/>
+                                </td>
+                                <th style="padding-left:10mm;">
+                                    Date
+                                </th>
+                                <th style="padding-left:5mm;padding-right:5mm;">
+                                    :
+                                </th>
+                                <td>
+                                    <span t-esc="doc.receipt_date.strftime('%d/%m/%Y')"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="padding-left:10mm;">
+                                    Member's Name
+                                </th>
+                                <th style="padding-left:5mm;padding-right:5mm;">
+                                    :
+                                </th>
+                                <td width="100%">
+                                    <span t-field="doc.member_id.name"/>
+                                </td>
+                                <td/>
+                                <td/>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <th style="padding-left:10mm;">
+                                    Membership Number
+                                </th>
+                                <th style="padding-left:5mm;padding-right:5mm;">
+                                    :
+                                </th>
+                                <td>
+                                    <span t-field="doc.member_id.membership_no"/>
+                                </td>
+                                <td/>
+                                <td/>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <th style="padding-left:10mm;">
+                                    Grade
+                                </th>
+                                <th style="padding-left:5mm;padding-right:5mm;">
+                                    :
+                                </th>
+                                <td>
+                                    <span t-field="doc.grade"/>
+                                </td>
+                                <td/>
+                                <td/>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <th style="padding-left:10mm;">
+                                    Mobile
+                                </th>
+                                <th style="padding-left:5mm;padding-right:5mm;">
+                                    :
+                                </th>
+                                <td>
+                                    <span t-field="doc.contact_no"/>
+                                </td>
+                                <td/>
+                                <td/>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <th style="padding-left:10mm;">
+                                    Mode of Payment
+                                </th>
+                                <th style="padding-left:5mm;padding-right:5mm;">
+                                    :
+                                </th>
+                                <td>
+                                    <span t-field="doc.payment_option"/>
+                                </td>
+                                <th style="padding-left:10mm;">
+                                    Ref. No
+                                </th>
+                                <th style="padding-left:5mm;padding-right:5mm;">
+                                    :
+                                </th>
+                                <td>
+                                    <span t-field="doc.payment_ref"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="padding-left:10mm;">
+                                    Subscription From
+                                </th>
+                                <th style="padding-left:5mm;padding-right:5mm;">
+                                    :
+                                </th>
+                                <td>
+                                    <t t-if="doc.subscription_start">
+                                    <span t-esc="doc.subscription_start.strftime('%d/%m/%Y')"/></t>
+                                </td>
+                                <th style="padding-left:10mm;">
+                                    To
+                                </th>
+                                <th style="padding-left:5mm;padding-right:5mm;">
+                                    :
+                                </th>
+                                <td>
+                                    <t t-if="doc.subscription_end">
+                                    <span t-esc="doc.subscription_end.strftime('%d/%m/%Y')"/></t>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <div class="border_table" style="padding-left:5mm;">
+                            <table width="100%" style="font-size:13px;">
+                                <tr>
+                                    <th style="padding:5px;">
+                                        S. No
+                                    </th>
+                                    <th style="padding:5px;">
+                                        Particulars
+                                    </th>
+                                    <th style="padding:5px;">
+                                        Amount
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        1
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        Cam Benefit Trust
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.cab_benefit_trust"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        2
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        Life Coverage Fund
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.life_coverage_fund"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        3
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        Donation
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.cbt_donation"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        4
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        Miscellaneous
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.cbt_misc"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        5
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        <span t-field="doc.cbt_field1"/>
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.cbt_amount1"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        6
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        <span t-field="doc.cbt_field2"/>
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.cbt_amount2"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        7
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        <span t-field="doc.cbt_field3"/>
+                                    </td>
+                                    <td style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.cbt_amount3"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th/>
+                                    <th style="padding-top:5px;padding-bottom:5px;padding-left:25px;">
+                                        Total
+                                    </th>
+                                    <th style="padding-top:5px;padding-bottom:5px;padding-right:25px;text-align:right;">
+                                        <span t-field="doc.cbt_total"/>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="padding-top:5px;padding-left:5mm;font-size:13px;">
+                            Rupees:
+                            <span t-field="doc.cbt_amount_in_words"/>
+                            <br/>
+                            <br/>
+                            <strong>
+                                * This is system generated receipt, hence does not require any signature
+                            </strong>
+                        </div>
+                    </t>
+                </div>
+            </body>
+        </t>
+    </template>
+
+    <template id="report_sica_cbt_office_copy">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="lang" t-value="doc.company_id.partner_id.lang"/>
+                <t t-call="member_management_system.sica_cbt_document" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_sica_cbt_member_copy">
+        <t t-call="web.html_container">
+            <t t-set="docs" t-value="docs.with_context(member_copy=True)"/>
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="lang" t-value="doc.company_id.partner_id.lang"/>
+                <t t-call="member_management_system.sica_cbt_document" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

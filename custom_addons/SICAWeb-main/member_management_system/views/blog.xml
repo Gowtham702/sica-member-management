@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sica_blog_tree_view" model="ir.ui.view">
+        <field name="name">sica.blog.tree</field>
+        <field name="model">sica.blog</field>
+        <field name="arch" type="xml">
+            <tree string="Sica Blog" default_order="sequence asc">
+                <field name="sequence"/>
+                <field name="title" required="1"/>
+                <field name="date"/>
+                <field name="views"/>
+                <field name="description" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sica_blog_form_view" model="ir.ui.view">
+        <field name="name">sica.blog.form</field>
+        <field name="model">sica.blog</field>
+        <field name="arch" type="xml">
+            <form string="Sica Blog">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="title" required="1"/>
+                            <field name="date"/>
+                            <field name="sequence"/>
+                            <field name="views"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="image" widget="image" options="{'preview_image': 'image', 'size': [200, 200]}"/>
+                            <field name="image_note" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sica_blog" model="ir.actions.act_window">
+        <field name="name">Sica Blog</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sica.blog</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click on Create Sica Blog
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_sica_blog" name="Sica Blog" action="action_sica_blog"
+              parent="menu_sica_news_blog" sequence="2"/>
+
+    <record id="sica_features_tree_view" model="ir.ui.view">
+        <field name="name">sica.features.tree</field>
+        <field name="model">sica.features</field>
+        <field name="arch" type="xml">
+            <tree string="Sica Features" default_order="sequence asc">
+                <field name="sequence"/>
+                <field name="title" required="1"/>
+                <field name="date"/>
+                <field name="views"/>
+                <field name="description" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sica_features_form_view" model="ir.ui.view">
+        <field name="name">sica.features.form</field>
+        <field name="model">sica.features</field>
+        <field name="arch" type="xml">
+            <form string="Sica Features">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="title" required="1"/>
+                            <field name="date"/>
+                            <field name="sequence"/>
+                            <field name="views"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="attachments_ids" widget="many2many_binary" string="Images"/>
+                            <field name="image_note" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sica_features" model="ir.actions.act_window">
+        <field name="name">Sica features</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sica.features</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click on Create Sica features
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_sica_features" name="Sica Features" action="action_sica_features"
+              parent="menu_sica_news_blog" sequence="4"/>
+</odoo>

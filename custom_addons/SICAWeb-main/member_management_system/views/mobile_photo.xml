@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="mobile_photo_tree_view" model="ir.ui.view">
+        <field name="name">mobile.photo.tree</field>
+        <field name="model">mobile.photo</field>
+        <field name="arch" type="xml">
+            <tree string="Banner Image">
+                <field name="name"/>
+                <field name="promotion_link"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="mobile_photo_form_view" model="ir.ui.view">
+        <field name="name">mobile.photo.tree</field>
+        <field name="model">mobile.photo</field>
+        <field name="arch" type="xml">
+            <form string="Banner Image">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="promotion_link"/>
+                        </group>
+                        <group>
+                            <field name="photo" class="oe_avatar" widget="image" string="Image" options="{'preview_image': 'photo', 'size': [200, 200]}"/>
+                            <field name="image_note" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_mobile_photo" model="ir.actions.act_window">
+        <field name="name">Banner Image</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mobile.photo</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click on Create Mobile Photo
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_mobile_photo_1" name="Banner Image" action="action_mobile_photo"
+              parent="menu_mobile_photo" sequence="1"/>
+</odoo>

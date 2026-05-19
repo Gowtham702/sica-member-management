@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="mmme_tree_view" model="ir.ui.view">
+        <field name="name">sica.mmme.tree</field>
+        <field name="model">mymovie.myexperience</field>
+        <field name="arch" type="xml">
+            <tree string="My Movie My Experience" default_order="sequence asc">
+                <field name="sequence"/>
+                <field name="title" required="1"/>
+                <field name="date"/>
+                <field name="views"/>
+                <field name="state"/>
+                <field name="description" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sica_mmme_form_view" model="ir.ui.view">
+        <field name="name">sica.mmme.form</field>
+        <field name="model">mymovie.myexperience</field>
+        <field name="arch" type="xml">
+            <form string="My Movie My Experience">
+                <header>
+                    <button name="action_approve" string="Approve" class="btn-primary" type="object"
+                            confirm="Are you sure to Approve the request?" states="rejected" attrs="{'invisible': [('state', 'not in', ('draft','rejected'))]}"/>
+                    <button name="action_reject" string="Reject" class="btn-danger" type="object"
+                            confirm="Are you sure to Reject the request?" states="approved" attrs="{'invisible': [('state', 'not in', ('draft','approved'))]}"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,approved,rejected"
+                           readonly="1"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="title" required="1"/>
+                            <field name="date"/>
+                            <field name="sequence"/>
+                            <field name="views"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="image" widget="image" options="{'preview_image': 'image', 'size': [200, 200]}"/>
+                            <field name="image_note" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sica_mmme" model="ir.actions.act_window">
+        <field name="name">My Movie My Experience</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mymovie.myexperience</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click on Create Sica My Movie My Experience
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_mmme_blog" name="My Movie My Experience" action="action_sica_mmme"
+              parent="menu_sica_news_blog" sequence="6"/>
+
+</odoo>

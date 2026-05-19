@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="gallery_category_tree_view" model="ir.ui.view">
+        <field name="name">gallery.category.tree</field>
+        <field name="model">sica.gallery.category</field>
+        <field name="arch" type="xml">
+            <tree string="Gallery Category" editable="bottom">
+                <field name="name" required="1"/>
+                <field name="description" required="1"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_gallery_category" model="ir.actions.act_window">
+        <field name="name">Gallery Category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sica.gallery.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click on Create SPD Category
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_gallery_category" name="Gallery Category" action="action_gallery_category"
+              parent="sica_gallery" sequence="1"/>
+
+    <record id="gallery_tree_view" model="ir.ui.view">
+        <field name="name">gallery.tree</field>
+        <field name="model">sica.gallery</field>
+        <field name="arch" type="xml">
+            <tree string="Gallery Category">
+                <field name="name" required="1"/>
+                <field name="date" required="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="gallery_category_form_view" model="ir.ui.view">
+        <field name="name">gallery.category.form</field>
+        <field name="model">sica.gallery</field>
+        <field name="arch" type="xml">
+            <form string="Gallery Category">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="category_id" required="1"/>
+                            <field name="name" required="1" invisible="0"/>
+                            <field name="description" required="1"/>
+                            <field name="date" required="0"/>
+                        </group>
+                        <group>
+                            <field name="attachments_ids" widget="many2many_binary" string="Images"/>
+                            <field name="photo" required="0" invisible="1" widget="image"  options="{'preview_image': 'photo', 'size': [200, 200]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Like">
+                            <field name="gallery_like_ids">
+                                <tree editable="bottom">
+                                    <field name="member_id"/>
+                                    <field name="member_name"/>
+                                    <field name="remark"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Comment">
+                            <field name="gallery_comment_ids">
+                                <tree editable="bottom">
+                                    <field name="member_id"/>
+                                    <field name="member_name"/>
+                                    <field name="remark" string="Comment"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Images">
+                            <field name="gallery_image_ids">
+                                <tree editable="bottom">
+                                    <field name="title"/>
+                                    <field name="description"/>
+                                    <field name="image" widget="image" width="200" hight="200"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_gallery" model="ir.actions.act_window">
+        <field name="name">Gallery</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sica.gallery</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click on Create SPD Category
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_gallery" name="Gallery" action="action_gallery"
+              parent="sica_gallery" sequence="2"/>
+
+
+    <record id="gallery_comment_tree_view" model="ir.ui.view">
+        <field name="name">gallery.category.tree</field>
+        <field name="model">gallery.comment</field>
+        <field name="arch" type="xml">
+            <tree string="Gallery Comment">
+                <field name="member_id"/>
+                <field name="member_name"/>
+                <field name="remark" string="Comment"/>
+                <field name="approve_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="gallery_comment_form_view" model="ir.ui.view">
+        <field name="name">gallery.category.tree</field>
+        <field name="model">gallery.comment</field>
+        <field name="arch" type="xml">
+            <form string="Gallery Comment" editable="bottom">
+                <header>
+                    <button name="action_approve" string="Approve" attrs="{'invisible' : [('approve_status', '!=', 'Waiting_for_Approval')]}" class="btn-primary" type="object" />
+                    <button name="action_reject" string="Reject" attrs="{'invisible' : [('approve_status', '!=', 'Waiting_for_Approval')]}" class="btn-danger" type="object" />
+                    <field name="approve_status" widget="statusbar" statusbar_visible="Waiting_for_Approval,Approved" readonly="1"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="member_id"/>
+                            <field name="member_name"/>
+                            <field name="remark" string="Comment"/>
+                            <field name="duplicate_gallery_id"/>
+                        </group>
+                        <group>
+                            <field name="gallery_image" widget="image"  options="{'preview_image': 'gallery_image', 'size': [300, 300]}"/>
+                            <field name="request_type" invisible="1"/>
+                            <field name="duplicate_gallery_id" invisible="1"/>
+                            <field name="comment_id" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_gallery_comment" model="ir.actions.act_window">
+        <field name="name">Gallery Comment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">gallery.comment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click on Create Gallery Comments
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_gallery_comment" name="Gallery Comment" action="action_gallery_comment"
+              parent="sica_gallery" sequence="5"/>
+
+</odoo>

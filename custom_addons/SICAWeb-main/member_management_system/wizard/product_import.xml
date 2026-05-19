@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_product_vendor_import_wizard" model="ir.ui.view">
+        <field name="name">product.vendor.import.wizard.form</field>
+        <field name="model">product.vendor.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Import Vendor Lines">
+                <group>
+                    <field name="file" filename="file_name"/>
+                    <field name="file_name"/>
+                </group>
+
+                <footer>
+                    <button name="action_import_file" type="object" string="Import" class="btn-primary"/>
+                    <button name="action_download_template" type="object" string="Download Template" class="btn-secondary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_product_vendor_import" model="ir.actions.act_window">
+        <field name="name">Import Vendor Lines</field>
+        <field name="res_model">product.vendor.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_import_vendor_lines"
+          name="Import SPD Products"
+          parent="member_management_system.spd_categ"
+          sequence="5"
+          action="action_product_vendor_import"/>
+
+</odoo>

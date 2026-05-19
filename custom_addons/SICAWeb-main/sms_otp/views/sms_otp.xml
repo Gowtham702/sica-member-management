@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="sms_otp_search_view" model="ir.ui.view">
+            <field name="name">sms.otp.tree.view</field>
+            <field name="model">sms.otp</field>
+            <field name="arch" type="xml">
+                <search string="Sms Otp">
+                    <field name="member_id"/>
+                    <field name="mobile_number"/>
+                    <field name="account_type"/>
+                    <separator/>
+                    <group expand="0" name="group_by" string="Group By">
+                        <filter name="account_type" string="Account Type" context="{'group_by': 'account_type'}"/>
+                        <filter name="member_id" string="Member" context="{'group_by': 'member_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="sms_otp_tree_view" model="ir.ui.view">
+            <field name="name">sms.otp.tree</field>
+            <field name="model">sms.otp</field>
+            <field name="arch" type="xml">
+                <tree string="Other Receipts">
+                    <field name="create_date" invisible="0"/>
+                    <field name="account_type"/>
+                    <field name="membership_number"/>
+                    <field name="member_id"/>
+                    <field name="mobile_number"/>
+                     <field name="otp_number" readonly="1"/>
+                    <field name="return_value"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="sms_otp_form_view" model="ir.ui.view">
+            <field name="name">sms.otp.form</field>
+            <field name="model">sms.otp</field>
+            <field name="arch" type="xml">
+                <form string="Sms Otp" duplicate="false">
+                    <sheet>
+                        <widget name="web_ribbon" title="Session Open" bg_color="bg-success" attrs="{'invisible': [('is_session_status', 'in', ['Request_Sent', 'Close'])]}"/>
+                        <widget name="web_ribbon" title="Session Close" bg_color="bg-danger" attrs="{'invisible': [('is_session_status', 'in', ['Open', 'Request_Sent'])]}"/>
+                        <widget name="web_ribbon" title="OTP Request" bg_color="bg-warning" attrs="{'invisible': [('is_session_status', 'in', ['Open', 'Close'])]}"/>
+                        <group>
+                            <group>
+                                <field name="create_date" invisible="0"/>
+                                <field name="account_type"/>
+                                <field name="guest_name"/>
+                                <field name="mobile_number"/>
+                                <field name="membership_number"/>
+                                <field name="member_id"/>
+                                <field name="is_session_status" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="otp_number" readonly="1"/>
+                                <field name="return_value"/>
+                                <field name="access_token"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_sms_otp" model="ir.actions.act_window">
+            <field name="name">SMS OTP</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sms.otp</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click on Create button to create other receipts.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_sms_otp" action="action_sms_otp" name="Sms Otp"  sequence="1"  parent="member_management_system.menu_otp"/>
+    </data>
+</odoo>

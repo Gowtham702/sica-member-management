@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<template>
+    <t t-name="CustomDashBoard">
+        <div class="oh_dashboards" style="margin-top: 20px;">
+            <div class="container-fluid o_pj_dashboard">
+            </div>
+        </div>
+    </t>
+    <t t-name="DashboardProject">
+        <div class="sica_title" style="text-align: center;">
+            <h1>SICA Dashboard</h1>
+        </div>
+        <div class="row main-section" style="">
+            <div class="col-md-3 col-sm-3 sca_dashboard mb-4">
+                <div class="oh-card" style="">
+                    <div class="oh-card-body">
+                        <div class="stat-widget-one member" style="text-align: center; cursor: pointer;">
+                            <img src="dashboard_dashboard/static/src/images/member.png" alt="Dashboard Image"
+                                 class="card-image" style="width: 80px;"/>
+                            <div class="stat-content" style="">
+                                <div class="stat-head">Member Management</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 sca_dashboard mb-4" t-if="widget.is_system_user">
+                <div class="oh-card" style="">
+                    <div class="oh-card-body">
+                        <div class="stat-widget-one sica_receipt" style="text-align: center; cursor: pointer;">
+                            <img src="dashboard_dashboard/static/src/images/receipt-25.png" alt="Dashboard Image"
+                                 class="card-image" style="width: 80px;"/>
+                            <div class="stat-content" style="">
+                                <div class="stat-head">Receipt Management</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 sca_dashboard mb-4" t-if="widget.is_system_user">
+                <div class="oh-card" style="">
+                    <div class="oh-card-body">
+                        <div class="stat-widget-one expenses_mag" style="text-align: center; cursor: pointer;">
+                            <img src="dashboard_dashboard/static/src/images/2244462.png" alt="Dashboard Image"
+                                 class="card-image" style="width: 80px;"/>
+                            <div class="stat-content" style="">
+                                <div class="stat-head">Expense Management</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 sca_dashboard mb-4" t-if="widget.is_system_user">
+                <div class="oh-card" style="">
+                    <div class="oh-card-body">
+                        <div class="stat-widget-one mem_report" style="text-align: center; cursor: pointer;">
+                            <img src="dashboard_dashboard/static/src/images/1573148.png" alt="Dashboard Image"
+                                 class="card-image" style="width: 80px;"/>
+                            <div class="stat-content" style="">
+                                <div class="stat-head">Reports</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-3 sca_dashboard mb-4">
+                <div class="oh-card" style="">
+                    <div class="oh-card-body">
+                        <div class="stat-widget-one sms_otp" style="text-align: center; cursor: pointer;">
+                            <img src="dashboard_dashboard/static/src/images/mob.jpg" alt="Dashboard Image"
+                                 class="card-image" style="width: 80px;"/>
+                            <div class="stat-content" style="">
+                                <div class="stat-head">Mobile Application 1</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 sca_dashboard mb-4">
+                <div class="oh-card" style="">
+                    <div class="oh-card-body">
+                        <div class="stat-widget-one job_post" style="text-align: center; cursor: pointer;">
+                            <img src="dashboard_dashboard/static/src/images/mob2.png" alt="Dashboard Image"
+                                 class="card-image" style="width: 80px;"/>
+                            <div class="stat-content" style="">
+                                <div class="stat-head">Mobile Application 2</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 sca_dashboard mb-4">
+                <div class="oh-card" style="">
+                    <div class="oh-card-body">
+                        <div class="stat-widget-one tech_talk" style="text-align: center; cursor: pointer;">
+                            <img src="dashboard_dashboard/static/src/images/news.png" alt="Dashboard Image"
+                                 class="card-image" style="width: 80px;"/>
+                            <div class="stat-content" style="">
+                                <div class="stat-head">News and Blogs</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 sca_dashboard mb-4">
+                <div class="oh-card" style="">
+                    <div class="oh-card-body">
+                        <div class="stat-widget-one Shooting diary List " style="text-align: center; cursor: pointer;">
+                            <img src="dashboard_dashboard/static/src/images/news.png" alt="Dashboard Image"
+                                 class="card-image" style="width: 80px;"/>
+                            <div class="stat-content" style="">
+                                <div class="stat-head">Shooting diary List</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 sca_dashboard mb-4">
+                <div class="oh-card" style="">
+                    <div class="oh-card-body">
+                        <div class="stat-widget-one open_setting" style="text-align: center; cursor: pointer;">
+                            <img src="dashboard_dashboard/static/src/images/setting.png" alt="Dashboard Image"
+                                 class="card-image" style="width: 80px;"/>
+                            <div class="stat-content" style="">
+                                <div class="stat-head">Setting</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+
+         <div class="row main-section-3 container" style="">
+             <div class="col-md-2 col-sm-2 sca_dashboard">
+             </div>
+            <div class="col-md-4 col-sm-4 sca_dashboard">
+                <div class="oh-card" style="">
+                    <div class="oh-card-body">
+                        <div class="stat-widget-one" style="text-align: center;">
+                            <img src="dashboard_dashboard/static/src/images/3991771.png" alt="Dashboard Image"
+                                 class="card-image" style="width: 100px;"/>
+                            <div class="stat-content today_birthday" style="">
+                                <div class="stat-head">Today Birthday List</div>
+                                    <t t-foreach="widget.today_birthday" t-as="employee">
+                                        <div class="today_birthday_emp"  style="text-align: left; padding-left: 50px;">
+                                            <t t-esc="employee"/></div>
+                                    </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="col-md-4 col-sm-4 sca_dashboard">
+                <div class="oh-card" style="">
+                    <div class="oh-card-body">
+                        <div class="stat-widget-one" style="text-align: center;">
+                            <img src="dashboard_dashboard/static/src/images/3991771.png" alt="Dashboard Image"
+                                 class="card-image" style="width: 100px;"/>
+                            <div class="stat-content tomorrow_birthday" style="">
+                                <div class="stat-head">Tomorrow Birthday List</div>
+                                <t t-foreach="widget.tomorrow_birthday" t-as="employee">
+                                    <div class="tomorrow_birthday_emp" style="text-align: left; padding-left: 40px;"><t t-esc="employee"/></div>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="col-md-2 col-sm-2 sca_dashboard">
+             </div>
+
+
+
+        </div>
+    </t>
+</template>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="member_report_tree_view" model="ir.ui.view">
+            <field name="name">res.member.tree</field>
+            <field name="model">res.member</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <tree string="Member Management" create="false" delete="false" duplicate="false">
+                    <field name="membership_no"/>
+                    <field name="name"/>
+                    <field name="grade"/>
+                    <field name="contact1"/>
+                    <field name="contact2"/>
+                    <field name="blood_group"/>
+                    <field name="single_address_line"/>
+                    <field name="paid_till"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_member_report" model="ir.actions.act_window">
+            <field name="name">Member Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.member</field>
+            <field name="context">{'export_xlsx_file_name': 'Member Report'}</field>
+            <field name="view_id" ref="member_management_system.member_report_tree_view"/>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    No records found
+                </p>
+            </field>
+        </record>
+
+        <record id="sica_receipt_report_tree_view" model="ir.ui.view">
+            <field name="name">sica.receipt.report.tree</field>
+            <field name="model">sica.receipt</field>
+            <field name="arch" type="xml">
+                <tree string="SICA Receipt" create="false" delete="false" duplicate="false">
+                    <field name="membership_no"/>
+                    <field name="member_name"/>
+                    <field name="receipt_no"/>
+                    <field name="receipt_date"/>
+                    <field name="total_amount" sum="Grand Total"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_sica_receipt_report" model="ir.actions.act_window">
+            <field name="name">SICA Receipt Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sica.receipt</field>
+            <field name="context">{'export_xlsx_file_name': 'SICA Receipt Report'}</field>
+            <field name="view_id" ref="member_management_system.sica_receipt_report_tree_view"/>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    No records found
+                </p>
+            </field>
+        </record>
+
+        <record id="cbt_receipt_report_tree_view" model="ir.ui.view">
+            <field name="name">cbt.receipt.report.tree</field>
+            <field name="model">cbt.receipt</field>
+            <field name="arch" type="xml">
+                <tree string="CBT Receipt" create="false" delete="false" duplicate="false">
+                    <field name="membership_no"/>
+                    <field name="member_name"/>
+                    <field name="receipt_no"/>
+                    <field name="receipt_date"/>
+                    <field name="total_amount" sum="Grand Total"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_cbt_receipt_report" model="ir.actions.act_window">
+            <field name="name">CBT Receipt Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cbt.receipt</field>
+            <field name="context">{'export_xlsx_file_name': 'CBT Receipt Report'}</field>
+            <field name="view_id" ref="member_management_system.cbt_receipt_report_tree_view"/>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    No records found
+                </p>
+            </field>
+        </record>
+
+        <record id="other_receipt_report_tree_view" model="ir.ui.view">
+            <field name="name">other.receipt.report.tree</field>
+            <field name="model">other.receipt</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <tree string="Other Receipt" create="false" delete="false" duplicate="false">
+                    <field name="name"/>
+                    <field name="receipt_no"/>
+                    <field name="receipt_date"/>
+                    <field name="receipt_type"/>
+                    <field name="amount" sum="Total Amount"/>
+                    <field name="state" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_other_receipt_report" model="ir.actions.act_window">
+            <field name="name">Other Receipt Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">other.receipt</field>
+            <field name="domain">[('state', '=', 'validated')]</field>
+            <field name="context">{'export_xlsx_file_name': 'Other Receipt Report'}</field>
+            <field name="view_id" ref="member_management_system.other_receipt_report_tree_view"/>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    No records found
+                </p>
+            </field>
+        </record>
+
+        <record id="expense_report_tree_view" model="ir.ui.view">
+            <field name="name">expense.report.tree</field>
+            <field name="model">member.expense</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <tree string="Expense Report" create="false" delete="false" duplicate="false">
+                    <field name="name"/>
+                    <field name="voucher_no"/>
+                    <field name="voucher_date"/>
+                    <field name="expense_type"/>
+                    <field name="sica_cbt"/>
+                    <field name="amount" sum="Total Amount"/>
+                    <field name="state" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_expense_report" model="ir.actions.act_window">
+            <field name="name">Expense Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">member.expense</field>
+            <field name="domain">[('state', '=', 'validated')]</field>
+            <field name="context">{'export_xlsx_file_name': 'Expense Report'}</field>
+            <field name="view_id" ref="member_management_system.expense_report_tree_view"/>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    No records found
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="member_skill_tree_view" model="ir.ui.view">
+        <field name="name">member.skill.tree</field>
+        <field name="model">member.skill</field>
+        <field name="arch" type="xml">
+            <tree string="Member Skill" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_member_skill" model="ir.actions.act_window">
+        <field name="name">Member Skill</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">member.skill</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click on Create Member Skill.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_member_skill" name="Member Skill" action="action_member_skill" parent="menu_employment_scheme"
+              sequence="-100"/>
+</odoo>

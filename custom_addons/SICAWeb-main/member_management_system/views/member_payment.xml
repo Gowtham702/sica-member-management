@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+    <record id="member_payment_tree_view" model="ir.ui.view">
+        <field name="name">member.payment.tree</field>
+        <field name="model">member.payment</field>
+        <field name="arch" type="xml">
+            <tree >
+                <field name="name" string="Reference" required="1"/>
+                <field name="create_date"/>
+                <field name="order_id"/>
+                <field name="amount_paid"/>
+            </tree>
+        </field>
+    </record>
+    <record id="member_payment_form_view" model="ir.ui.view">
+        <field name="name">member.payment.form</field>
+        <field name="model">member.payment</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name" string="Reference" required="1"/>
+                                    <field name="create_date"/>
+
+                    <field name="order_id"/>
+                    <field name="order_amount"/>
+                    <field name="member_id" widget="many2one_avatar"/>
+                    <field name="payment_link_id"/>
+                    <field name="payment_link_url"/>
+                    <field name="payment_status"/>
+                    <field name="amount_paid"/>
+                    <field name="note"/>
+                    <field name="remark"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_member_payment" model="ir.actions.act_window">
+        <field name="name">Payment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">member.payment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click on Create button to create payment.
+            </p>
+        </field>
+    </record>
+    <menuitem id="menu_member_payment" name="Member Payment"
+              parent="menu_payment_gateway" action="action_member_payment"
+              sequence="10"/>
+</odoo>

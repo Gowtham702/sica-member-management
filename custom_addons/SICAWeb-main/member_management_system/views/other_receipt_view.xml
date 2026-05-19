@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="other_receipt_filter_view" model="ir.ui.view">
+            <field name="name">other.receipt.list.select</field>
+            <field name="model">other.receipt</field>
+            <field name="arch" type="xml">
+                <search string="Search Receipts">
+                    <field name="name"/>
+                    <field name="receipt_no"/>
+                    <field name="payment_option"/>
+                    <field name="receipt_type"/>
+                    <field name="payment_ref"/>
+                    <separator/>
+                    <group expand="0" name="group_by" string="Group By">
+                        <filter name="group_payment_option" string="Payment Options" context="{'group_by': 'payment_option'}"/>
+                        <filter name="group_receipt_type" string="Receipt Type" context="{'group_by': 'receipt_type'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="other_receipt_tree_view" model="ir.ui.view">
+            <field name="name">other.receipt.tree</field>
+            <field name="model">other.receipt</field>
+            <field name="arch" type="xml">
+                <tree string="Other Receipts">
+                    <field name="name"/>
+                    <field name="receipt_no"/>
+                    <field name="receipt_date"/>
+                    <field name="receipt_type"/>
+                    <field name="amount" sum="Total Amount"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="other_receipt_form_view" model="ir.ui.view">
+            <field name="name">other.receipt.form</field>
+            <field name="model">other.receipt</field>
+            <field name="arch" type="xml">
+                <form string="Other Receipts" duplicate="false">
+                    <header>
+                        <button name="button_validate" type="object" class="btn-primary" states="draft" string="Validate" confirm="Are you sure to validate the receipt? You can not do any changes after validation"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,validated" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="receipt_no"/>
+                                <field name="receipt_type"/>
+                            </group>
+                            <group>
+                                <field name="receipt_date"/>
+                                <field name="donation_type" attrs="{'invisible': [('receipt_type', '!=', 'donation')]}"/>
+                                <field name="company_id" invisible="1"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="pan"/>
+                                <field name="amount"/>
+                                <field name="amount_in_words"/>
+                            </group>
+                            <group>
+                                <field name="payment_option"/>
+                                <field name="payment_date"/>
+                                <field name="payment_ref" attrs="{'required': [('payment_option', '!=', 'cash')]}"/>
+                                <field name="vendor_ref" attrs="{'invisible': [('receipt_type', '!=', 'vendor')]}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_other_receipt" model="ir.actions.act_window">
+            <field name="name">Other Receipts</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">other.receipt</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click on Create button to create other receipts.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="res_config_settings_sica_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.base.setup</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="0"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Sica Dop" string="Sica"
+                     data-key="sica">
+                    <h2>Configuration</h2>
+                    <div  class="row mt16 o_settings_container"
+                         name="under_maintenance">
+                        <div class="col-2 o_setting_box" id="under_maintenance">
+                            <label for="under_maintenance">Under Maintenance</label>
+                        </div>
+                        <div class="col-3 o_setting_box">
+                            <field name="under_maintenance" string="Under Maintenance"/>
+                        </div>
+
+                        <div class="col-2 o_setting_box" id="app_update">
+                            <label for="app_update">App Update</label>
+                        </div>
+                        <div class="col-3 o_setting_box">
+                            <field name="app_update" string="App Update"/>
+                        </div>
+                    </div>
+
+                    <h2>Payment Gateway</h2>
+                    <div  class="row mt16 o_settings_container"
+                         name="penalty_fee">
+                        <div class="col-2 o_setting_box" id="penalty_fee">
+                            <label for="penalty_fee">Penalty Fee</label>
+                        </div>
+                        <div class="col-3 o_setting_box">
+                            <field name="penalty_fee" string="Penalty"/>
+                        </div>
+
+                        <div class="col-2 o_setting_box" id="payment_gateway_notes">
+                            <label for="payment_gateway_notes">Payment Gateway Notes</label>
+                        </div>
+                        <div class="col-3 o_setting_box">
+                            <field name="payment_gateway_notes" string="Payment Gateway"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="sicadop_settings_action" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_id" ref="res_config_settings_sica_form"/>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'member_management_system', 'bin_size': False}</field>
+    </record>
+
+    <menuitem
+            id="menu_sica_settings"
+            name="Settings"
+            parent="main_menu_sica"
+            action="sicadop_settings_action"
+            sequence="100"/>
+
+</odoo>

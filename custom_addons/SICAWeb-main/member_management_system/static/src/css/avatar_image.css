@@ -1,0 +1,10 @@
+.o_form_view .oe_avatar > img {
+    max-width: 190px;
+    max-height: 190px;
+}
+.o_wrap_text {
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    overflow-wrap: anywhere !important;
+    max-width: 350px;   /* adjust width */
+}

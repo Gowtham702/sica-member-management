@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sica_support_tree_view" model="ir.ui.view">
+        <field name="name">sica.support.tree</field>
+        <field name="model">sica.support</field>
+        <field name="arch" type="xml">
+            <tree string="Sica Help and Support" duplicate="false" create="false" edit="false" delete="false">
+                <field name="support_no"/>
+                <field name="member_id"/>
+                <field name="member_name"/>
+                <field name="date"/>
+                <field name="type_of_issue"/>
+                <field name="app_version"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sica_support_form_view" model="ir.ui.view">
+        <field name="name">sica.support.form</field>
+        <field name="model">sica.support</field>
+        <field name="arch" type="xml">
+            <form string="Sica Help and Support" duplicate="false" create="false" edit="false" delete="false">
+                <sheet>
+                    <field name="image_1920" widget='image' class="oe_avatar" options='{"preview_image": "image_1920"}'/>
+                        <div class="oe_title">
+                            <h1>
+                                <span style="padding-left:5;font-size:18px;padding-right:10px;">Support No.</span>
+                                <field class="text-break" name="support_no" readonly="1"/>
+                            </h1>
+                        </div>
+                    <group>
+                        <group>
+                            <field name="member_id"/>
+                            <field name="member_name"/>
+                            <field name="date"/>
+                            <field name="type_of_issue"/>
+                            <field name="details"/>
+                            <field name="app_version"/>
+                        </group>
+                        <group>
+                            <field name="additional_notes"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sica_support" model="ir.actions.act_window">
+        <field name="name">Sica Support</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sica.support</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click on Create Sica Support Tickets
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_sica_support" name="Sica Help and Support" action="action_sica_support"
+              parent="menu_sica_tickets" sequence="3"/>
+</odoo>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="custom_dashboard_action" model="ir.actions.client">
+        <field name="name">Dashboard</field>
+        <field name="tag">custom_dashboard_tags</field>
+    </record>
+    <menuitem id="menu_purchase_dashboard" name="Dashboard" action="custom_dashboard_action"
+              parent="member_management_system.main_menu_sica" sequence="-1"/>
+
+    <record id="inherit_member_view" model="ir.ui.view">
+        <field name="name">Member View Form</field>
+        <field name="model">res.member</field>
+        <field name="inherit_id" ref="member_management_system.member_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='aadhaar_card']" position="attributes">
+                <attribute name="widget">image</attribute>
+            </xpath>
+            <xpath expr="//field[@name='membership_id_card']" position="attributes">
+                <attribute name="widget">image</attribute>
+            </xpath>
+            <xpath expr="//field[@name='membership_form']" position="attributes">
+                <attribute name="widget">image</attribute>
+            </xpath>
+            <xpath expr="//field[@name='other_attachments']" position="attributes">
+                <attribute name="widget">image</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_privacy_policy_form" model="ir.ui.view">
+        <field name="name">Privacy Policy</field>
+        <field name="model">privacy.policy</field>
+        <field name="arch" type="xml">
+            <form string="Privacy Policy">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="noted"/>
+                            <field name="is_publish"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_privacy_policy_tree" model="ir.ui.view">
+            <field name="name">Privacy Policy</field>
+            <field name="model">privacy.policy</field>
+            <field name="arch" type="xml">
+                <tree string="Privacy Policy">
+                    <field name="noted"/>
+                    <field name="is_publish"/>
+                </tree>
+            </field>
+        </record>
+
+    <record id="action_privacy_policy" model="ir.actions.act_window">
+        <field name="name">Privacy Policy</field>
+        <field name="res_model">privacy.policy</field>
+        <field name="view_mode">tree,form</field>
+<!--        <field name="search_view_id" ref="view_custom_options_filter"/>-->
+        <field name="context">{}</field>
+    </record>
+
+
+    <menuitem
+        id="menu_privacy_policy"
+        name="Website Privacy Policy"
+        parent="member_management_system.action_configuration_settings"
+        action="action_privacy_policy"
+        sequence='2'/>
+
+
+
+    <template id="privacy_policy" name="PrivacyPolicy">
+<!--		<t t-call="website.layout">-->
+			<div id="wrap" class="">
+				<div class="oe_structure">
+					<section class="s_heading_5 pt32" data-name="Heading - 5">
+				        <div class="container">
+				          <div class="row justify-content-center s_nb_column_fixed s_col_no_bgcolor">
+				            <div class="col-lg-12 text-center">
+				              <div class="s_title" data-name="Title">
+				                <h2 class="s_title_default pb16">
+				                  <b>Privacy Policy</b>
+				                </h2>
+				              </div>
+                                <span t-esc="policy.noted"/>
+				            </div>
+				          </div>
+				        </div>
+				      </section>
+				</div>
+			</div>
+<!--		</t>-->
+	</template>
+
+</odoo>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record model="shooting.image" id="demo_shooting_image_1">
+            <field name="name">Shooting Image Description</field>
+        </record>
+    </data>
+</odoo>

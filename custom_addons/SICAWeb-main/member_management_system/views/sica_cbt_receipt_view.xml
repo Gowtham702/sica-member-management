@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="sica_cbt_receipt_filter_view" model="ir.ui.view">
+            <field name="name">sica.cbt.receipt.list.select</field>
+            <field name="model">sica.cbt.receipt</field>
+            <field name="arch" type="xml">
+                <search string="Search Receipts">
+                    <field name="member_id" string="Member"/>
+                    <field name="sica_receipt_no"/>
+                    <field name="cbt_receipt_no"/>
+                    <field name="payment_ref"/>
+                    <field name="payment_option"/>
+                    <field name="contact_no"/>
+                    <separator/>
+                    <filter string="Cash Payment" name="cash" domain="[('payment_option', '=', 'cash')]"/>
+                    <filter string="DD Payment" name="dd" domain="[('payment_option', '=', 'dd')]"/>
+                    <filter string="ONLINE TRANSFER" name="online_transfer" domain="[('payment_option', '=', 'online_transfer')]"/>
+                    <filter string="EDC MACHINE" name="edc_machine" domain="[('payment_option', '=', 'edc_machine')]"/>
+                    <filter string="SICA APP" name="sica_app" domain="[('payment_option', '=', 'sica_app')]"/>
+                    <separator/>
+                    <group expand="0" name="group_by" string="Group By">
+                        <filter name="group_member" string="Member" context="{'group_by': 'member_id'}"/>
+                        <filter name="group_payment_option" string="Payment Options"
+                                context="{'group_by': 'payment_option'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="sica_cbt_receipt_tree_view" model="ir.ui.view">
+            <field name="name">sica.cbt.receipt.tree</field>
+            <field name="model">sica.cbt.receipt</field>
+            <field name="arch" type="xml">
+                <tree string="SICA/CBT Receipts">
+                    <field name="member_id" widget="many2one_avatar"/>
+                    <field name="sica_receipt_no"/>
+                    <field name="cbt_receipt_no"/>
+                    <field name="receipt_date"/>
+
+                    <field name="grade" optional="hide"/>
+                    <field name="subscription_start" optional="hide"/>
+                    <field name="subscription_end" optional="hide"/>
+                    <field name="payment_option" optional="hide"/>
+                    <field name="payment_ref" optional="hide"/>
+                    <field name="subscription" optional="hide"/>
+                    <field name="mbf" optional="hide"/>
+                    <field name="fsf" optional="hide"/>
+                    <field name="aifec" optional="hide"/>
+                    <field name="uni_mei" optional="hide"/>
+                    <field name="dispute_amount" optional="hide"/>
+                    <field name="dispute_category" optional="hide"/>
+                    <field name="mem_card_fee" optional="hide"/>
+                    <field name="sica_donation" string="SICA Donation" optional="hide"/>
+                    <field name="admission" optional="hide"/>
+                    <field name="late_fee" optional="hide"/>
+                    <field name="sica_misc" string="SICA Miscellaneous" optional="hide"/>
+                    <field name="sica_total" string="SICA Total" optional="hide"/>
+                    <field name="cab_benefit_trust" optional="hide"/>
+                    <field name="life_coverage_fund" optional="hide"/>
+                    <field name="cbt_misc" string="CBT Miscellaneous" optional="hide"/>
+                    <field name="cbt_donation" string="CBT Donation" optional="hide"/>
+                    <field name="cbt_total" string="CBT Total" optional="hide"/>
+
+
+                    <field name="sica_total" sum="Total"/>
+                    <field name="cbt_total" sum="Total"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="sica_cbt_receipt_form_view" model="ir.ui.view">
+            <field name="name">sica.cbt.receipt.form</field>
+            <field name="model">sica.cbt.receipt</field>
+            <field name="arch" type="xml">
+                <form string="SICA/CBT Receipts" duplicate="false">
+                    <header>
+                        <button name="button_validate" type="object" class="btn-primary" states="draft" string="Validate" confirm="Are you sure to validate the receipt? You can not do any changes after validation"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,validated" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="sica_receipt_no" required="1" readonly="1"/>
+                                <field name="cbt_receipt_no" required="1" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="receipt_date" required="1"/>
+                                <field name="company_id" invisible="1" required="1"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                        </group>
+                        <group string="Personal Details">
+                            <group>
+                                <field name="member_id" widget="many2one_avatar" required="1"/>
+                                <field name="grade"/>
+                                <field name="address"/>
+                                <field name="contact_no"/>
+                            </group>
+                            <group>
+                                <field name="subscription_from" invisible="1"/>
+                                <field name="subscription_to" invisible="1"/>
+                                <field name="subscription_start"/>
+                                <field name="subscription_end"/>
+                                <field name="payment_option" required="1"/>
+                                <field name="payment_ref" attrs="{'required': [('payment_option', '!=', 'cash')]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="SICA Receipt">
+                                <group>
+                                    <group>
+                                        <field name="subscription"/>
+                                        <field name="mbf"/>
+                                        <field name="fsf"/>
+                                        <field name="aifec"/>
+                                        <field name="uni_mei"/>
+                                        <field name="dispute_amount"/>
+                                        <field name="dispute_category"/>
+                                    </group>
+                                    <group>
+                                        <field name="mem_card_fee"/>
+                                        <field name="sica_donation" string="Donation"/>
+                                        <field name="admission"/>
+                                        <field name="late_fee"/>
+                                        <field name="sica_misc" string="Miscellaneous"/>
+                                        <div>
+                                            <field name="sica_field1" style="display:block;font-weight:700;"/>
+                                            <field name="sica_field2" style="display:block;font-weight:700;"/>
+                                        </div>
+                                        <div>
+                                            <field name="sica_amount1" style="display:block;font-weight:700;"/>
+                                            <field name="sica_amount2" style="display:block;font-weight:700;"/>
+                                        </div>
+                                        <field name="sica_total"/>
+                                        <field name="sica_amount_in_words" required="1"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="CBT Receipt">
+                                <group>
+                                    <group>
+                                        <field name="cab_benefit_trust"/>
+                                        <field name="life_coverage_fund"/>
+                                        <field name="cbt_misc" string="Miscellaneous"/>
+                                        <field name="cbt_donation" string="Donation"/>
+                                    </group>
+                                    <group>
+                                        <div>
+                                            <field name="cbt_field1" style="display:block;font-weight:700"/>
+                                            <field name="cbt_field2" style="display:block;font-weight:700"/>
+                                            <field name="cbt_field3" style="display:block;font-weight:700"/>
+                                        </div>
+                                        <div>
+                                            <field name="cbt_amount1" style="display:block;font-weight:700"/>
+                                            <field name="cbt_amount2" style="display:block;font-weight:700"/>
+                                            <field name="cbt_amount3" style="display:block;font-weight:700"/>
+                                        </div>
+                                        <field name="cbt_total"/>
+                                        <field name="cbt_amount_in_words" required="1"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_sica_cbt_receipt" model="ir.actions.act_window">
+            <field name="name">SICA/CBT Receipts</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sica.cbt.receipt</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click on Create button to create a SICA/CBT receipt.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

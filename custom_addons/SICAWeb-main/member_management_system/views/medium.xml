@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="member_medium_tree_view" model="ir.ui.view">
+        <field name="name">member.medium.tree</field>
+        <field name="model">member.medium</field>
+        <field name="arch" type="xml">
+            <tree string="Format" editable="bottom">
+                <field name="name" required="1" string="Member"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_member_medium" model="ir.actions.act_window">
+        <field name="name">Member medium</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">member.medium</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click on Create Member Format
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_member_medium" name="Format" action="action_member_medium"
+              parent="menu_medium" sequence="30"/>
+</odoo>

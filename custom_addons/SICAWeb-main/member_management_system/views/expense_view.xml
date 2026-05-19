@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="expense_filter_view" model="ir.ui.view">
+            <field name="name">member.expense.list.select</field>
+            <field name="model">member.expense</field>
+            <field name="arch" type="xml">
+                <search string="Search Expenses">
+                    <field name="name"/>
+                    <field name="voucher_no"/>
+                    <field name="payment_option"/>
+                    <field name="expense_type"/>
+                    <field name="reference_no"/>
+                    <field name="sica_cbt"/>
+                    <separator/>
+                    <group expand="0" name="group_by" string="Group By">
+                        <filter name="group_sica_cbt" string="SICA/CBT" context="{'group_by': 'sica_cbt'}"/>
+                        <filter name="group_expense_type" string="Receipt Type" context="{'group_by': 'expense_type'}"/>
+                        <filter name="group_payment_option" string="Payment Options" context="{'group_by': 'payment_option'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="expense_tree_view" model="ir.ui.view">
+            <field name="name">member.expense.tree</field>
+            <field name="model">member.expense</field>
+            <field name="arch" type="xml">
+                <tree string="Expense">
+                    <field name="name"/>
+                    <field name="voucher_no"/>
+                    <field name="voucher_date"/>
+                    <field name="payment_option"/>
+                    <field name="reference_no"/>
+                    <field name="expense_type" invisible="1"/>
+                    <field name="expense_type_id" invisible="0"/>
+                    <field name="sica_cbt"/>
+                    <field name="amount" sum="Total Amount"/>
+                    <field name="state"/>
+                    <field name="expense_reason"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="expense_form_view" model="ir.ui.view">
+            <field name="name">member.expense.form</field>
+            <field name="model">member.expense</field>
+            <field name="arch" type="xml">
+                <form string="Expense" duplicate="false">
+                    <header>
+                        <button name="button_validate" type="object" class="btn-primary" states="draft" string="Validate" confirm="Are you sure to validate the voucher? You can not do any changes after validation"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,validated" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="voucher_no" required="1"/>
+                                <field name="expense_type" invisible="1"/>
+                                <field name="expense_type_id"/>
+                            </group>
+                            <group>
+                                <field name="voucher_date"/>
+                                <field name="sica_cbt"/>
+                                <field name="company_id" invisible="1"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="amount"/>
+                                <field name="amount_in_words"/>
+                            </group>
+                            <group>
+                                <field name="expense_reason"/>
+                                <field name="payment_option" required="1"/>
+                                <field name="reference_no" attrs="{'required': [('payment_option', '!=', 'cash')]}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_expense" model="ir.actions.act_window">
+            <field name="name">Expense</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">member.expense</field>
+            <field name="view_id" ref="member_management_system.expense_tree_view"/>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click on Create button to create expense.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

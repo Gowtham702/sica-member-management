@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sica_news_tree_view" model="ir.ui.view">
+        <field name="name">sica.news.tree</field>
+        <field name="model">sica.news</field>
+        <field name="arch" type="xml">
+            <tree string="Sica News" default_order="sequence asc">
+                <field name="sequence"/>
+                <field name="title" required="1"/>
+                <field name="date"/>
+                <field name="views"/>
+                <field name="description" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sica_news_form_view" model="ir.ui.view">
+        <field name="name">sica.news.form</field>
+        <field name="model">sica.news</field>
+        <field name="arch" type="xml">
+            <form string="Sica News">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="title" required="1"/>
+                            <field name="date"/>
+                            <field name="sequence"/>
+                            <field name="views"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="image" widget="image" options="{'preview_image': 'image', 'size': [200, 200]}"/>
+                            <field name="image_note" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sica_news" model="ir.actions.act_window">
+        <field name="name">Sica News</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sica.news</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click on Create Sica News
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_sica_news" name="Sica News" action="action_sica_news"
+              parent="menu_sica_news_blog" sequence="3"/>
+</odoo>

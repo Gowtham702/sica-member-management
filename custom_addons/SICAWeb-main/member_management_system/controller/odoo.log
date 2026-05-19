@@ -1,0 +1,391 @@
+2025-08-04 17:51:20,318 3449285 INFO ? odoo.service.server: Stopping gracefully 
+2025-08-04 17:51:21,891 3449418 INFO ? odoo: Odoo version 15.0 
+2025-08-04 17:51:21,891 3449418 INFO ? odoo: Using configuration file at /etc/odoo.conf 
+2025-08-04 17:51:21,891 3449418 INFO ? odoo: addons paths: ['/opt/odoo15/odoo/addons', '/home/ubuntu/.local/share/Odoo/addons/15.0', '/opt/odoo15/addons', '/opt/odoo15/SICAWeb'] 
+2025-08-04 17:51:21,891 3449418 INFO ? odoo: database: sica@default:default 
+2025-08-04 17:51:22,104 3449418 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf 
+2025-08-04 17:51:22,491 3449418 INFO ? odoo.service.server: HTTP service (werkzeug) running on 0.0.0.0:8069 
+2025-08-04 17:51:22,496 3449432 INFO ? odoo.service.server: Worker WorkerHTTP (3449432) alive 
+2025-08-04 17:51:22,499 3449433 INFO ? odoo.service.server: Worker WorkerHTTP (3449433) alive 
+2025-08-04 17:51:22,502 3449434 INFO ? odoo.service.server: Worker WorkerHTTP (3449434) alive 
+2025-08-04 17:51:22,504 3449436 INFO ? odoo.service.server: Worker WorkerHTTP (3449436) alive 
+2025-08-04 17:51:22,508 3449438 INFO ? odoo.service.server: Worker WorkerHTTP (3449438) alive 
+2025-08-04 17:51:22,512 3449440 INFO ? odoo.service.server: Worker WorkerHTTP (3449440) alive 
+2025-08-04 17:51:22,513 3449442 INFO ? odoo.service.server: Worker WorkerHTTP (3449442) alive 
+2025-08-04 17:51:22,514 3449443 INFO ? odoo.service.server: Worker WorkerHTTP (3449443) alive 
+2025-08-04 17:51:22,519 3449445 INFO ? odoo.service.server: Worker WorkerHTTP (3449445) alive 
+2025-08-04 17:51:22,522 3449448 INFO ? odoo.service.server: Worker WorkerHTTP (3449448) alive 
+2025-08-04 17:51:22,523 3449450 INFO ? odoo.service.server: Worker WorkerHTTP (3449450) alive 
+2025-08-04 17:51:22,527 3449451 INFO ? odoo.service.server: Worker WorkerHTTP (3449451) alive 
+2025-08-04 17:51:22,528 3449453 INFO ? odoo.service.server: Worker WorkerHTTP (3449453) alive 
+2025-08-04 17:51:22,532 3449455 INFO ? odoo.service.server: Worker WorkerHTTP (3449455) alive 
+2025-08-04 17:51:22,534 3449457 INFO ? odoo.service.server: Worker WorkerHTTP (3449457) alive 
+2025-08-04 17:51:22,535 3449458 INFO ? odoo.service.server: Worker WorkerHTTP (3449458) alive 
+2025-08-04 17:51:22,538 3449461 INFO ? odoo.service.server: Worker WorkerHTTP (3449461) alive 
+2025-08-04 17:51:22,551 3449467 INFO ? odoo.service.server: Worker WorkerCron (3449467) alive 
+2025-08-04 17:51:22,555 3449468 INFO ? odoo.service.server: Worker WorkerCron (3449468) alive 
+2025-08-04 17:51:23,649 3449465 INFO ? odoo: Odoo version 15.0 
+2025-08-04 17:51:23,650 3449465 INFO ? odoo: Using configuration file at /etc/odoo.conf 
+2025-08-04 17:51:23,650 3449465 INFO ? odoo: addons paths: ['/opt/odoo15/odoo/addons', '/home/ubuntu/.local/share/Odoo/addons/15.0', '/opt/odoo15/addons', '/opt/odoo15/SICAWeb'] 
+2025-08-04 17:51:23,650 3449465 INFO ? odoo: database: sica@default:default 
+2025-08-04 17:51:23,928 3449465 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf 
+2025-08-04 17:51:24,235 3449465 INFO ? odoo.service.server: Evented Service (longpolling) running on 0.0.0.0:8072 
+2025-08-04 17:51:26,740 3449451 INFO ? odoo.http: HTTP Configuring static files 
+2025-08-04 17:51:26,765 3449451 INFO sicadop_02 odoo.modules.loading: loading 1 modules... 
+2025-08-04 17:51:26,782 3449451 INFO sicadop_02 odoo.modules.loading: 1 modules loaded in 0.02s, 0 queries (+0 extra) 
+2025-08-04 17:51:26,801 3449451 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'sms_otp', defaulting to LGPL-3 
+2025-08-04 17:51:26,810 3449451 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'member_management_system', defaulting to LGPL-3 
+2025-08-04 17:51:26,813 3449451 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'dashboard_dashboard', defaulting to LGPL-3 
+2025-08-04 17:51:26,816 3449451 INFO sicadop_02 odoo.modules.loading: loading 46 modules... 
+2025-08-04 17:51:27,677 3449451 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'member_management_system', defaulting to LGPL-3 
+2025-08-04 17:51:27,961 3449451 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'dashboard_dashboard', defaulting to LGPL-3 
+2025-08-04 17:51:28,020 3449451 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'sms_otp', defaulting to LGPL-3 
+2025-08-04 17:51:28,118 3449451 INFO sicadop_02 odoo.modules.loading: 46 modules loaded in 1.30s, 0 queries (+0 extra) 
+2025-08-04 17:51:28,190 3449451 WARNING sicadop_02 odoo.fields: product.vendor.vendor_type: selection attribute will be ignored as the field is related 
+2025-08-04 17:51:28,218 3449451 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.sica_total: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:28,218 3449451 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cab_benefit_trust: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:28,218 3449451 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.life_coverage_fund: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:28,219 3449451 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_misc: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:28,219 3449451 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_donation: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:28,219 3449451 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount1: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:28,219 3449451 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount2: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:28,219 3449451 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount3: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:28,219 3449451 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_total: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:28,219 3449451 WARNING sicadop_02 odoo.fields: Field sica.receipt.total_amount: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:28,219 3449451 WARNING sicadop_02 odoo.fields: Field cbt.receipt.total_amount: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:28,221 3449451 WARNING sicadop_02 odoo.fields: Field shooting.event.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:28,221 3449451 WARNING sicadop_02 odoo.fields: Field event.complete.image.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:28,222 3449451 WARNING sicadop_02 odoo.fields: Field sica.gallery.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:28,222 3449451 WARNING sicadop_02 odoo.fields: Field sica.features.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:28,222 3449451 WARNING sicadop_02 odoo.fields: Field sica.support.support_no: unknown parameter 'tracking', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:28,274 3449451 INFO sicadop_02 odoo.modules.loading: Modules loaded. 
+2025-08-04 17:51:28,279 3449451 INFO sicadop_02 odoo.modules.registry: Registry loaded in 1.532s 
+2025-08-04 17:51:28,281 3449451 INFO sicadop_02 odoo.addons.base.models.ir_http: Generating routing map for key None 
+2025-08-04 17:51:29,495 3449451 INFO sicadop_02 werkzeug: 127.0.0.1 - - [04/Aug/2025 17:51:29] "POST /api/job/history/ HTTP/1.1" 200 - 20 0.738 2.013
+2025-08-04 17:51:37,465 3449440 INFO ? odoo.http: HTTP Configuring static files 
+2025-08-04 17:51:37,494 3449440 INFO sicadop_02 odoo.modules.loading: loading 1 modules... 
+2025-08-04 17:51:37,511 3449440 INFO sicadop_02 odoo.modules.loading: 1 modules loaded in 0.02s, 0 queries (+0 extra) 
+2025-08-04 17:51:37,520 3449440 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'sms_otp', defaulting to LGPL-3 
+2025-08-04 17:51:37,526 3449440 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'member_management_system', defaulting to LGPL-3 
+2025-08-04 17:51:37,530 3449440 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'dashboard_dashboard', defaulting to LGPL-3 
+2025-08-04 17:51:37,533 3449440 INFO sicadop_02 odoo.modules.loading: loading 46 modules... 
+2025-08-04 17:51:38,294 3449440 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'member_management_system', defaulting to LGPL-3 
+2025-08-04 17:51:38,530 3449440 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'dashboard_dashboard', defaulting to LGPL-3 
+2025-08-04 17:51:38,585 3449440 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'sms_otp', defaulting to LGPL-3 
+2025-08-04 17:51:38,687 3449440 INFO sicadop_02 odoo.modules.loading: 46 modules loaded in 1.15s, 0 queries (+0 extra) 
+2025-08-04 17:51:38,749 3449440 WARNING sicadop_02 odoo.fields: product.vendor.vendor_type: selection attribute will be ignored as the field is related 
+2025-08-04 17:51:38,772 3449440 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.sica_total: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:38,773 3449440 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cab_benefit_trust: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:38,773 3449440 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.life_coverage_fund: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:38,773 3449440 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_misc: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:38,773 3449440 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_donation: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:38,773 3449440 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount1: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:38,773 3449440 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount2: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:38,773 3449440 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount3: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:38,773 3449440 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_total: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:38,773 3449440 WARNING sicadop_02 odoo.fields: Field sica.receipt.total_amount: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:38,773 3449440 WARNING sicadop_02 odoo.fields: Field cbt.receipt.total_amount: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:38,775 3449440 WARNING sicadop_02 odoo.fields: Field shooting.event.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:38,776 3449440 WARNING sicadop_02 odoo.fields: Field event.complete.image.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:38,776 3449440 WARNING sicadop_02 odoo.fields: Field sica.gallery.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:38,776 3449440 WARNING sicadop_02 odoo.fields: Field sica.features.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:38,777 3449440 WARNING sicadop_02 odoo.fields: Field sica.support.support_no: unknown parameter 'tracking', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:51:38,830 3449440 INFO sicadop_02 odoo.modules.loading: Modules loaded. 
+2025-08-04 17:51:38,835 3449440 INFO sicadop_02 odoo.modules.registry: Registry loaded in 1.365s 
+2025-08-04 17:51:38,837 3449440 INFO sicadop_02 odoo.addons.base.models.ir_http: Generating routing map for key None 
+2025-08-04 17:51:39,219 3449440 INFO ? odoo.addons.bus.models.bus: Bus.loop listen imbus on db postgres 
+2025-08-04 17:52:29,224 3449440 INFO sicadop_02 werkzeug: 127.0.0.1 - - [04/Aug/2025 17:52:29] "POST /longpolling/poll HTTP/1.1" 200 - 30 0.035 51.720
+2025-08-04 17:52:29,372 3449432 INFO ? odoo.http: HTTP Configuring static files 
+2025-08-04 17:52:29,397 3449432 INFO sicadop_02 odoo.modules.loading: loading 1 modules... 
+2025-08-04 17:52:29,415 3449432 INFO sicadop_02 odoo.modules.loading: 1 modules loaded in 0.02s, 0 queries (+0 extra) 
+2025-08-04 17:52:29,424 3449432 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'sms_otp', defaulting to LGPL-3 
+2025-08-04 17:52:29,430 3449432 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'member_management_system', defaulting to LGPL-3 
+2025-08-04 17:52:29,435 3449432 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'dashboard_dashboard', defaulting to LGPL-3 
+2025-08-04 17:52:29,438 3449432 INFO sicadop_02 odoo.modules.loading: loading 46 modules... 
+2025-08-04 17:52:30,182 3449432 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'member_management_system', defaulting to LGPL-3 
+2025-08-04 17:52:30,406 3449432 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'dashboard_dashboard', defaulting to LGPL-3 
+2025-08-04 17:52:30,457 3449432 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'sms_otp', defaulting to LGPL-3 
+2025-08-04 17:52:30,546 3449432 INFO sicadop_02 odoo.modules.loading: 46 modules loaded in 1.11s, 0 queries (+0 extra) 
+2025-08-04 17:52:30,602 3449432 WARNING sicadop_02 odoo.fields: product.vendor.vendor_type: selection attribute will be ignored as the field is related 
+2025-08-04 17:52:30,625 3449432 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.sica_total: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:52:30,626 3449432 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cab_benefit_trust: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:52:30,626 3449432 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.life_coverage_fund: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:52:30,626 3449432 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_misc: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:52:30,626 3449432 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_donation: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:52:30,626 3449432 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount1: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:52:30,626 3449432 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount2: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:52:30,626 3449432 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount3: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:52:30,626 3449432 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_total: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:52:30,626 3449432 WARNING sicadop_02 odoo.fields: Field sica.receipt.total_amount: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:52:30,626 3449432 WARNING sicadop_02 odoo.fields: Field cbt.receipt.total_amount: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:52:30,628 3449432 WARNING sicadop_02 odoo.fields: Field shooting.event.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:52:30,629 3449432 WARNING sicadop_02 odoo.fields: Field event.complete.image.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:52:30,629 3449432 WARNING sicadop_02 odoo.fields: Field sica.gallery.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:52:30,629 3449432 WARNING sicadop_02 odoo.fields: Field sica.features.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:52:30,629 3449432 WARNING sicadop_02 odoo.fields: Field sica.support.support_no: unknown parameter 'tracking', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:52:30,678 3449432 INFO sicadop_02 odoo.modules.loading: Modules loaded. 
+2025-08-04 17:52:30,683 3449432 INFO sicadop_02 odoo.modules.registry: Registry loaded in 1.305s 
+2025-08-04 17:52:30,685 3449432 INFO sicadop_02 odoo.addons.base.models.ir_http: Generating routing map for key None 
+2025-08-04 17:52:31,067 3449432 INFO ? odoo.addons.bus.models.bus: Bus.loop listen imbus on db postgres 
+2025-08-04 17:53:21,072 3449432 INFO sicadop_02 werkzeug: 127.0.0.1 - - [04/Aug/2025 17:53:21] "POST /longpolling/poll HTTP/1.1" 200 - 30 0.033 51.663
+2025-08-04 17:53:21,279 3449458 INFO ? odoo.http: HTTP Configuring static files 
+2025-08-04 17:53:21,299 3449458 INFO sicadop_02 odoo.modules.loading: loading 1 modules... 
+2025-08-04 17:53:21,317 3449458 INFO sicadop_02 odoo.modules.loading: 1 modules loaded in 0.02s, 0 queries (+0 extra) 
+2025-08-04 17:53:21,326 3449458 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'sms_otp', defaulting to LGPL-3 
+2025-08-04 17:53:21,333 3449458 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'member_management_system', defaulting to LGPL-3 
+2025-08-04 17:53:21,337 3449458 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'dashboard_dashboard', defaulting to LGPL-3 
+2025-08-04 17:53:21,340 3449458 INFO sicadop_02 odoo.modules.loading: loading 46 modules... 
+2025-08-04 17:53:22,166 3449458 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'member_management_system', defaulting to LGPL-3 
+2025-08-04 17:53:22,416 3449458 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'dashboard_dashboard', defaulting to LGPL-3 
+2025-08-04 17:53:22,469 3449458 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'sms_otp', defaulting to LGPL-3 
+2025-08-04 17:53:22,566 3449458 INFO sicadop_02 odoo.modules.loading: 46 modules loaded in 1.23s, 0 queries (+0 extra) 
+2025-08-04 17:53:22,624 3449458 WARNING sicadop_02 odoo.fields: product.vendor.vendor_type: selection attribute will be ignored as the field is related 
+2025-08-04 17:53:22,644 3449458 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.sica_total: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:53:22,644 3449458 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cab_benefit_trust: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:53:22,644 3449458 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.life_coverage_fund: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:53:22,644 3449458 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_misc: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:53:22,644 3449458 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_donation: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:53:22,644 3449458 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount1: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:53:22,644 3449458 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount2: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:53:22,644 3449458 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount3: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:53:22,644 3449458 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_total: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:53:22,644 3449458 WARNING sicadop_02 odoo.fields: Field sica.receipt.total_amount: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:53:22,644 3449458 WARNING sicadop_02 odoo.fields: Field cbt.receipt.total_amount: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:53:22,647 3449458 WARNING sicadop_02 odoo.fields: Field shooting.event.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:53:22,647 3449458 WARNING sicadop_02 odoo.fields: Field event.complete.image.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:53:22,647 3449458 WARNING sicadop_02 odoo.fields: Field sica.gallery.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:53:22,647 3449458 WARNING sicadop_02 odoo.fields: Field sica.features.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:53:22,648 3449458 WARNING sicadop_02 odoo.fields: Field sica.support.support_no: unknown parameter 'tracking', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:53:22,695 3449458 INFO sicadop_02 odoo.modules.loading: Modules loaded. 
+2025-08-04 17:53:22,700 3449458 INFO sicadop_02 odoo.modules.registry: Registry loaded in 1.416s 
+2025-08-04 17:53:22,701 3449458 INFO sicadop_02 odoo.addons.base.models.ir_http: Generating routing map for key None 
+2025-08-04 17:53:23,066 3449458 INFO ? odoo.addons.bus.models.bus: Bus.loop listen imbus on db postgres 
+2025-08-04 17:54:13,070 3449458 INFO sicadop_02 werkzeug: 127.0.0.1 - - [04/Aug/2025 17:54:13] "POST /longpolling/poll HTTP/1.1" 200 - 30 0.027 51.761
+2025-08-04 17:54:13,194 3449455 INFO ? odoo.http: HTTP Configuring static files 
+2025-08-04 17:54:13,215 3449455 INFO sicadop_02 odoo.modules.loading: loading 1 modules... 
+2025-08-04 17:54:13,232 3449455 INFO sicadop_02 odoo.modules.loading: 1 modules loaded in 0.02s, 0 queries (+0 extra) 
+2025-08-04 17:54:13,241 3449455 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'sms_otp', defaulting to LGPL-3 
+2025-08-04 17:54:13,248 3449455 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'member_management_system', defaulting to LGPL-3 
+2025-08-04 17:54:13,252 3449455 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'dashboard_dashboard', defaulting to LGPL-3 
+2025-08-04 17:54:13,255 3449455 INFO sicadop_02 odoo.modules.loading: loading 46 modules... 
+2025-08-04 17:54:14,037 3449455 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'member_management_system', defaulting to LGPL-3 
+2025-08-04 17:54:14,268 3449455 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'dashboard_dashboard', defaulting to LGPL-3 
+2025-08-04 17:54:14,319 3449455 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'sms_otp', defaulting to LGPL-3 
+2025-08-04 17:54:14,420 3449455 INFO sicadop_02 odoo.modules.loading: 46 modules loaded in 1.16s, 0 queries (+0 extra) 
+2025-08-04 17:54:14,480 3449455 WARNING sicadop_02 odoo.fields: product.vendor.vendor_type: selection attribute will be ignored as the field is related 
+2025-08-04 17:54:14,500 3449455 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.sica_total: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:54:14,500 3449455 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cab_benefit_trust: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:54:14,500 3449455 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.life_coverage_fund: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:54:14,500 3449455 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_misc: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:54:14,500 3449455 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_donation: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:54:14,500 3449455 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount1: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:54:14,500 3449455 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount2: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:54:14,500 3449455 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount3: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:54:14,500 3449455 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_total: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:54:14,501 3449455 WARNING sicadop_02 odoo.fields: Field sica.receipt.total_amount: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:54:14,501 3449455 WARNING sicadop_02 odoo.fields: Field cbt.receipt.total_amount: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:54:14,503 3449455 WARNING sicadop_02 odoo.fields: Field shooting.event.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:54:14,503 3449455 WARNING sicadop_02 odoo.fields: Field event.complete.image.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:54:14,503 3449455 WARNING sicadop_02 odoo.fields: Field sica.gallery.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:54:14,504 3449455 WARNING sicadop_02 odoo.fields: Field sica.features.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:54:14,504 3449455 WARNING sicadop_02 odoo.fields: Field sica.support.support_no: unknown parameter 'tracking', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:54:14,553 3449455 INFO sicadop_02 odoo.modules.loading: Modules loaded. 
+2025-08-04 17:54:14,558 3449455 INFO sicadop_02 odoo.modules.registry: Registry loaded in 1.358s 
+2025-08-04 17:54:14,559 3449455 INFO sicadop_02 odoo.addons.base.models.ir_http: Generating routing map for key None 
+2025-08-04 17:54:14,936 3449455 INFO ? odoo.addons.bus.models.bus: Bus.loop listen imbus on db postgres 
+2025-08-04 17:55:04,940 3449455 INFO sicadop_02 werkzeug: 127.0.0.1 - - [04/Aug/2025 17:55:04] "POST /longpolling/poll HTTP/1.1" 200 - 30 0.031 51.712
+2025-08-04 17:55:05,129 3449442 INFO ? odoo.http: HTTP Configuring static files 
+2025-08-04 17:55:05,152 3449442 INFO sicadop_02 odoo.modules.loading: loading 1 modules... 
+2025-08-04 17:55:05,169 3449442 INFO sicadop_02 odoo.modules.loading: 1 modules loaded in 0.02s, 0 queries (+0 extra) 
+2025-08-04 17:55:05,180 3449442 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'sms_otp', defaulting to LGPL-3 
+2025-08-04 17:55:05,187 3449442 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'member_management_system', defaulting to LGPL-3 
+2025-08-04 17:55:05,191 3449442 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'dashboard_dashboard', defaulting to LGPL-3 
+2025-08-04 17:55:05,195 3449442 INFO sicadop_02 odoo.modules.loading: loading 46 modules... 
+2025-08-04 17:55:06,066 3449442 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'member_management_system', defaulting to LGPL-3 
+2025-08-04 17:55:06,325 3449442 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'dashboard_dashboard', defaulting to LGPL-3 
+2025-08-04 17:55:06,383 3449442 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'sms_otp', defaulting to LGPL-3 
+2025-08-04 17:55:06,491 3449442 INFO sicadop_02 odoo.modules.loading: 46 modules loaded in 1.30s, 0 queries (+0 extra) 
+2025-08-04 17:55:06,573 3449442 WARNING sicadop_02 odoo.fields: product.vendor.vendor_type: selection attribute will be ignored as the field is related 
+2025-08-04 17:55:06,606 3449442 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.sica_total: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:55:06,606 3449442 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cab_benefit_trust: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:55:06,606 3449442 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.life_coverage_fund: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:55:06,606 3449442 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_misc: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:55:06,607 3449442 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_donation: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:55:06,607 3449442 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount1: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:55:06,607 3449442 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount2: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:55:06,607 3449442 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount3: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:55:06,607 3449442 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_total: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:55:06,607 3449442 WARNING sicadop_02 odoo.fields: Field sica.receipt.total_amount: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:55:06,607 3449442 WARNING sicadop_02 odoo.fields: Field cbt.receipt.total_amount: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:55:06,610 3449442 WARNING sicadop_02 odoo.fields: Field shooting.event.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:55:06,610 3449442 WARNING sicadop_02 odoo.fields: Field event.complete.image.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:55:06,611 3449442 WARNING sicadop_02 odoo.fields: Field sica.gallery.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:55:06,611 3449442 WARNING sicadop_02 odoo.fields: Field sica.features.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:55:06,611 3449442 WARNING sicadop_02 odoo.fields: Field sica.support.support_no: unknown parameter 'tracking', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:55:06,672 3449442 INFO sicadop_02 odoo.modules.loading: Modules loaded. 
+2025-08-04 17:55:06,678 3449442 INFO sicadop_02 odoo.modules.registry: Registry loaded in 1.543s 
+2025-08-04 17:55:06,680 3449442 INFO sicadop_02 odoo.addons.base.models.ir_http: Generating routing map for key None 
+2025-08-04 17:55:07,090 3449442 INFO ? odoo.addons.bus.models.bus: Bus.loop listen imbus on db postgres 
+2025-08-04 17:55:57,094 3449442 INFO sicadop_02 werkzeug: 127.0.0.1 - - [04/Aug/2025 17:55:57] "POST /longpolling/poll HTTP/1.1" 200 - 30 0.029 51.934
+2025-08-04 17:55:59,182 3449450 INFO ? odoo.http: HTTP Configuring static files 
+2025-08-04 17:55:59,204 3449450 INFO sicadop_02 odoo.modules.loading: loading 1 modules... 
+2025-08-04 17:55:59,222 3449450 INFO sicadop_02 odoo.modules.loading: 1 modules loaded in 0.02s, 0 queries (+0 extra) 
+2025-08-04 17:55:59,232 3449450 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'sms_otp', defaulting to LGPL-3 
+2025-08-04 17:55:59,238 3449450 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'member_management_system', defaulting to LGPL-3 
+2025-08-04 17:55:59,241 3449450 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'dashboard_dashboard', defaulting to LGPL-3 
+2025-08-04 17:55:59,244 3449450 INFO sicadop_02 odoo.modules.loading: loading 46 modules... 
+2025-08-04 17:56:00,004 3449450 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'member_management_system', defaulting to LGPL-3 
+2025-08-04 17:56:00,232 3449450 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'dashboard_dashboard', defaulting to LGPL-3 
+2025-08-04 17:56:00,283 3449450 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'sms_otp', defaulting to LGPL-3 
+2025-08-04 17:56:00,377 3449450 INFO sicadop_02 odoo.modules.loading: 46 modules loaded in 1.13s, 0 queries (+0 extra) 
+2025-08-04 17:56:00,435 3449450 WARNING sicadop_02 odoo.fields: product.vendor.vendor_type: selection attribute will be ignored as the field is related 
+2025-08-04 17:56:00,454 3449450 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.sica_total: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:00,455 3449450 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cab_benefit_trust: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:00,455 3449450 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.life_coverage_fund: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:00,455 3449450 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_misc: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:00,455 3449450 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_donation: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:00,455 3449450 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount1: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:00,455 3449450 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount2: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:00,455 3449450 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount3: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:00,455 3449450 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_total: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:00,455 3449450 WARNING sicadop_02 odoo.fields: Field sica.receipt.total_amount: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:00,455 3449450 WARNING sicadop_02 odoo.fields: Field cbt.receipt.total_amount: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:00,457 3449450 WARNING sicadop_02 odoo.fields: Field shooting.event.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:00,458 3449450 WARNING sicadop_02 odoo.fields: Field event.complete.image.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:00,458 3449450 WARNING sicadop_02 odoo.fields: Field sica.gallery.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:00,458 3449450 WARNING sicadop_02 odoo.fields: Field sica.features.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:00,458 3449450 WARNING sicadop_02 odoo.fields: Field sica.support.support_no: unknown parameter 'tracking', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:00,508 3449450 INFO sicadop_02 odoo.modules.loading: Modules loaded. 
+2025-08-04 17:56:00,513 3449450 INFO sicadop_02 odoo.modules.registry: Registry loaded in 1.325s 
+2025-08-04 17:56:00,515 3449450 INFO sicadop_02 odoo.addons.base.models.ir_http: Generating routing map for key None 
+2025-08-04 17:56:01,908 3449450 INFO sicadop_02 werkzeug: 127.0.0.1 - - [04/Aug/2025 17:56:01] "POST /api/job/history/ HTTP/1.1" 200 - 20 0.882 1.840
+2025-08-04 17:56:47,315 3449458 INFO sicadop_02 werkzeug: 127.0.0.1 - - [04/Aug/2025 17:56:47] "POST /longpolling/poll HTTP/1.1" 200 - 9 0.004 50.013
+2025-08-04 17:56:47,444 3449448 INFO ? odoo.http: HTTP Configuring static files 
+2025-08-04 17:56:47,465 3449448 INFO sicadop_02 odoo.modules.loading: loading 1 modules... 
+2025-08-04 17:56:47,480 3449448 INFO sicadop_02 odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries (+0 extra) 
+2025-08-04 17:56:47,489 3449448 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'sms_otp', defaulting to LGPL-3 
+2025-08-04 17:56:47,497 3449448 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'member_management_system', defaulting to LGPL-3 
+2025-08-04 17:56:47,502 3449448 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'dashboard_dashboard', defaulting to LGPL-3 
+2025-08-04 17:56:47,504 3449448 INFO sicadop_02 odoo.modules.loading: loading 46 modules... 
+2025-08-04 17:56:48,243 3449448 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'member_management_system', defaulting to LGPL-3 
+2025-08-04 17:56:48,460 3449448 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'dashboard_dashboard', defaulting to LGPL-3 
+2025-08-04 17:56:48,510 3449448 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'sms_otp', defaulting to LGPL-3 
+2025-08-04 17:56:48,599 3449448 INFO sicadop_02 odoo.modules.loading: 46 modules loaded in 1.09s, 0 queries (+0 extra) 
+2025-08-04 17:56:48,654 3449448 WARNING sicadop_02 odoo.fields: product.vendor.vendor_type: selection attribute will be ignored as the field is related 
+2025-08-04 17:56:48,673 3449448 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.sica_total: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:48,674 3449448 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cab_benefit_trust: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:48,674 3449448 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.life_coverage_fund: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:48,674 3449448 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_misc: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:48,674 3449448 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_donation: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:48,674 3449448 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount1: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:48,674 3449448 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount2: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:48,674 3449448 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount3: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:48,674 3449448 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_total: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:48,674 3449448 WARNING sicadop_02 odoo.fields: Field sica.receipt.total_amount: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:48,674 3449448 WARNING sicadop_02 odoo.fields: Field cbt.receipt.total_amount: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:48,676 3449448 WARNING sicadop_02 odoo.fields: Field shooting.event.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:48,676 3449448 WARNING sicadop_02 odoo.fields: Field event.complete.image.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:48,677 3449448 WARNING sicadop_02 odoo.fields: Field sica.gallery.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:48,677 3449448 WARNING sicadop_02 odoo.fields: Field sica.features.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:48,677 3449448 WARNING sicadop_02 odoo.fields: Field sica.support.support_no: unknown parameter 'tracking', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:56:48,725 3449448 INFO sicadop_02 odoo.modules.loading: Modules loaded. 
+2025-08-04 17:56:48,731 3449448 INFO sicadop_02 odoo.modules.registry: Registry loaded in 1.282s 
+2025-08-04 17:56:48,733 3449448 INFO sicadop_02 odoo.addons.base.models.ir_http: Generating routing map for key None 
+2025-08-04 17:56:49,126 3449448 INFO ? odoo.addons.bus.models.bus: Bus.loop listen imbus on db postgres 
+2025-08-04 17:57:36,346 3449418 INFO ? odoo.service.server: Stopping gracefully 
+2025-08-04 17:57:41,275 3449995 INFO ? odoo: Odoo version 15.0 
+2025-08-04 17:57:41,275 3449995 INFO ? odoo: Using configuration file at /etc/odoo.conf 
+2025-08-04 17:57:41,275 3449995 INFO ? odoo: addons paths: ['/opt/odoo15/odoo/addons', '/home/ubuntu/.local/share/Odoo/addons/15.0', '/opt/odoo15/addons', '/opt/odoo15/SICAWeb'] 
+2025-08-04 17:57:41,275 3449995 INFO ? odoo: database: sica@default:default 
+2025-08-04 17:57:41,498 3449995 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf 
+2025-08-04 17:57:41,852 3449995 INFO ? odoo.service.server: HTTP service (werkzeug) running on 0.0.0.0:8069 
+2025-08-04 17:57:41,857 3449998 INFO ? odoo.service.server: Worker WorkerHTTP (3449998) alive 
+2025-08-04 17:57:41,860 3449999 INFO ? odoo.service.server: Worker WorkerHTTP (3449999) alive 
+2025-08-04 17:57:41,862 3450000 INFO ? odoo.service.server: Worker WorkerHTTP (3450000) alive 
+2025-08-04 17:57:41,864 3450002 INFO ? odoo.service.server: Worker WorkerHTTP (3450002) alive 
+2025-08-04 17:57:41,869 3450005 INFO ? odoo.service.server: Worker WorkerHTTP (3450005) alive 
+2025-08-04 17:57:41,874 3450010 INFO ? odoo.service.server: Worker WorkerHTTP (3450010) alive 
+2025-08-04 17:57:41,874 3450011 INFO ? odoo.service.server: Worker WorkerHTTP (3450011) alive 
+2025-08-04 17:57:41,876 3450013 INFO ? odoo.service.server: Worker WorkerHTTP (3450013) alive 
+2025-08-04 17:57:41,883 3450019 INFO ? odoo.service.server: Worker WorkerHTTP (3450019) alive 
+2025-08-04 17:57:41,886 3450020 INFO ? odoo.service.server: Worker WorkerHTTP (3450020) alive 
+2025-08-04 17:57:41,889 3450021 INFO ? odoo.service.server: Worker WorkerHTTP (3450021) alive 
+2025-08-04 17:57:41,891 3450023 INFO ? odoo.service.server: Worker WorkerHTTP (3450023) alive 
+2025-08-04 17:57:41,893 3450025 INFO ? odoo.service.server: Worker WorkerHTTP (3450025) alive 
+2025-08-04 17:57:41,896 3450027 INFO ? odoo.service.server: Worker WorkerHTTP (3450027) alive 
+2025-08-04 17:57:41,897 3450029 INFO ? odoo.service.server: Worker WorkerHTTP (3450029) alive 
+2025-08-04 17:57:41,900 3450031 INFO ? odoo.service.server: Worker WorkerHTTP (3450031) alive 
+2025-08-04 17:57:41,904 3450033 INFO ? odoo.service.server: Worker WorkerHTTP (3450033) alive 
+2025-08-04 17:57:41,918 3450040 INFO ? odoo.service.server: Worker WorkerCron (3450040) alive 
+2025-08-04 17:57:41,922 3450041 INFO ? odoo.service.server: Worker WorkerCron (3450041) alive 
+2025-08-04 17:57:42,995 3450037 INFO ? odoo: Odoo version 15.0 
+2025-08-04 17:57:42,996 3450037 INFO ? odoo: Using configuration file at /etc/odoo.conf 
+2025-08-04 17:57:42,996 3450037 INFO ? odoo: addons paths: ['/opt/odoo15/odoo/addons', '/home/ubuntu/.local/share/Odoo/addons/15.0', '/opt/odoo15/addons', '/opt/odoo15/SICAWeb'] 
+2025-08-04 17:57:42,996 3450037 INFO ? odoo: database: sica@default:default 
+2025-08-04 17:57:43,266 3450037 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf 
+2025-08-04 17:57:43,566 3450037 INFO ? odoo.service.server: Evented Service (longpolling) running on 0.0.0.0:8072 
+2025-08-04 17:58:00,888 3450029 INFO ? odoo.http: HTTP Configuring static files 
+2025-08-04 17:58:00,909 3450029 INFO sicadop_02 odoo.modules.loading: loading 1 modules... 
+2025-08-04 17:58:00,925 3450029 INFO sicadop_02 odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries (+0 extra) 
+2025-08-04 17:58:00,934 3450029 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'sms_otp', defaulting to LGPL-3 
+2025-08-04 17:58:00,940 3450029 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'member_management_system', defaulting to LGPL-3 
+2025-08-04 17:58:00,944 3450029 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'dashboard_dashboard', defaulting to LGPL-3 
+2025-08-04 17:58:00,949 3450029 INFO sicadop_02 odoo.modules.loading: loading 46 modules... 
+2025-08-04 17:58:01,899 3450029 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'member_management_system', defaulting to LGPL-3 
+2025-08-04 17:58:02,190 3450029 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'dashboard_dashboard', defaulting to LGPL-3 
+2025-08-04 17:58:02,250 3450029 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'sms_otp', defaulting to LGPL-3 
+2025-08-04 17:58:02,361 3450029 INFO sicadop_02 odoo.modules.loading: 46 modules loaded in 1.41s, 0 queries (+0 extra) 
+2025-08-04 17:58:02,429 3450029 WARNING sicadop_02 odoo.fields: product.vendor.vendor_type: selection attribute will be ignored as the field is related 
+2025-08-04 17:58:02,453 3450029 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.sica_total: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:02,454 3450029 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cab_benefit_trust: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:02,454 3450029 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.life_coverage_fund: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:02,454 3450029 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_misc: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:02,454 3450029 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_donation: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:02,454 3450029 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount1: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:02,454 3450029 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount2: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:02,454 3450029 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount3: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:02,454 3450029 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_total: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:02,454 3450029 WARNING sicadop_02 odoo.fields: Field sica.receipt.total_amount: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:02,454 3450029 WARNING sicadop_02 odoo.fields: Field cbt.receipt.total_amount: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:02,456 3450029 WARNING sicadop_02 odoo.fields: Field shooting.event.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:02,457 3450029 WARNING sicadop_02 odoo.fields: Field event.complete.image.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:02,457 3450029 WARNING sicadop_02 odoo.fields: Field sica.gallery.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:02,457 3450029 WARNING sicadop_02 odoo.fields: Field sica.features.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:02,458 3450029 WARNING sicadop_02 odoo.fields: Field sica.support.support_no: unknown parameter 'tracking', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:02,514 3450029 INFO sicadop_02 odoo.modules.loading: Modules loaded. 
+2025-08-04 17:58:02,519 3450029 INFO sicadop_02 odoo.modules.registry: Registry loaded in 1.625s 
+2025-08-04 17:58:02,520 3450029 INFO sicadop_02 odoo.addons.base.models.ir_http: Generating routing map for key None 
+2025-08-04 17:58:02,921 3450029 INFO ? odoo.addons.bus.models.bus: Bus.loop listen imbus on db postgres 
+2025-08-04 17:58:04,120 3450031 INFO ? odoo.http: HTTP Configuring static files 
+2025-08-04 17:58:04,140 3450031 INFO sicadop_02 odoo.modules.loading: loading 1 modules... 
+2025-08-04 17:58:04,156 3450031 INFO sicadop_02 odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries (+0 extra) 
+2025-08-04 17:58:04,165 3450031 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'sms_otp', defaulting to LGPL-3 
+2025-08-04 17:58:04,171 3450031 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'member_management_system', defaulting to LGPL-3 
+2025-08-04 17:58:04,175 3450031 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'dashboard_dashboard', defaulting to LGPL-3 
+2025-08-04 17:58:04,179 3450031 INFO sicadop_02 odoo.modules.loading: loading 46 modules... 
+2025-08-04 17:58:04,968 3450031 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'member_management_system', defaulting to LGPL-3 
+2025-08-04 17:58:05,204 3450031 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'dashboard_dashboard', defaulting to LGPL-3 
+2025-08-04 17:58:05,255 3450031 WARNING sicadop_02 odoo.modules.module: Missing `license` key in manifest for 'sms_otp', defaulting to LGPL-3 
+2025-08-04 17:58:05,353 3450031 INFO sicadop_02 odoo.modules.loading: 46 modules loaded in 1.17s, 0 queries (+0 extra) 
+2025-08-04 17:58:05,413 3450031 WARNING sicadop_02 odoo.fields: product.vendor.vendor_type: selection attribute will be ignored as the field is related 
+2025-08-04 17:58:05,436 3450031 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.sica_total: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:05,436 3450031 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cab_benefit_trust: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:05,437 3450031 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.life_coverage_fund: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:05,437 3450031 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_misc: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:05,437 3450031 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_donation: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:05,437 3450031 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount1: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:05,437 3450031 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount2: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:05,437 3450031 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_amount3: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:05,437 3450031 WARNING sicadop_02 odoo.fields: Field sica.cbt.receipt.cbt_total: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:05,437 3450031 WARNING sicadop_02 odoo.fields: Field sica.receipt.total_amount: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:05,437 3450031 WARNING sicadop_02 odoo.fields: Field cbt.receipt.total_amount: unknown parameter 'currency_id', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:05,440 3450031 WARNING sicadop_02 odoo.fields: Field shooting.event.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:05,440 3450031 WARNING sicadop_02 odoo.fields: Field event.complete.image.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:05,441 3450031 WARNING sicadop_02 odoo.fields: Field sica.gallery.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:05,441 3450031 WARNING sicadop_02 odoo.fields: Field sica.features.attachments_ids: unknown parameter 'public', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:05,441 3450031 WARNING sicadop_02 odoo.fields: Field sica.support.support_no: unknown parameter 'tracking', if this is an actual parameter you may want to override the method _valid_field_parameter on the relevant model in order to allow it 
+2025-08-04 17:58:05,496 3450031 INFO sicadop_02 odoo.modules.loading: Modules loaded. 
+2025-08-04 17:58:05,501 3450031 INFO sicadop_02 odoo.modules.registry: Registry loaded in 1.376s 
+2025-08-04 17:58:05,502 3450031 INFO sicadop_02 odoo.addons.base.models.ir_http: Generating routing map for key None 
+2025-08-04 17:58:06,578 3450031 ERROR sicadop_02 odoo.addons.member_management_system.controller.job_list: Error in /api/job/history/ for member_id 1: Expected singleton: res.member(5177, 4172, 4695, 5553, 5179, 4761, 5192, 3988, 6185, 6204, 4862, 4677, 4809, 5213, 4691, 5534, 4010, 5498, 4813, 4493, 5209, 3984, 4381, 3647, 5083, 4323, 5136, 4541, 4737, 6184, 4028, 4453, 5529, 5490, 4912, 4169, 4411, 6198, 6183, 5200, 5237, 5469, 5479, 6220, 4983, 4604, 4332, 6214, 3773, 6218, 4264, 6219, 5059, 5145, 3661, 3699, 4260, 5569, 6230, 5525, 4211, 5086, 6196, 5486, 4861, 5189, 5038, 5222, 5130, 4440, 6211, 6247, 6263, 5132, 5142, 4283, 6264, 4803, 4986) 
+2025-08-04 17:58:06,595 3450031 INFO sicadop_02 werkzeug: 127.0.0.1 - - [04/Aug/2025 17:58:06] "POST /api/job/history/ HTTP/1.1" 200 - 20 0.626 1.846

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_sica_cbt_office_copy" model="ir.actions.report">
+            <field name="name">Office Copy</field>
+            <field name="model">sica.cbt.receipt</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">member_management_system.report_sica_cbt_office_copy</field>
+            <field name="report_file">member_management_system.report_sica_cbt_office_copy</field>
+            <field name="print_report_name">'SICA_CBT_office_copy_%s' % (object.member_id.membership_no)</field>
+            <field name="binding_model_id" ref="model_sica_cbt_receipt"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_report_sica_cbt_member_copy" model="ir.actions.report">
+            <field name="name">Member Copy</field>
+            <field name="model">sica.cbt.receipt</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">member_management_system.report_sica_cbt_member_copy</field>
+            <field name="report_file">member_management_system.report_sica_cbt_member_copy</field>
+            <field name="print_report_name">'SICA_CBT_member_copy_%s' % (object.member_id.membership_no)</field>
+            <field name="binding_model_id" ref="model_sica_cbt_receipt"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>
