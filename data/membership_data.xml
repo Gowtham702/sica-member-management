@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="membership_type_silver" model="sica.membership.type">
+            <field name="name">Silver</field>
+            <field name="duration_months">12</field>
+            <field name="fee">500</field>
+            <field name="description">Silver membership - 1 year access</field>
+        </record>
+
+        <record id="membership_type_gold" model="sica.membership.type">
+            <field name="name">Gold</field>
+            <field name="duration_months">12</field>
+            <field name="fee">1000</field>
+            <field name="description">Gold membership - 1 year access with extra benefits</field>
+        </record>
+
+        <record id="membership_type_premium" model="sica.membership.type">
+            <field name="name">Premium</field>
+            <field name="duration_months">12</field>
+            <field name="fee">2000</field>
+            <field name="description">Premium membership - 1 year full access</field>
+        </record>
+    </data>
+</odoo>

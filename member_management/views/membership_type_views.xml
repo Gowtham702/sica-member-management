@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Membership Type Form View -->
+    <record id="view_sica_membership_type_form" model="ir.ui.view">
+        <field name="name">sica.membership.type.form</field>
+        <field name="model">sica.membership.type</field>
+        <field name="arch" type="xml">
+            <form string="Membership Type">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(member_management.action_sica_member)d"
+                            type="action"
+                            class="oe_stat_button"
+                            icon="fa-users">
+                            <field name="member_count" widget="statinfo" string="Members"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Membership Type Name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="duration_months"/>
+                            <field name="fee"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Membership Type List View -->
+    <record id="view_sica_membership_type_tree" model="ir.ui.view">
+        <field name="name">sica.membership.type.tree</field>
+        <field name="model">sica.membership.type</field>
+        <field name="arch" type="xml">
+            <list string="Membership Types">
+                <field name="name"/>
+                <field name="duration_months"/>
+                <field name="fee"/>
+                <field name="member_count"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Membership Type Action -->
+    <record id="action_sica_membership_type" model="ir.actions.act_window">
+        <field name="name">Membership Types</field>
+        <field name="res_model">sica.membership.type</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Membership Type!
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_member_report" model="ir.actions.report">
+        <field name="name">Member Details Report</field>
+        <field name="model">sica.member</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">member_management.report_member_template</field>
+        <field name="report_file">member_management.report_member_template</field>
+        <field name="binding_model_id" ref="model_sica_member"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
