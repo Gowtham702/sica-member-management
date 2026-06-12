@@ -1,5 +1,5 @@
 import re
-from odoo import http, fields
+from odoo import http
 from odoo.http import request, Response
 import json
 import base64
@@ -8,26 +8,19 @@ import base64
 class MobileFeedAPI(http.Controller):
 
     def _json_response(self, data, status=200):
-        return Response(
-            json.dumps(data),
-            status=status,
-            content_type='application/json;charset=utf-8'
-        )
+        return Response(json.dumps(data), status=status, content_type='application/json;charset=utf-8')
 
     def _base_url(self):
-        base_url = request.env['ir.config_parameter'].sudo().get_param(
-            'web.base.url.image'
-        ) or request.env['ir.config_parameter'].sudo().get_param(
-            'web.base.url'
-        ) or 'http://localhost:8059'
+        base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url.image') \
+            or request.env['ir.config_parameter'].sudo().get_param('web.base.url') \
+            or 'http://localhost:8059'
         return base_url.rstrip('/')
 
-    def _get_data(self):
-        try:
-            return json.loads(request.httprequest.data.decode('utf-8') or '{}')
-        except Exception:
-            return {}
-        
+    def _get_member_by_no(self, membership_no):
+        return request.env['res.member'].sudo().search([
+            ('membership_no', '=', str(membership_no))
+        ], limit=1)
+
     def _extract_emojis(self, text):
         emoji_pattern = re.compile(
             "["
@@ -42,9 +35,7 @@ class MobileFeedAPI(http.Controller):
         )
         return emoji_pattern.findall(text or "")
 
-    # ---------------------------------------------------------
-    # POSTS API
-    # ---------------------------------------------------------
+    # POSTS
 
     @http.route('/api/posts', type='http', auth='public', methods=['GET'], csrf=False)
     def get_posts(self, **kw):
@@ -55,8 +46,8 @@ class MobileFeedAPI(http.Controller):
         for post in posts:
             result.append({
                 'id': post.id,
-                'member_id': post.member_id.id,
-                'member_name': post.member_id.name,
+                'membership_no': post.member_id.membership_no or '',
+                'member_name': post.member_id.name or '',
                 'text': post.text or '',
                 'image_url': '%s/api/posts/image/%s' % (base_url, post.id) if post.image else '',
                 'comments_count': post.comments_count,
@@ -78,8 +69,8 @@ class MobileFeedAPI(http.Controller):
 
         return self._json_response({
             'id': post.id,
-            'member_id': post.member_id.id,
-            'member_name': post.member_id.name,
+            'membership_no': post.member_id.membership_no or '',
+            'member_name': post.member_id.name or '',
             'text': post.text or '',
             'image_url': '%s/api/posts/image/%s' % (base_url, post.id) if post.image else '',
             'comments_count': post.comments_count,
@@ -91,16 +82,16 @@ class MobileFeedAPI(http.Controller):
     @http.route(['/api/posts/create', '/api/posts/create/'], type='http', auth='public', methods=['POST'], csrf=False)
     def create_post(self, **post):
         try:
-            member_id = post.get('member_id')
+            membership_no = post.get('membership_no')
             text = post.get('text') or ''
 
-            if not member_id:
-                return self._json_response({
-                    'success': False,
-                    'error': 'member_id is required'
-                }, 400)
+            if not membership_no:
+                return self._json_response({'success': False, 'error': 'membership_no is required'}, 400)
 
-            member = request.env['res.member'].sudo().browse(int(member_id))
+            member = self._get_member_by_no(membership_no)
+
+            if not member:
+                return self._json_response({'success': False, 'error': 'Member not found'}, 404)
 
             image_file = post.get('image')
             image_data = False
@@ -113,7 +104,7 @@ class MobileFeedAPI(http.Controller):
             emojis = self._extract_emojis(text)
 
             record = request.env['sica.mobile.post'].sudo().create({
-                'member_id': int(member_id),
+                'member_id': member.id,
                 'text': text,
                 'image': image_data,
                 'image_filename': image_filename,
@@ -125,9 +116,8 @@ class MobileFeedAPI(http.Controller):
                 'success': True,
                 'message': 'Post created successfully',
                 'id': record.id,
-                'member_id': record.member_id.id,
-                'member_name': record.member_id.name,
-                'member_no': record.member_id.membership_no or '',
+                'membership_no': record.member_id.membership_no or '',
+                'member_name': record.member_id.name or '',
                 'text': record.text or '',
                 'posted_datetime': str(record.create_date),
                 'share_count': record.share_count,
@@ -138,11 +128,8 @@ class MobileFeedAPI(http.Controller):
             })
 
         except Exception as e:
-            return self._json_response({
-                'success': False,
-                'error': str(e)
-            }, 500)
-        
+            return self._json_response({'success': False, 'error': str(e)}, 500)
+
     @http.route('/api/posts/<int:post_id>', type='http', auth='public', methods=['PUT', 'POST'], csrf=False)
     def update_post(self, post_id, **post):
         rec = request.env['sica.mobile.post'].sudo().browse(post_id)
@@ -152,14 +139,20 @@ class MobileFeedAPI(http.Controller):
 
         vals = {}
 
-        if post.get('member_id'):
-            vals['member_id'] = int(post.get('member_id'))
+        if post.get('membership_no'):
+            member = self._get_member_by_no(post.get('membership_no'))
+            if not member:
+                return self._json_response({'error': 'Member not found'}, 404)
+            vals['member_id'] = member.id
 
         if post.get('text') is not None:
             vals['text'] = post.get('text')
 
         if post.get('share_count'):
             vals['share_count'] = int(post.get('share_count'))
+
+        if post.get('reaction_count'):
+            vals['reaction_count'] = int(post.get('reaction_count'))
 
         image_file = post.get('image')
         if image_file:
@@ -183,10 +176,7 @@ class MobileFeedAPI(http.Controller):
 
         rec.unlink()
 
-        return self._json_response({
-            'success': True,
-            'message': 'Post deleted successfully'
-        })
+        return self._json_response({'success': True, 'message': 'Post deleted successfully'})
 
     @http.route('/api/posts/image/<int:post_id>', type='http', auth='public', methods=['GET'], csrf=False)
     def get_post_image(self, post_id, **kw):
@@ -205,9 +195,7 @@ class MobileFeedAPI(http.Controller):
             ]
         )
 
-    # ---------------------------------------------------------
-    # SHOOTING API
-    # ---------------------------------------------------------
+    # SHOOTING
 
     @http.route('/api/shootings', type='http', auth='public', methods=['GET'], csrf=False)
     def get_shootings(self, **kw):
@@ -218,14 +206,20 @@ class MobileFeedAPI(http.Controller):
         for shoot in shootings:
             result.append({
                 'id': shoot.id,
-                'title': shoot.title,
+                'title': shoot.title or '',
                 'description': shoot.description or '',
                 'location': shoot.location or '',
                 'production_house': shoot.production_house or '',
                 'from_date': str(shoot.from_date) if shoot.from_date else '',
                 'to_date': str(shoot.to_date) if shoot.to_date else '',
                 'status': shoot.status,
-                'team_member_ids': shoot.team_member_ids.ids,
+                'team_members': [
+                    {
+                        'membership_no': m.membership_no or '',
+                        'name': m.name or '',
+                    }
+                    for m in shoot.team_member_ids
+                ],
                 'team_members_count': len(shoot.team_member_ids),
                 'image_url': '%s/api/shootings/image/%s' % (base_url, shoot.id) if shoot.image else '',
             })
@@ -243,14 +237,20 @@ class MobileFeedAPI(http.Controller):
 
         return self._json_response({
             'id': shoot.id,
-            'title': shoot.title,
+            'title': shoot.title or '',
             'description': shoot.description or '',
             'location': shoot.location or '',
             'production_house': shoot.production_house or '',
             'from_date': str(shoot.from_date) if shoot.from_date else '',
             'to_date': str(shoot.to_date) if shoot.to_date else '',
             'status': shoot.status,
-            'team_member_ids': shoot.team_member_ids.ids,
+            'team_members': [
+                {
+                    'membership_no': m.membership_no or '',
+                    'name': m.name or '',
+                }
+                for m in shoot.team_member_ids
+            ],
             'team_members_count': len(shoot.team_member_ids),
             'image_url': '%s/api/shootings/image/%s' % (base_url, shoot.id) if shoot.image else '',
         })
@@ -260,8 +260,12 @@ class MobileFeedAPI(http.Controller):
         image_file = post.get('image')
 
         team_ids = []
-        if post.get('team_member_ids'):
-            team_ids = [int(x) for x in post.get('team_member_ids').split(',') if x]
+        if post.get('team_membership_nos'):
+            membership_nos = [x.strip() for x in post.get('team_membership_nos').split(',') if x.strip()]
+            members = request.env['res.member'].sudo().search([
+                ('membership_no', 'in', membership_nos)
+            ])
+            team_ids = members.ids
 
         vals = {
             'title': post.get('title') or '',
@@ -299,9 +303,12 @@ class MobileFeedAPI(http.Controller):
             if post.get(field):
                 vals[field] = post.get(field)
 
-        if post.get('team_member_ids'):
-            team_ids = [int(x) for x in post.get('team_member_ids').split(',') if x]
-            vals['team_member_ids'] = [(6, 0, team_ids)]
+        if post.get('team_membership_nos'):
+            membership_nos = [x.strip() for x in post.get('team_membership_nos').split(',') if x.strip()]
+            members = request.env['res.member'].sudo().search([
+                ('membership_no', 'in', membership_nos)
+            ])
+            vals['team_member_ids'] = [(6, 0, members.ids)]
 
         image_file = post.get('image')
         if image_file:
@@ -325,10 +332,7 @@ class MobileFeedAPI(http.Controller):
 
         rec.unlink()
 
-        return self._json_response({
-            'success': True,
-            'message': 'Shooting deleted successfully'
-        })
+        return self._json_response({'success': True, 'message': 'Shooting deleted successfully'})
 
     @http.route('/api/shootings/image/<int:shoot_id>', type='http', auth='public', methods=['GET'], csrf=False)
     def get_shooting_image(self, shoot_id, **kw):
@@ -347,9 +351,7 @@ class MobileFeedAPI(http.Controller):
             ]
         )
 
-    # ---------------------------------------------------------
-    # REQUIREMENTS API
-    # ---------------------------------------------------------
+    # REQUIREMENTS
 
     @http.route('/api/requirements', type='http', auth='public', methods=['GET'], csrf=False)
     def get_requirements(self, **kw):
@@ -359,8 +361,8 @@ class MobileFeedAPI(http.Controller):
         for req in requirements:
             result.append({
                 'id': req.id,
-                'member_id': req.member_id.id,
-                'member_name': req.member_id.name,
+                'membership_no': req.member_id.membership_no or '',
+                'member_name': req.member_id.name or '',
                 'requirement_type': req.requirement_type,
                 'title': req.title,
                 'description': req.description or '',
@@ -381,8 +383,8 @@ class MobileFeedAPI(http.Controller):
 
         return self._json_response({
             'id': req.id,
-            'member_id': req.member_id.id,
-            'member_name': req.member_id.name,
+            'membership_no': req.member_id.membership_no or '',
+            'member_name': req.member_id.name or '',
             'requirement_type': req.requirement_type,
             'title': req.title,
             'description': req.description or '',
@@ -394,13 +396,18 @@ class MobileFeedAPI(http.Controller):
 
     @http.route('/api/requirements', type='http', auth='public', methods=['POST'], csrf=False)
     def create_requirement(self, **post):
-        member_id = post.get('member_id')
+        membership_no = post.get('membership_no')
 
-        if not member_id:
-            return self._json_response({'error': 'member_id is required'}, 400)
+        if not membership_no:
+            return self._json_response({'error': 'membership_no is required'}, 400)
+
+        member = self._get_member_by_no(membership_no)
+
+        if not member:
+            return self._json_response({'error': 'Member not found'}, 404)
 
         rec = request.env['sica.mobile.requirement'].sudo().create({
-            'member_id': int(member_id),
+            'member_id': member.id,
             'requirement_type': post.get('requirement_type') or 'job_post',
             'title': post.get('title') or '',
             'description': post.get('description') or '',
@@ -424,9 +431,15 @@ class MobileFeedAPI(http.Controller):
 
         vals = {}
 
-        for field in ['member_id', 'requirement_type', 'title', 'description', 'location', 'event_date', 'experience']:
+        if post.get('membership_no'):
+            member = self._get_member_by_no(post.get('membership_no'))
+            if not member:
+                return self._json_response({'error': 'Member not found'}, 404)
+            vals['member_id'] = member.id
+
+        for field in ['requirement_type', 'title', 'description', 'location', 'event_date', 'experience']:
             if post.get(field):
-                vals[field] = int(post.get(field)) if field == 'member_id' else post.get(field)
+                vals[field] = post.get(field)
 
         rec.write(vals)
 
@@ -445,34 +458,22 @@ class MobileFeedAPI(http.Controller):
 
         rec.unlink()
 
-        return self._json_response({
-            'success': True,
-            'message': 'Requirement deleted successfully'
-        })
-    
-# ---------------------------------------------------------
-# MEMBER BASED FAST APIs
-# ---------------------------------------------------------
+        return self._json_response({'success': True, 'message': 'Requirement deleted successfully'})
 
-    @http.route('/api/member/dashboard/<int:member_id>', type='http', auth='public', methods=['GET'], csrf=False)
-    def member_dashboard(self, member_id, **kw):
+    # MEMBER BASED FAST APIs USING MEMBERSHIP NO
+
+    @http.route('/api/member/dashboard/<string:membership_no>', type='http', auth='public', methods=['GET'], csrf=False)
+    def member_dashboard(self, membership_no, **kw):
         base_url = self._base_url()
         offset = int(kw.get('offset') or 0)
         limit = int(kw.get('limit') or 10)
 
-        member = request.env['res.member'].sudo().browse(member_id)
+        member = self._get_member_by_no(membership_no)
 
-        if not member.exists():
-            return self._json_response({
-                'success': False,
-                'error': 'Member not found'
-            }, 404)
+        if not member:
+            return self._json_response({'success': False, 'error': 'Member not found'}, 404)
 
-        member_image = ''
-        if member.image_1920:
-            member_image = '%s/get/public/image/%s/%s/%s' % (
-                base_url, member._name, member.id, 'image_1920'
-            )
+        member_id = member.id
 
         posts = request.env['sica.mobile.post'].sudo().search(
             [('member_id', '=', member_id)],
@@ -541,15 +542,13 @@ class MobileFeedAPI(http.Controller):
         return self._json_response({
             'success': True,
             'member': {
-                'id': member.id,
+                'membership_no': member.membership_no or '',
                 'name': member.name or '',
-                'member_no': member.membership_no or '',
                 'designation': member.designation or '',
                 'grade': member.grade or '',
                 'state': member.state or '',
                 'mobile_number': member.contact1 or '',
                 'email': member.email or '',
-                'image_url': member_image,
             },
             'posts': post_vals,
             'shootings': shooting_vals,
@@ -559,97 +558,4 @@ class MobileFeedAPI(http.Controller):
                 'shootings': request.env['sica.mobile.shooting'].sudo().search_count([('team_member_ids', 'in', [member_id])]),
                 'requirements': request.env['sica.mobile.requirement'].sudo().search_count([('member_id', '=', member_id)]),
             }
-        })
-
-
-    @http.route('/api/member/posts/<int:member_id>', type='http', auth='public', methods=['GET'], csrf=False)
-    def get_member_posts(self, member_id, **kw):
-        base_url = self._base_url()
-
-        posts = request.env['sica.mobile.post'].sudo().search(
-            [('member_id', '=', member_id)],
-            order='create_date desc'
-        )
-
-        result = []
-        for post in posts:
-            emojis = self._extract_emojis(post.text or '')
-            result.append({
-                'id': post.id,
-                'member_id': post.member_id.id,
-                'member_name': post.member_id.name,
-                'member_no': post.member_id.membership_no or '',
-                'text': post.text or '',
-                'image_url': '%s/api/posts/image/%s' % (base_url, post.id) if post.image else '',
-                'comments_count': post.comments_count,
-                'share_count': post.share_count,
-                'reaction_count': post.reaction_count,
-                'emoji_count': len(emojis),
-                'emojis': emojis,
-                'created_date': str(post.create_date),
-            })
-
-        return self._json_response({
-            'success': True,
-            'posts': result
-        })
-
-
-    @http.route('/api/member/shootings/<int:member_id>', type='http', auth='public', methods=['GET'], csrf=False)
-    def get_member_shootings(self, member_id, **kw):
-        base_url = self._base_url()
-
-        shootings = request.env['sica.mobile.shooting'].sudo().search(
-            [('team_member_ids', 'in', [member_id])],
-            order='create_date desc'
-        )
-
-        result = []
-        for shoot in shootings:
-            result.append({
-                'id': shoot.id,
-                'title': shoot.title or '',
-                'description': shoot.description or '',
-                'location': shoot.location or '',
-                'production_house': shoot.production_house or '',
-                'from_date': str(shoot.from_date) if shoot.from_date else '',
-                'to_date': str(shoot.to_date) if shoot.to_date else '',
-                'status': shoot.status or '',
-                'team_member_ids': shoot.team_member_ids.ids,
-                'team_members_count': len(shoot.team_member_ids),
-                'image_url': '%s/api/shootings/image/%s' % (base_url, shoot.id) if shoot.image else '',
-            })
-
-        return self._json_response({
-            'success': True,
-            'shootings': result
-        })
-
-
-    @http.route('/api/member/requirements/<int:member_id>', type='http', auth='public', methods=['GET'], csrf=False)
-    def get_member_requirements(self, member_id, **kw):
-        requirements = request.env['sica.mobile.requirement'].sudo().search(
-            [('member_id', '=', member_id)],
-            order='create_date desc'
-        )
-
-        result = []
-        for req in requirements:
-            result.append({
-                'id': req.id,
-                'member_id': req.member_id.id,
-                'member_name': req.member_id.name,
-                'member_no': req.member_id.membership_no or '',
-                'requirement_type': req.requirement_type or '',
-                'title': req.title or '',
-                'description': req.description or '',
-                'location': req.location or '',
-                'event_date': str(req.event_date) if req.event_date else '',
-                'experience': req.experience or '',
-                'created_date': str(req.create_date),
-            })
-
-        return self._json_response({
-            'success': True,
-            'requirements': result
         })
