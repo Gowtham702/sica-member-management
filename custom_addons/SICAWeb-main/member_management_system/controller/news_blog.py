@@ -17,6 +17,7 @@ class NewsBlog(http.Controller):
         api_key = kw.get('api_key')  # Extract the API key from the GET parameters
         stored_api_key = "8f4f506e4b4022e154ac3651f9ee006e9b751261"
         base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url.image')
+        base_url = base_url.rstrip('/')
         event_image_default_url = request.env['ir.config_parameter'].sudo().get_param('website.event_image_link')
         if not api_key:
             return json.dumps({"error": "API key is missing"})
@@ -28,7 +29,11 @@ class NewsBlog(http.Controller):
         tech_talk_vals = []
         tech_talk_ids = request.env['tech.talk'].sudo().search([('create_date', '>=', yesterday), ('create_date', '<=', today)], order="sequence asc")
         for tech_talk in tech_talk_ids:
-            image = base_url + '/web/image?' + 'model=tech.talk&id=' + str(tech_talk.id) + '&field=image'
+            image = 'https://app.thesica.in/get/public/image/%s/%s/%s' % (
+                tech_talk._name,
+                tech_talk.id,
+                'image'
+            )
             vals = {
                 'title': tech_talk.title or '',
                 'date': tech_talk.date.strftime("%Y-%m-%d") if tech_talk.date else '',
@@ -42,6 +47,7 @@ class NewsBlog(http.Controller):
     @http.route('/get/tech/talk', type='http', auth='none', methods=['GET'], csrf=False)
     def get_tech_talk_details(self, **kw):
         base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url.image')
+        base_url = base_url.rstrip('/')
 
         api_key = kw.get('api_key')  # Extract the API key from the GET parameters
         stored_api_key = "8f4f506e4b4022e154ac3651f9ee006e9b751261"
@@ -53,7 +59,11 @@ class NewsBlog(http.Controller):
         links = []
         tech_talk_ids = request.env['tech.talk'].sudo().search([], order="sequence asc")
         for tech_talk in tech_talk_ids:
-            image = base_url + '/web/image?' + 'model=tech.talk&id=' + str(tech_talk.id) + '&field=image'
+            image = 'https://app.thesica.in/get/public/image/%s/%s/%s' % (
+                tech_talk._name,
+                tech_talk.id,
+                'image'
+            )  
             vals = {
                 'title': tech_talk.title or '',
                 'date': tech_talk.date.strftime("%Y-%m-%d") if tech_talk.date else '',
@@ -79,6 +89,7 @@ class NewsBlog(http.Controller):
         print("api_key: ",api_key)
         print("222222222222222222222222222222222222222222222222222222222")
         base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url.image')
+        base_url = base_url.rstrip('/')
         event_image_default_url = request.env['ir.config_parameter'].sudo().get_param('website.event_image_link')
         if not api_key:
             return json.dumps({"error": "API key is missing"})
@@ -106,7 +117,7 @@ class NewsBlog(http.Controller):
     @http.route('/get/sica/blog', type='http', auth='none', methods=['GET'], csrf=False)
     def get_sica_blog_details(self, **kw):
         base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url.image')
-
+        base_url = base_url.rstrip('/')
         api_key = kw.get('api_key')  # Extract the API key from the GET parameters
         stored_api_key = "8f4f506e4b4022e154ac3651f9ee006e9b751261"
         if not api_key:
@@ -132,6 +143,7 @@ class NewsBlog(http.Controller):
         api_key = kw.get('api_key')  # Extract the API key from the GET parameters
         stored_api_key = "8f4f506e4b4022e154ac3651f9ee006e9b751261"
         base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url.image')
+        base_url = base_url.rstrip('/')
         event_image_default_url = request.env['ir.config_parameter'].sudo().get_param('website.event_image_link')
         if not api_key:
             return json.dumps({"error": "API key is missing"})
@@ -158,7 +170,7 @@ class NewsBlog(http.Controller):
     @http.route('/get/sica/news', type='http', auth='none', methods=['GET'], csrf=False)
     def get_sica_news_details(self, **kw):
         base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url.image')
-
+        base_url = base_url.rstrip('/')
         api_key = kw.get('api_key')  # Extract the API key from the GET parameters
         stored_api_key = "8f4f506e4b4022e154ac3651f9ee006e9b751261"
         if not api_key:
@@ -184,6 +196,7 @@ class NewsBlog(http.Controller):
         api_key = kw.get('api_key')  # Extract the API key from the GET parameters
         stored_api_key = "8f4f506e4b4022e154ac3651f9ee006e9b751261"
         base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url.image')
+        base_url = base_url.rstrip('/')
         event_image_default_url = request.env['ir.config_parameter'].sudo().get_param('website.event_image_link')
         if not api_key:
             return json.dumps({"error": "API key is missing"})
@@ -215,6 +228,7 @@ class NewsBlog(http.Controller):
     @http.route('/get/sica/features', type='http', auth='none', methods=['GET'], csrf=False)
     def get_sica_features_details(self, **kw):
         base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url.image')
+        base_url = base_url.rstrip('/')
         event_image_default_url = request.env['ir.config_parameter'].sudo().get_param('website.event_image_link')
         api_key = kw.get('api_key')  # Extract the API key from the GET parameters
         stored_api_key = "8f4f506e4b4022e154ac3651f9ee006e9b751261"
@@ -240,6 +254,22 @@ class NewsBlog(http.Controller):
             }
             blog_vals.append(vals)
         return json.dumps({'Sica Features Vals': blog_vals})
+    @http.route('/get/public/image/<string:model>/<int:record_id>/<string:field>', type='http', auth='public', methods=['GET'], csrf=False)
+    def get_public_image(self, model, record_id, field, **kw):
+        record = request.env[model].sudo().browse(record_id)
+        if not record.exists():
+            return request.not_found()
+
+        image_data = record[field]
+        if not image_data:
+            return request.not_found()
+
+        image_binary = base64.b64decode(image_data)
+
+        return request.make_response(
+            image_binary,
+            headers=[('Content-Type', 'image/jpeg')]
+        )
 
     @http.route('/api/blog/view', type='json', auth='none', methods=['POST'])
     def increase_blog_view(self,**kw):

@@ -84,3 +84,5 @@
 "access_cash_withdraw_group_delete","cash_withdraw group_delete","model_cash_withdraw","member_management_system.group_member_management_delete","0","0","0","1"
 "access_expense_type_group_delete","expense_type group_delete","model_expense_type","member_management_system.group_member_management_delete","0","0","0","1"
 member_management_system.access_member_import_wizard,access_member_import_wizard,member_management_system.model_member_import_wizard,base.group_user,1,1,1,1
+access_member_status,access_member_status,model_member_status,base.group_user,1,1,1,1
+access_database_backup_wizard,database.backup.wizard,model_database_backup_wizard,base.group_system,1,1,1,1

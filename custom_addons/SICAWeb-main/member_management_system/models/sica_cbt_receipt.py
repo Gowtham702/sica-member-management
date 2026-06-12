@@ -9,7 +9,7 @@ class SicaCbtReceipt(models.Model):
     _name = "sica.cbt.receipt"
     _description = "SICA/CBT Receipts"
     _rec_name = "display_name"
-    _order = "id desc"
+    _order = 'receipt_date desc, id desc'
 
     @api.depends('subscription', 'mbf', 'fsf', 'aifec', 'uni_mei', 'mem_card_fee', 'sica_donation', 'admission',
                  'late_fee', 'sica_misc', 'sica_amount1', 'sica_amount2', 'dispute_amount')
@@ -224,6 +224,48 @@ class SicaCbtReceipt(models.Model):
                 pl_vals["res_id"] = self.id
                 self.env["profit.loss"].create(pl_vals)
             return self.write(vals)
+        
+    @api.model
+    def default_get(self, fields_list):
+        res = super(SicaCbtReceipt, self).default_get(fields_list)
+
+        def get_number(value):
+            try:
+                value = str(value or '').strip()
+                if not value or value == '/':
+                    return 0
+                return int(value)
+            except Exception:
+                return 0
+
+        # Get all valid SICA receipt numbers
+        sica_records = self.search([
+            ('sica_receipt_no', 'not in', [False, '', '/'])
+        ])
+
+        # Get all valid CBT receipt numbers
+        cbt_records = self.search([
+            ('cbt_receipt_no', 'not in', [False, '', '/'])
+        ])
+
+        # Highest SICA receipt number
+        max_sica = 0
+        for rec in sica_records:
+            num = get_number(rec.sica_receipt_no)
+            if num > max_sica:
+                max_sica = num
+
+        # Highest CBT receipt number
+        max_cbt = 0
+        for rec in cbt_records:
+            num = get_number(rec.cbt_receipt_no)
+            if num > max_cbt:
+                max_cbt = num
+
+        res['sica_receipt_no'] = str(max_sica + 1)
+        res['cbt_receipt_no'] = str(max_cbt + 1)
+
+        return res
 
     def unlink(self):
         for receipt in self:

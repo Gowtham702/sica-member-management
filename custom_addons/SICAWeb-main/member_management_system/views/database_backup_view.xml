@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form View -->
+    <record id="view_database_backup_wizard_form" model="ir.ui.view">
+        <field name="name">database.backup.wizard.form</field>
+        <field name="model">database.backup.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Database Backup">
+                <footer>
+                    <button name="action_backup_database"
+                            string="Backup Database"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="Cancel"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_database_backup_wizard" model="ir.actions.act_window">
+        <field name="name">Database Backup</field>
+        <field name="res_model">database.backup.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Main Menu -->
+    <menuitem id="menu_database_backup_root"
+              name="Database Backup"
+              sequence="100"/>
+
+    <!-- Sub Menu -->
+    <menuitem id="menu_database_backup"
+              name="Backup Database"
+              parent="menu_database_backup_root"
+              action="action_database_backup_wizard"
+              sequence="1"/>
+
+</odoo>

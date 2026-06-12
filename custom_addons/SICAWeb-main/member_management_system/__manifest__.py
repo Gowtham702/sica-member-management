@@ -12,6 +12,7 @@
         'data/data.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
+        'views/database_backup_view.xml',
         'views/res_member_view.xml',
         'views/sica_cbt_receipt_view.xml',
         'views/other_receipt_view.xml',
@@ -54,6 +55,8 @@
         'views/support.xml',
         'views/res_configuration.xml',
         'views/push_notification.xml',
+        'views/member_status_view.xml',
+        
     ],
     'assets': {
         'web.assets_backend': [

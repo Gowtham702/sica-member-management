@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="member_status_tree_view" model="ir.ui.view">
+            <field name="name">member.status.tree</field>
+            <field name="model">member.status</field>
+            <field name="arch" type="xml">
+                <tree string="Member Status">
+                    <field name="member_id"/>
+                    <field name="caption"/>
+                    <field name="media_type"/>
+                    <field name="media_filename"/>
+                    <field name="expiry_time"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="member_status_form_view" model="ir.ui.view">
+            <field name="name">member.status.form</field>
+            <field name="model">member.status</field>
+            <field name="arch" type="xml">
+                <form string="Member Status">
+                    <sheet>
+                        <group>
+                            <field name="member_id"/>
+                            <field name="caption"/>
+                            <field name="media_type"/>
+                            <field name="media_file" filename="media_filename"/>
+                            <!-- <field name="status_preview" readonly="1"/> -->
+                            <field name="status_url" widget="url" readonly="1"/>
+                            <field name="media_filename" invisible="1"/>
+                            <field name="expiry_time" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="member_status_kanban_view" model="ir.ui.view">
+            <field name="name">member.status.kanban</field>
+            <field name="model">member.status</field>
+            <field name="arch" type="xml">
+                <kanban default_order="create_date desc">
+                    <field name="member_id"/>
+                    <field name="caption"/>
+                    <field name="media_type"/>
+                    <field name="media_file"/>
+                    <field name="expiry_time"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record">
+                                <div>
+                                    <strong>
+                                        <field name="member_id"/>
+                                    </strong>
+                                </div>
+                                <div>
+                                    <field name="caption"/>
+                                </div>
+                                <div>
+                                    <field name="media_file" widget="image"/>
+                                </div>
+                                <div>
+                                    <small>
+                                        <field name="media_type"/>
+                                    </small>
+                                </div>
+                                <div>
+                                    <small>
+                                        Expires:
+                                        <field name="expiry_time"/>
+                                    </small>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="action_member_status" model="ir.actions.act_window">
+            <field name="name">Member Status</field>
+            <field name="res_model">member.status</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+
+        <menuitem
+            id="menu_member_status"
+            name="Member Status"
+            parent="menu_member_management"
+            action="action_member_status"
+            sequence="50"/>
+
+    </data>
+</odoo>

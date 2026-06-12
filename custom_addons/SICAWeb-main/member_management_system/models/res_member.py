@@ -164,6 +164,7 @@ class Members(models.Model):
     _name = "res.member"
     _description = "Members Management"
     _rec_name = "display_name"
+    _order = 'membership_no_int desc'
     _order = "id desc"
 
     @api.depends('name', 'membership_no', 'alias_name')
@@ -179,6 +180,19 @@ class Members(models.Model):
         for member in self:
             member.sica_cbt_receipts = self.env["sica.cbt.receipt"].search_count([("member_id", "=", member.id)])
 
+    membership_no_int = fields.Integer(
+        string="Membership No Number",
+        compute="_compute_membership_no_int",
+        store=True
+    )
+
+    @api.depends('membership_no')
+    def _compute_membership_no_int(self):
+        for rec in self:
+            try:
+                rec.membership_no_int = int(rec.membership_no or 0)
+            except Exception:
+                rec.membership_no_int = 0
 
     # General Details
     state = fields.Selection([
@@ -377,32 +391,46 @@ class Members(models.Model):
 
     def _generate_qr(self):
         for member in self:
-            if qrcode and base64:
-                qr = qrcode.QRCode(
-                    version=1,
-                    error_correction=qrcode.constants.ERROR_CORRECT_L,
-                    box_size=3,
-                    border=4,
-                )
-                base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url.image')
-                if base_url and member.attachment_id:
-                    if base_url[-1] == '/':
-                        base_url = base_url[:-1]
-                    base_url += '/member/qr_code/%s' % member.membership_no
-                    qr.add_data(base_url)
-                    qr.make(fit=True)
-                    img = qr.make_image()
-                    temp = BytesIO()
-                    img.save(temp, format="PNG")
-                    filename = f"{member.membership_no}-{member.name}-qr-code.png"
-                    member.qr_code_filename = filename
-                    qr_image = base64.b64encode(temp.getvalue())
-                    member.qr_code = qr_image
-                    member.qr_code_preview = qr_image
-                else:
-                    member.qr_code = False
-                    member.qr_code_preview = False
-            else:
+
+            # always assign default values first
+            member.qr_code = False
+            member.qr_code_preview = False
+
+            try:
+                if qrcode and base64 and member.membership_no:
+
+                    qr = qrcode.QRCode(
+                        version=1,
+                        error_correction=qrcode.constants.ERROR_CORRECT_L,
+                        box_size=3,
+                        border=4,
+                    )
+
+                    base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+
+                    if base_url:
+                        if base_url.endswith('/'):
+                            base_url = base_url[:-1]
+
+                        qr_url = f"{base_url}/member/qr_code/{member.membership_no}"
+
+                        qr.add_data(qr_url)
+                        qr.make(fit=True)
+
+                        img = qr.make_image()
+
+                        temp = BytesIO()
+                        img.save(temp, format="PNG")
+
+                        qr_image = base64.b64encode(temp.getvalue())
+
+                        member.qr_code = qr_image
+                        member.qr_code_preview = qr_image
+
+                        filename = f"{member.membership_no}-{member.name}-qr-code.png"
+                        member.qr_code_filename = filename
+
+            except Exception:
                 member.qr_code = False
                 member.qr_code_preview = False
 

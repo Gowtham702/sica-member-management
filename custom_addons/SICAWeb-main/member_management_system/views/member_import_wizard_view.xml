@@ -2,71 +2,114 @@
 <odoo>
     <data>
 
-        <!-- Full Page Form View — No Popup -->
         <record id="view_member_import_wizard_form" model="ir.ui.view">
             <field name="name">member.import.wizard.form</field>
             <field name="model">member.import.wizard</field>
             <field name="arch" type="xml">
-                <form string="Import Members - Paid Till">
+                <form string="Data Fix Import">
                     <sheet>
 
                         <div class="oe_title">
-                            <h1>Import Members Paid Till</h1>
+                            <h1>Data Fix Import</h1>
                             <p class="text-muted">
-                                Upload your Excel file. Column A = Membership No. | Column B = Paid Till
+                                Upload separate Excel files for Paid Till, SICA/CBT and Expense Receipt import.
+                                Already imported rows will be skipped automatically.
                             </p>
                         </div>
 
-                        <!-- Upload Section -->
-                        <group attrs="{'invisible': [('state', '=', 'done')]}">
-                            <group string="Upload Excel File">
-                                <field name="excel_file" widget="binary" filename="file_name"/>
-                                <field name="file_name" invisible="1"/>
-                            </group>
-                        </group>
+                        <div attrs="{'invisible': [('state', '=', 'done')]}">
 
-                        <!-- Result Summary -->
+                            <group string="Paid Till Import">
+                                <field name="paid_till_file"
+                                       widget="binary"
+                                       filename="paid_till_file_name"
+                                       string="Paid Till Excel File"/>
+                                <field name="paid_till_file_name" invisible="1"/>
+                            </group>
+
+                            <div style="margin-bottom:30px;">
+                                <button name="action_import_paid_till"
+                                        type="object"
+                                        string="Paid Till Import"
+                                        class="btn btn-primary"
+                                        style="padding:10px 30px; font-size:15px;"/>
+                            </div>
+
+                            <hr/>
+
+                            <group string="SICA / CBT Import">
+                                <field name="sica_file"
+                                       widget="binary"
+                                       filename="sica_file_name"
+                                       string="SICA / CBT Excel File"/>
+                                <field name="sica_file_name" invisible="1"/>
+                            </group>
+
+                            <div style="margin-bottom:30px;">
+                                <button name="action_import_sica"
+                                        type="object"
+                                        string="SICA / CBT Import"
+                                        class="btn btn-warning"
+                                        style="padding:10px 30px; font-size:15px;"/>
+                            </div>
+
+                            <hr/>
+
+                            <group string="Expense Receipt Import">
+                                <field name="expense_file"
+                                       widget="binary"
+                                       filename="expense_file_name"
+                                       string="Expense Receipt Excel File"/>
+                                <field name="expense_file_name" invisible="1"/>
+                            </group>
+
+                            <div style="margin-bottom:30px;">
+                                <button name="action_import_expense_receipt"
+                                        type="object"
+                                        string="Expense Receipt Import"
+                                        class="btn btn-success"
+                                        style="padding:10px 30px; font-size:15px;"/>
+                            </div>
+
+                        </div>
+
                         <group attrs="{'invisible': [('state', '=', 'draft')]}">
+                            <group string="Import Type">
+                                <field name="import_type" readonly="1"/>
+                            </group>
+
                             <group string="Import Summary">
-                                <field name="total_records"/>
-                                <field name="updated_count"/>
-                                <field name="not_found_count"/>
-                                <field name="error_count"/>
+                                <field name="total_records" readonly="1"/>
+                                <field name="updated_count" readonly="1"/>
+                                <field name="not_found_count" readonly="1"/>
+                                <field name="error_count" readonly="1"/>
+                                <field name="skipped_count" readonly="1"/>
                             </group>
                         </group>
 
-                        <!-- Result Message -->
                         <group attrs="{'invisible': [('state', '=', 'draft')]}">
-                            <field name="result_message" widget="text" nolabel="1" readonly="1"
-                                style="background:#f8f9fa; padding:15px; border-radius:5px; font-family:monospace; font-size:14px;"/>
+                            <field name="result_message"
+                                   readonly="1"
+                                   nolabel="1"
+                                   widget="text"/>
                         </group>
-
-                        <field name="state" invisible="1"/>
-
-                    </sheet>
-
-                    <!-- Buttons at top -->
-                    <header>
-                        <button name="action_import"
-                                string="Import Now"
-                                type="object"
-                                class="btn-primary"
-                                attrs="{'invisible': [('state', '=', 'done')]}"/>
 
                         <button name="action_reset"
-                                string="Import Another File"
                                 type="object"
-                                class="btn-secondary"
+                                string="Import Another File"
+                                class="btn btn-secondary"
                                 attrs="{'invisible': [('state', '=', 'draft')]}"/>
-                    </header>
 
+                        <field name="state" invisible="1"/>
+                        <field name="import_type" invisible="1"/>
+
+                    </sheet>
                 </form>
             </field>
         </record>
 
-        <!-- Action — Opens as Full Page -->
         <record id="action_member_import_wizard" model="ir.actions.act_window">
-            <field name="name">data fix imports</field>
+            <field name="name">Data Fix Import</field>
             <field name="res_model">member.import.wizard</field>
             <field name="view_mode">form</field>
             <field name="target">current</field>

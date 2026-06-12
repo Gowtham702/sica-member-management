@@ -10,6 +10,7 @@ import razorpay
 import base64
 import io
 
+print("CUSTOM MAIN CONTROLLER LOADED")
 
 class UpdateResMasterDetails(http.Controller):
     @http.route('/post/member_details', type='http', auth='none', methods=['POST'], csrf=False)
@@ -123,7 +124,13 @@ class UpdateResMasterSocialDetails(http.Controller):
 class MemberDetails(http.Controller):
     @http.route('/get/member_details', type='http', auth='none', methods=['GET'], csrf=False)
     def get_member_details(self, **kw):
-        base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url.image')
+        base_url = request.env['ir.config_parameter'].sudo().get_param(
+            'web.base.url.image'
+        ) or request.env['ir.config_parameter'].sudo().get_param(
+            'web.base.url'
+        )
+
+        base_url = base_url.rstrip('/')
 
         api_key = kw.get('api_key')  # Extract the API key from the GET parameters
         stored_api_key = "8f4f506e4b4022e154ac3651f9ee006e9b751261"
@@ -142,7 +149,12 @@ class MemberDetails(http.Controller):
             return json.dumps({"error": "Membership Not Valid"})
         image = ''
         if member.image_1920:
-            image = base_url + '/web/image?' + 'model=res.member&id=' + str(member.id) + '&field=image_1920'
+            image = '%s/get/public/image/%s/%s/%s' % (
+                base_url,
+                member._name,
+                member.id,
+                'image_1920'
+            )
         state_value = member.state
 
         status_for_value = next((label for value, label in member._fields['state'].selection if value == state_value),
@@ -201,7 +213,12 @@ class MemberDetails(http.Controller):
         work_vals = []
         for work in member.work_ids:
             # image = base_url + '/web/image?' + 'model=member.work&id=' + str(work.id) + '&field=image'
-            image = work.image
+            image = '%s/get/public/image/%s/%s/%s' % (
+                base_url,
+                work._name,
+                work.id,
+                'image'
+            ) if work.image else ''
             work_vals.append({
                 'project_name': work.project_name or '',
                 'designation': work.designation or '',
@@ -219,8 +236,12 @@ class MemberDetails(http.Controller):
         topics = []
         own_topic_ids = request.env['discussion.forum'].sudo().search([('member_id', '=', member.id)])
         for discussion in own_topic_ids:
-            image = base_url + '/web/image?' + 'model=res.member&id=' + str(
-                discussion.member_id.id) + '&field=image_1920'
+            image = '%s/get/public/image/%s/%s/%s' % (
+                base_url,
+                member._name,
+                member.id,
+                'image_1920'
+            )
             discussion_vals = {
                 'profile': image or '',
                 'topic': discussion.discussion_topic,
@@ -236,8 +257,12 @@ class MemberDetails(http.Controller):
             print(discussion.name)
             discussion_comment_vals = []
             for comment in discussion.discussion_comment_ids:
-                profile_image = base_url + '/web/image?' + 'model=res.member&id=' + str(
-                    comment.member_id.id) + '&field=image_1920'
+                profile_image = '%s/get/public/image/%s/%s/%s' % (
+                    base_url,
+                    comment.member_id._name,
+                    comment.member_id.id,
+                    'image_1920'
+                )
                 discussion_comment_vals.append({
                     'profile_image': profile_image or '',
                     'comment': comment.comment or '',
@@ -255,8 +280,12 @@ class MemberDetails(http.Controller):
         topis = user_comment_topic_ids.discussion_id
         for user_discussion in topis:
             if user_discussion not in topics:
-                image = base_url + '/web/image?' + 'model=res.member&id=' + str(
-                    user_discussion.member_id.id) + '&field=image_1920'
+                image = '%s/get/public/image/%s/%s/%s' % (
+                    base_url,
+                    user_discussion.member_id._name,
+                    user_discussion.member_id.id,
+                    'image_1920'
+                )
                 discussion_vals = {
                     'profile': image or '',
                     'topic': user_discussion.discussion_topic,
@@ -272,9 +301,13 @@ class MemberDetails(http.Controller):
                 topics.append(user_discussion)
                 discussion_comment_vals = []
                 for comment in user_discussion.discussion_comment_ids:
-                    if comment.member_id == member.id:
-                        profile_image = base_url + '/web/image?' + 'model=res.member&id=' + str(
-                            comment.member_id.id) + '&field=image_1920'
+                    if comment.member_id.id == member.id:
+                        profile_image = '%s/get/public/image/%s/%s/%s' % (
+                            base_url,
+                            comment.member_id._name,
+                            comment.member_id.id,
+                            'image_1920'
+                        )
                         discussion_comment_vals.append({
                             'profile_image': profile_image or '',
                             'comment': comment.comment or '',
@@ -291,7 +324,13 @@ class MemberDetails(http.Controller):
 
     @http.route('/get/all/member_details', type='http', auth='none', methods=['GET'], csrf=False)
     def get_all_member_details(self, **kw):
-        base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url.image')
+        base_url = request.env['ir.config_parameter'].sudo().get_param(
+            'web.base.url.image'
+        ) or request.env['ir.config_parameter'].sudo().get_param(
+            'web.base.url'
+        )
+
+        base_url = base_url.rstrip('/')
 
         api_key = kw.get('api_key')  # Extract the API key from the GET parameters
         stored_api_key = "8f4f506e4b4022e154ac3651f9ee006e9b751261"
@@ -311,7 +350,12 @@ class MemberDetails(http.Controller):
                 None)
             image = ''
             if member.image_1920:
-                image = base_url + '/web/image?' + 'model=res.member&id=' + str(member.id) + '&field=image_1920'
+                image = '%s/get/public/image/%s/%s/%s' % (
+                    base_url,
+                     member._name,
+                     member.id,
+                    'image_1920'
+                )
             member_vals = {
                 'name': member.name,
                 'id': member.id,
@@ -360,7 +404,12 @@ class MemberDetails(http.Controller):
             }
             work_vals = []
             for work in member.work_ids:
-                image = work.image
+                image = '%s/get/public/image/%s/%s/%s' % (
+                    base_url,
+                    work._name,
+                    work.id,
+                    'image'
+                ) if work.image else ''
                 work_vals.append({
                     'project_name': work.project_name or '',
                     'designation': work.designation or '',
@@ -396,11 +445,23 @@ class MemberDetails(http.Controller):
     @http.route('/get/public/image/<string:model>/<int:record_id>/<string:field>', type='http', auth='public', methods=['GET'], csrf=False)
     def get_public_image(self, model, record_id, field, **kw):
         record = request.env[model].sudo().browse(record_id)
-        image_data = getattr(record, field, None)
+
+        if not record.exists():
+            return request.not_found()
+
+        image_data = record[field]
+
         if not image_data:
             return request.not_found()
-        image_bytes = base64.b64decode(image_data)
-        return request.make_response(image_bytes, headers=[('Content-Type', 'image/jpeg')])
+
+        image_binary = base64.b64decode(image_data)
+
+        headers = [
+            ('Content-Type', 'image/jpeg'),
+            ('Content-Length', str(len(image_binary)))
+        ]
+
+        return request.make_response(image_binary, headers=headers)
 
     @http.route('/get/all/medium', type='http', auth='none', methods=['GET'], csrf=False)
     def action_get_all_medium(self, **kw):
@@ -438,8 +499,92 @@ class AuthoticationCheck(http.Controller):
                     print("Unauthorized - API key might be invalid or lacks necessary permissions")
                 else:
                     print(f"Request failed with status code {response.status_code}: {response.text}")
+                    
+class ImageAPIController(http.Controller):
 
+    @http.route('/api/member_image', type='http', auth='public', methods=['GET'], csrf=False)
+    def get_member_image(self, **kw):
+        member_id = kw.get('member_id')
 
+        if not member_id:
+            return request.not_found()
+
+        member = request.env['res.member'].sudo().browse(int(member_id))
+
+        if not member.exists() or not member.image_1920:
+            return request.not_found()
+
+        image_binary = base64.b64decode(member.image_1920)
+
+        return request.make_response(
+            image_binary,
+            headers=[('Content-Type', 'image/png')]
+        )
+    @http.route('/post/member/status', type='http', auth='none', methods=['POST'], csrf=False)
+    def post_member_status(self, **kw):
+        api_key = kw.get('api_key')
+        if api_key != API_KEY:
+            return json.dumps({"error": "Invalid API key"})
+
+        member_id = kw.get('member_id')
+        caption = kw.get('caption') or ''
+        media_file = kw.get('media_file')
+        media_filename = kw.get('media_filename') or 'status_file'
+        media_type = kw.get('media_type') or 'image'
+
+        member = request.env['res.member'].sudo().browse(int(member_id))
+
+        if not member.exists():
+            return json.dumps({"error": "Member not found"})
+
+        status = request.env['member.status'].sudo().create({
+            'member_id': member.id,
+            'caption': caption,
+            'media_file': media_file,
+            'media_filename': media_filename,
+            'media_type': media_type,
+        })
+
+        return json.dumps({
+            "success": True,
+            "status_id": status.id
+        })
+    
+    @http.route('/get/member/status', type='http', auth='none', methods=['GET'], csrf=False)
+    def get_member_status(self, **kw):
+        api_key = kw.get('api_key')
+        if api_key != API_KEY:
+            return json.dumps({"error": "Invalid API key"})
+
+        base_url = get_base_url()
+
+        statuses = request.env['member.status'].sudo().search([
+            ('expiry_time', '>=', fields.Datetime.now()),
+            ('media_file', '!=', False)
+        ])
+
+        result = []
+
+        for status in statuses:
+            media_url = '%s/web/content?model=member.status&id=%s&field=media_file&filename=%s' % (
+                base_url,
+                status.id,
+                status.media_filename or 'status_file'
+            )
+
+            result.append({
+                'status_id': status.id,
+                'member_id': status.member_id.id,
+                'member_name': status.member_id.name,
+                'caption': status.caption or '',
+                'media_type': status.media_type,
+                'media_url': media_url,
+                'expiry_time': str(status.expiry_time),
+            })
+
+        return json.dumps({
+            'statuses': result
+        })
 
 # class ResPartnerController(http.Controller):
 #     @http.route('/custom_api/get_res_partners', type='http', auth='public', methods=['GET'])

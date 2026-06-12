@@ -18,3 +18,5 @@ from . import mmme
 from . import movie_list
 from . import mobile_notification
 from . import job_list, member
+from . import member_status_api
+from . import mobile_feed_api

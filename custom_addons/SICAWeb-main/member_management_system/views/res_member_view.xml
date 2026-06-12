@@ -349,9 +349,10 @@
             <field name="name">res.member.kanban</field>
             <field name="model">res.member</field>
             <field name="arch" type="xml">
-                <kanban class="o_res_partner_kanban" sample="1">
+                <kanban class="o_res_partner_kanban" sample="1" default_order="membership_no_int desc">
                     <field name="id"/>
                     <field name="display_name"/>
+                    <field name="membership_no_int"/>
                     <field name="state"/>
                     <field name="grade"/>
                     <field name="contact1"/>
@@ -404,6 +405,7 @@
             <field name="name">Member Management</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">res.member</field>
+            <field name="domain">[('membership_no','!=','9999')]</field>
             <field name="view_mode">kanban,tree,form</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">

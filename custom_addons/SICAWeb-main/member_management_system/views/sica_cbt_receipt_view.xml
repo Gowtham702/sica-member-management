@@ -39,29 +39,29 @@
                     <field name="cbt_receipt_no"/>
                     <field name="receipt_date"/>
 
-                    <field name="grade" optional="hide"/>
-                    <field name="subscription_start" optional="hide"/>
-                    <field name="subscription_end" optional="hide"/>
-                    <field name="payment_option" optional="hide"/>
-                    <field name="payment_ref" optional="hide"/>
-                    <field name="subscription" optional="hide"/>
-                    <field name="mbf" optional="hide"/>
-                    <field name="fsf" optional="hide"/>
-                    <field name="aifec" optional="hide"/>
-                    <field name="uni_mei" optional="hide"/>
-                    <field name="dispute_amount" optional="hide"/>
-                    <field name="dispute_category" optional="hide"/>
-                    <field name="mem_card_fee" optional="hide"/>
-                    <field name="sica_donation" string="SICA Donation" optional="hide"/>
-                    <field name="admission" optional="hide"/>
-                    <field name="late_fee" optional="hide"/>
-                    <field name="sica_misc" string="SICA Miscellaneous" optional="hide"/>
-                    <field name="sica_total" string="SICA Total" optional="hide"/>
-                    <field name="cab_benefit_trust" optional="hide"/>
-                    <field name="life_coverage_fund" optional="hide"/>
-                    <field name="cbt_misc" string="CBT Miscellaneous" optional="hide"/>
-                    <field name="cbt_donation" string="CBT Donation" optional="hide"/>
-                    <field name="cbt_total" string="CBT Total" optional="hide"/>
+                    <field name="grade"/>
+                    <field name="subscription_start"/>
+                    <field name="subscription_end"/>
+                    <field name="payment_option"/>
+                    <field name="payment_ref"/>
+                    <field name="subscription"/>
+                    <field name="mbf"/>
+                    <field name="fsf"/>
+                    <field name="aifec"/>
+                    <field name="uni_mei"/>
+                    <field name="dispute_amount"/>
+                    <field name="dispute_category"/>
+                    <field name="mem_card_fee"/>
+                    <field name="sica_donation" string="SICA Donation"/>
+                    <field name="admission"/>
+                    <field name="late_fee"/>
+                    <field name="sica_misc" string="SICA Miscellaneous"/>
+                    <field name="sica_total" string="SICA Total"/>
+                    <field name="cab_benefit_trust"/>
+                    <field name="life_coverage_fund"/>
+                    <field name="cbt_misc" string="CBT Miscellaneous"/>
+                    <field name="cbt_donation" string="CBT Donation"/>
+                    <field name="cbt_total" string="CBT Total"/>
 
 
                     <field name="sica_total" sum="Total"/>
@@ -83,8 +83,8 @@
                     <sheet>
                         <group>
                             <group>
-                                <field name="sica_receipt_no" required="1" readonly="1"/>
-                                <field name="cbt_receipt_no" required="1" readonly="1"/>
+                                <field name="sica_receipt_no"/>
+                                <field name="cbt_receipt_no"/>
                             </group>
                             <group>
                                 <field name="receipt_date" required="1"/>
