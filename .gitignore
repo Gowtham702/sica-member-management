@@ -2,3 +2,5 @@ custom_addons.zip
 backups/
 *.dump
 *.tar.gz
+serviceAccountKey.json
+*.json
