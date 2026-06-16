@@ -1,12 +1,29 @@
 import firebase_admin
-from firebase_admin import credentials
-
-# Path to your service account key
-# cred = credentials.Certificate("E:/Assismets/sica_addons/firebase_push_notification/data/serviceAccountKey.json")
+from firebase_admin import credentials, messaging
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-cred = credentials.Certificate(os.path.join(BASE_DIR, "data", "serviceAccountKey.json"))
+import logging
 
-# Initialize Firebase only if not already initialized
-if not firebase_admin._apps:
-    firebase_admin.initialize_app(cred)
+_logger = logging.getLogger(__name__)
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+firebase_file = os.path.join(
+    BASE_DIR,
+    "data",
+    "serviceAccountKey.json"
+)
+
+# Initialize Firebase only if JSON file exists
+if os.path.exists(firebase_file):
+    try:
+        if not firebase_admin._apps:
+            cred = credentials.Certificate(firebase_file)
+            firebase_admin.initialize_app(cred)
+            _logger.info("Firebase initialized successfully")
+    except Exception as e:
+        _logger.error("Firebase initialization failed: %s", str(e))
+else:
+    _logger.warning(
+        "Firebase disabled. serviceAccountKey.json not found at: %s",
+        firebase_file
+    )

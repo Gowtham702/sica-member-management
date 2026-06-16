@@ -86,3 +86,7 @@
 member_management_system.access_member_import_wizard,access_member_import_wizard,member_management_system.model_member_import_wizard,base.group_user,1,1,1,1
 access_member_status,access_member_status,model_member_status,base.group_user,1,1,1,1
 access_database_backup_wizard,database.backup.wizard,model_database_backup_wizard,base.group_system,1,1,1,1
+access_sica_mobile_comment,sica.mobile.comment,model_sica_mobile_comment,base.group_user,1,1,1,1
+access_sica_mobile_post_action,sica.mobile.post.action,model_sica_mobile_post_action,base.group_user,1,1,1,1
+access_sica_mobile_follow,sica.mobile.follow,model_sica_mobile_follow,base.group_user,1,1,1,1
+access_sica_common_comment,sica.common.comment,model_sica_common_comment,base.group_user,1,1,1,1
