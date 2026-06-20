@@ -3,7 +3,7 @@
     <data>
 
 
-        <menuitem name="Envoyer Notifications"
+        <menuitem name="Send Notifications"
             id="menu_firebase_push_notification_push"
             web_icon="firebase_push_notification,static/description/icon.png"
             sequence="6"/>
@@ -69,7 +69,7 @@
 
 
         <record id="action_firebase_push_notification_push_notification" model="ir.actions.act_window">
-            <field name="name">Envoyer notifications</field>
+            <field name="name">Send Notifications</field>
             <field name="res_model">mobile.app.push.notification</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" eval="False"/>

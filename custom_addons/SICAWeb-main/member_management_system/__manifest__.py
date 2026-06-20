@@ -56,6 +56,7 @@
         'views/res_configuration.xml',
         'views/push_notification.xml',
         'views/member_status_view.xml',
+        'security/ir.model.access.csv',
         
     ],
     'assets': {

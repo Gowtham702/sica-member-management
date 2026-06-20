@@ -4,3 +4,4 @@ from . import member_status
 from . import database_backup
 from . import mobile_feed
 from . import sica_post
+from . import shooting_report

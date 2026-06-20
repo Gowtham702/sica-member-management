@@ -90,3 +90,5 @@ access_sica_mobile_comment,sica.mobile.comment,model_sica_mobile_comment,base.gr
 access_sica_mobile_post_action,sica.mobile.post.action,model_sica_mobile_post_action,base.group_user,1,1,1,1
 access_sica_mobile_follow,sica.mobile.follow,model_sica_mobile_follow,base.group_user,1,1,1,1
 access_sica_common_comment,sica.common.comment,model_sica_common_comment,base.group_user,1,1,1,1
+access_shooting_daily_report,shooting.daily.report,model_shooting_daily_report,,1,1,1,1
+access_shooting_daily_report_image,shooting.daily.report.image,model_shooting_daily_report_image,,1,1,1,1

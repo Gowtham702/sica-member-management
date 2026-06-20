@@ -1,7 +1,7 @@
 import re
 import json
 import base64
-from odoo import http
+from odoo import http, fields
 from odoo.http import request, Response
 
 
@@ -19,9 +19,24 @@ class MobileFeedAPI(http.Controller):
     def _get_member_by_no(self, membership_no):
         if not membership_no:
             return request.env['res.member'].sudo()
-        return request.env['res.member'].sudo().search([
-            ('membership_no', '=', str(membership_no))
+
+        membership_no = str(membership_no).strip()
+
+        member = request.env['res.member'].sudo().search([
+            ('membership_no', '=', membership_no)
         ], limit=1)
+
+        if not member and membership_no.isdigit():
+            member = request.env['res.member'].sudo().search([
+                ('membership_no', '=', str(int(membership_no)))
+            ], limit=1)
+
+        if not member and membership_no.isdigit():
+            member = request.env['res.member'].sudo().search([
+                ('membership_no', '=', membership_no.zfill(4))
+            ], limit=1)
+
+        return member
 
     def _member_image(self, member):
         if member and member.image_1920:
@@ -65,6 +80,8 @@ class MobileFeedAPI(http.Controller):
         base_url = self._base_url()
         return {
             'id': shoot.id,
+            'membership_no': shoot.member_id.membership_no if shoot.member_id else '',
+            'member_name': shoot.member_id.name if shoot.member_id else '',
             'title': shoot.title or '',
             'description': shoot.description or '',
             'location': shoot.location or '',
@@ -78,8 +95,8 @@ class MobileFeedAPI(http.Controller):
                 'image': self._member_image(m),
             } for m in shoot.team_member_ids],
             'team_members_count': len(shoot.team_member_ids),
-            'image_url': '%s/api/shootings/image/%s' % (base_url, shoot.id) if shoot.image else '',
-            'movie_poster_url': '%s/api/shootings/poster/%s' % (base_url, shoot.id) if shoot.movie_poster else '',
+            'image_url': self._member_image(shoot.member_id) if shoot.member_id else '',
+            'movie_poster_url': self._member_image(shoot.member_id) if shoot.member_id else '',
             'created_date': str(shoot.create_date),
         }
 
@@ -373,12 +390,15 @@ class MobileFeedAPI(http.Controller):
 
     @http.route('/api/shootings', type='http', auth='public', methods=['POST'], csrf=False)
     def create_shooting(self, **post):
+        member = self._get_member_by_no(post.get('membership_no'))
+
         team_ids = []
         if post.get('team_membership_nos'):
-            membership_nos = [x.strip() for x in post.get('team_membership_nos').split(',') if x.strip()]
+            membership_nos = [x.strip().zfill(4) for x in post.get('team_membership_nos').split(',') if x.strip()]
             team_ids = request.env['res.member'].sudo().search([('membership_no', 'in', membership_nos)]).ids
 
         vals = {
+            'member_id': member.id if member else False,
             'title': post.get('title') or '',
             'description': post.get('description') or '',
             'location': post.get('location') or '',
@@ -402,35 +422,35 @@ class MobileFeedAPI(http.Controller):
         rec = request.env['sica.mobile.shooting'].sudo().create(vals)
         return self._json_response({'success': True, 'message': 'Shooting created successfully', 'shooting': self._shooting_vals(rec)}, 201)
 
-    @http.route('/api/shootings/<int:shoot_id>', type='http', auth='public', methods=['PUT', 'POST'], csrf=False)
-    def update_shooting(self, shoot_id, **post):
+    @http.route('/api/shootings/<int:shoot_id>', type='http', auth='public', methods=['PUT'], csrf=False)
+    def update_shooting_put(self, shoot_id, **kw):
         rec = request.env['sica.mobile.shooting'].sudo().browse(shoot_id)
+
         if not rec.exists():
             return self._json_response({'success': False, 'error': 'Shooting not found'}, 404)
 
         vals = {}
 
-        for field in ['title', 'description', 'location', 'production_house', 'from_date', 'to_date', 'status']:
-            if post.get(field):
-                vals[field] = post.get(field)
+        if kw.get('membership_no'):
+            member = self._get_member_by_no(kw.get('membership_no'))
+            vals['member_id'] = member.id if member else False
 
-        if post.get('team_membership_nos'):
-            membership_nos = [x.strip() for x in post.get('team_membership_nos').split(',') if x.strip()]
+        if kw.get('team_membership_nos'):
+            membership_nos = [x.strip().zfill(4) for x in kw.get('team_membership_nos').split(',') if x.strip()]
             members = request.env['res.member'].sudo().search([('membership_no', 'in', membership_nos)])
             vals['team_member_ids'] = [(6, 0, members.ids)]
 
-        image_file = post.get('image')
-        if image_file:
-            vals['image'] = base64.b64encode(image_file.read()).decode('utf-8')
-            vals['image_filename'] = image_file.filename
-
-        poster_file = post.get('movie_poster')
-        if poster_file:
-            vals['movie_poster'] = base64.b64encode(poster_file.read()).decode('utf-8')
-            vals['movie_poster_filename'] = poster_file.filename
+        for field in ['title', 'description', 'location', 'production_house', 'from_date', 'to_date', 'status']:
+            if kw.get(field):
+                vals[field] = kw.get(field)
 
         rec.write(vals)
-        return self._json_response({'success': True, 'message': 'Shooting updated successfully', 'shooting': self._shooting_vals(rec)})
+
+        return self._json_response({
+            'success': True,
+            'message': 'Shooting updated successfully',
+            'shooting': self._shooting_vals(rec)
+        })
 
     @http.route('/api/shootings/<int:shoot_id>', type='http', auth='public', methods=['DELETE'], csrf=False)
     def delete_shooting(self, shoot_id, **kw):
@@ -721,7 +741,7 @@ class MobileFeedAPI(http.Controller):
             'comments_count': count
         }, 201)
 
-    @http.route('/api/comments/<int:comment_id>', type='http', auth='public', methods=['DELETE'], csrf=False)
+    @http.route('/api/common/comments/<int:comment_id>', type='http', auth='public', methods=['DELETE'], csrf=False)
     def delete_post_comment(self, comment_id, **kw):
         comment = request.env['sica.mobile.comment'].sudo().browse(comment_id)
 
@@ -750,60 +770,213 @@ class MobileFeedAPI(http.Controller):
     @http.route('/api/explore', type='http', auth='public', methods=['GET'], csrf=False)
     def explore_api(self, **kw):
         limit = int(kw.get('limit') or 10)
+        member_number = kw.get('member_number') or kw.get('MEMBERSHIP_ID') or ''
         base_url = self._base_url()
 
-        opportunities = request.env['member.job.provider'].sudo().search([], limit=limit, order='create_date desc')
-        talents = request.env['member.job.seeker'].sudo().search([], limit=limit, order='create_date desc')
-        events = request.env['shooting.event'].sudo().search([], limit=limit, order='create_date desc')
+        event_image_default_url = request.env['ir.config_parameter'].sudo().get_param(
+            'website.event_image_link'
+        ) or ''
 
-        data = []
+        events = request.env['shooting.event'].sudo().search([], limit=limit, order="sequence asc")
+        talents = request.env['member.job.seeker'].sudo().search([], limit=limit, order="create_date desc")
+        opportunities = request.env['member.job.provider'].sudo().search([('state', '=', 'active')], order="create_date desc")        
+        seen_members = set()     
+        event_data = []
+        talent_data = []
+        opportunity_data = []
 
-        for opp in opportunities:
-            member = getattr(opp, 'member_id', False)
-            data.append({
-                'type': 'opportunity',
-                'id': opp.id,
-                'member_name': member.name if member else getattr(opp, 'name', '') or '',
-                'membership_number': member.membership_no if member else '',
-                'member_image_url': self._member_image(member) if member else '',
-                'title': getattr(opp, 'title', '') or getattr(opp, 'name', '') or '',
-                'description': getattr(opp, 'description', '') or '',
-                'location': getattr(opp, 'location', '') or '',
-                'created_date': str(opp.create_date),
-            })
-
-        for talent in talents:
-            member = getattr(talent, 'member_id', False)
-            data.append({
-                'type': 'talent',
-                'id': talent.id,
-                'member_name': member.name if member else getattr(talent, 'name', '') or '',
-                'membership_number': member.membership_no if member else getattr(talent, 'membership_no', '') or '',
-                'member_image_url': self._member_image(member) if member else '',
-                'post_applying': getattr(talent, 'post_applying', '') or getattr(talent, 'name', '') or '',
-                'experience': getattr(talent, 'experience', '') or '',
-                'mobile': getattr(talent, 'mobile', '') or '',
-                'email': getattr(talent, 'email', '') or '',
-                'created_date': str(talent.create_date),
-            })
-
+    # ---------------- EVENTS ----------------
         for event in events:
-            data.append({
+            attachments = []
+            event_status = []
+            complete_event_ids = []
+            event_links = []
+
+            for link in getattr(event, 'event_links_ids', []):
+                event_links.append({'link': link.link or ''})
+
+            for attachment in getattr(event, 'attachments_ids', []):
+                attachment.public = True
+                attachments.append(base_url + '/web/image/%s' % attachment.id)
+
+            image = base_url + '/web/image?model=shooting.event&id=%s&field=image' % event.id
+
+            if not attachments and event_image_default_url:
+                attachments.append(event_image_default_url)
+
+            for member_event in getattr(event, 'booking_status_ids', []):
+                event_status.append({
+                    'member_id': member_event.member_id.id if member_event.member_id else False,
+                    'event_id': member_event.event_id.id if member_event.event_id else False,
+                    'event_title': member_event.event_id.title if member_event.event_id else '',
+                    'event_amount': member_event.event_id.amount if member_event.event_id else 0.0,
+                    'payment_status': member_event.payment_status or '',
+                    'booking_status': member_event.booking_status or '',
+                    'event_book_id': member_event.id,
+                })
+
+            for complete_event in getattr(event, 'complete_event_ids', []):
+                complete_event_attachments = []
+
+                if getattr(complete_event, 'image', False):
+                    complete_event_attachments.append(
+                        base_url + '/get/complete_event/image/%s' % complete_event.id
+                    )
+
+                for attachment in getattr(complete_event, 'attachments_ids', []):
+                    attachment.public = True
+                    complete_event_attachments.append(base_url + '/web/image/%s' % attachment.id)
+
+                if not complete_event_attachments and event_image_default_url:
+                    complete_event_attachments.append(event_image_default_url)
+
+                complete_event_ids.append({
+                    'event_id': complete_event.event_id.id if complete_event.event_id else False,
+                    'complete_event_images_url': complete_event_attachments,
+                })
+
+            is_member_booked = False
+            if member_number:
+                is_member_booked = True if event.booking_status_ids.filtered(
+                    lambda x: x.member_id.membership_no == member_number and x.booking_status == 'Booked'
+                ) else False
+
+
+            event_data.append({
                 'type': 'event',
                 'event_id': event.id,
-                'title': getattr(event, 'title', '') or getattr(event, 'name', '') or '',
-                'image_url': '%s/web/image?model=shooting.event&id=%s&field=image' % (base_url, event.id),
-                'date': str(getattr(event, 'date', '')) if getattr(event, 'date', False) else '',
-                'description': getattr(event, 'description', '') or '',
-                'location': getattr(event, 'location', '') or '',
+                'title': event.title or '',
+                'description': event.description or '',
+                'start_date': event.start_date.strftime("%Y-%m-%d") if event.start_date else '',
+                'end_date': event.end_date.strftime("%Y-%m-%d") if event.end_date else '',
+                'coach_name': event.coach_name or '',
+                'amount': event.amount or 0.0,
+                'image_url': image or '',
+                'event_link': event.event_link or '',
+                'is_completed': event.is_completed,
+                'venue': event.venue or '',
+                'time': event.time or '',
+                'map': event.map or '',
+                'program_presenters': event.program_presenters or '',
+                'presised_by': event.presised_by or '',
+                'chief_guest': event.chief_guest or '',
+                'note': getattr(event, 'note', '') or getattr(event, 'notes', '') or '',
+                'images_url': attachments,
+                'booking_status': event_status or '',
+                'complete_event_details': complete_event_ids or '',
+                'is_member_booked': is_member_booked,
+                'event_links': event_links,
                 'created_date': str(event.create_date),
+            })
+
+    # ---------------- TALENTS / JOB SEEKER ----------------
+        for job_seeker in talents:
+            member = job_seeker.member_id
+
+            talent_data.append({
+                'type': 'talent',
+                'id': job_seeker.id,
+                'job_seeker_id': job_seeker.id,
+                'name': job_seeker.name or '',
+
+                'member_id': member.id if member else False,
+                'member_name': job_seeker.member_name or '',
+                'membership_no': job_seeker.membership_no or '',
+                'member_image_url': '%s/get/public/image/res.member/%s/image_1920' % (base_url, member.id) if member and member.image_1920 else '',
+
+                'mobile_number': job_seeker.mobile_number or (member.contact1 if member else ''),
+                'contact1': member.contact1 if member else '',
+                'contact2': member.contact2 if member else '',
+
+                'designation': getattr(job_seeker, 'designation', '') or '',
+                'grade': job_seeker.grade or '',
+
+                'post_applying': job_seeker.post_applying_id.name if job_seeker.post_applying_id else '',
+                'post_applying_id': job_seeker.post_applying_id.id if job_seeker.post_applying_id else False,
+
+                'medium': job_seeker.medium_id.name if job_seeker.medium_id else '',
+                'medium_id': job_seeker.medium_id.id if job_seeker.medium_id else False,
+                'format_name': job_seeker.medium_id.name if job_seeker.medium_id else '',
+                'format_id': job_seeker.medium_id.id if job_seeker.medium_id else False,
+
+                'skills': [{'id': skill.id, 'name': skill.name} for skill in job_seeker.skill_ids],
+                'skill_ids': [{'id': skill.id, 'name': skill.name} for skill in job_seeker.skill_ids],
+
+                'start_date': job_seeker.start_date.strftime("%Y-%m-%d") if job_seeker.start_date else '',
+                'till_date': job_seeker.till_date.strftime("%Y-%m-%d") if job_seeker.till_date else '',
+
+                'experience': getattr(job_seeker, 'experience', False),
+                'portfolio_link': job_seeker.portifolio_link or '',
+                'portifolio_link': job_seeker.portifolio_link or '',
+                'portfolio_link_2': job_seeker.portifolio_link_2 or '',
+                'portifolio_link_2': job_seeker.portifolio_link_2 or '',
+                'note': job_seeker.note or '',
+
+                'has_document': True if job_seeker.document else False,
+                'document_url': '%s/web/content?model=member.job.seeker&id=%s&field=document&download=true' % (base_url, job_seeker.id) if job_seeker.document else '',
+
+                'state': getattr(job_seeker, 'state', '') or '',
+                'active': getattr(job_seeker, 'active', True),
+                'created_date': str(job_seeker.create_date),
+            })
+
+    # ---------------- OPPORTUNITIES / JOB PROVIDER ----------------
+        for job_provider in opportunities:
+
+            provider_skills = []
+
+            if job_provider.skill_ids:
+                provider_skills = [
+                    {'id': s.id, 'name': s.name}
+                    for s in job_provider.skill_ids
+                ]
+
+            elif job_provider.skill:
+                provider_skills = [
+                    {'id': False, 'name': job_provider.skill}
+                ]
+            if member and member.id in seen_members:
+                continue
+
+            if member:
+                seen_members.add(member.id)
+  
+            member = job_provider.member_id
+
+            opportunity_data.append({
+                'type': 'opportunity',
+                'id': job_provider.id,
+                'job_provider_id': job_provider.id,
+                'name': job_provider.name or '',
+
+                'member_id': member.id if member else False,
+                'member_name': job_provider.member_name or '',
+                'membership_no': job_provider.membership_no or '',
+                'member_image_url': '%s/get/public/image/res.member/%s/image_1920' % (base_url, member.id) if member and member.image_1920 else '',
+                'mobile_number': job_provider.mobile_number or '',
+                'contact1': member.contact1 if member else '',
+                'contact2': member.contact2 if member else '',
+                'designation': job_provider.grade or '',
+                'grade': job_provider.grade or '',
+                'post_required': job_provider.post_required_id.name if job_provider.post_required_id else '',
+                'post_required_id': job_provider.post_required_id.id if job_provider.post_required_id else False,
+                'skills': provider_skills,
+                'medium': job_provider.medium_id.name if job_provider.medium_id else '',
+                'medium_id': job_provider.medium_id.id if job_provider.medium_id else False,
+                'available_start_date': job_provider.required_from.strftime("%Y-%m-%d") if job_provider.required_from else '',
+                'available_end_date': job_provider.required_till.strftime("%Y-%m-%d") if job_provider.required_till else '',
+                'required_from': job_provider.required_from.strftime("%Y-%m-%d") if job_provider.required_from else '',
+                'required_till': job_provider.required_till.strftime("%Y-%m-%d") if job_provider.required_till else '',
+                'note': job_provider.note or getattr(job_provider, 'description', '') or '',
+                'created_date': str(job_provider.create_date),
             })
 
         return self._json_response({
             'success': True,
-            'data': data
+            'events': event_data,
+            'talents': talent_data,
+            'opportunities': opportunity_data,
         })
-
     # ---------------------------------------------------------
     # FOLLOW / UNFOLLOW API
     # ---------------------------------------------------------

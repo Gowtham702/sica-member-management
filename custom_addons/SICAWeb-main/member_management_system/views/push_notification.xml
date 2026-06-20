@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
 
-     <menuitem name="Envoyer Notifications"
+     <menuitem name="Notification History"
             id="menu_firebase_push_notification_push"
             sequence="6"/>
 
@@ -40,7 +40,7 @@
 
 
         <record id="action_firebase_push_notification_push_notification" model="ir.actions.act_window">
-            <field name="name">Envoyer notifications</field>
+            <field name="name">Notification History</field>
             <field name="res_model">push.notification.log.history</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" eval="False"/>

@@ -77,38 +77,51 @@ class MemberStatusAPI(http.Controller):
 
         return self._json_response(result)
 
-    # POST CREATE STATUS
+
+    # POST CREATE STATUS - IMAGE / VIDEO
     @http.route('/api/member_status', auth='public', type='http', methods=['POST'], csrf=False)
     def create_status(self, **kw):
 
-        video = request.httprequest.files.get('video')
+        media = request.httprequest.files.get('media')
 
-        if not video:
-            return self._json_response({"error": "Video file is required"}, 400)
+        if not media:
+            return self._json_response({
+                "error": "Media file is required"
+            }, 400)
+
+        filename = media.filename.lower()
+
+        media_type = 'image'
+        if filename.endswith(('.mp4', '.mov', '.avi', '.mkv')):
+            media_type = 'video'
 
         member = request.env['res.member'].sudo().search([], limit=1)
 
         if not member:
-            return self._json_response({"error": "No member found in res.member"}, 404)
+            return self._json_response({
+                "error": "No member found in res.member"
+            }, 404)
 
-        video_content = base64.b64encode(video.read()).decode('utf-8')
+        media_content = base64.b64encode(media.read()).decode('utf-8')
 
         status = request.env['member.status'].sudo().create({
             'member_id': member.id,
-            'caption': kw.get('caption') or 'Test video status',
-            'media_type': 'video',
-            'media_file': video_content,
-            'media_filename': video.filename,
-            'expiry_time': kw.get('expiry_time') or '2026-12-31 23:59:59',
+            'caption': kw.get('caption') or 'Test status',
+            'media_type': media_type,
+            'media_file': media_content,
+            'media_filename': media.filename,
+            'expiry_time': kw.get('expiry_time') or fields.Datetime.add(fields.Datetime.now(), hours=24),
         })
 
         base_url = self._get_base_url()
 
         return self._json_response({
-            "message": "Video uploaded successfully",
+            "success": True,
+            "message": "Status uploaded successfully",
             "id": status.id,
             "member_id": member.id,
-            "video_url": "%s/get/status/media/%s" % (base_url, status.id)
+            "media_type": media_type,
+            "media_url": "%s/get/status/media/%s" % (base_url, status.id)
         }, 201)
     
     # PUT UPDATE STATUS BY ID

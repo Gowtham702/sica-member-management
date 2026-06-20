@@ -20,3 +20,4 @@ from . import mobile_notification
 from . import job_list, member
 from . import member_status_api
 from . import mobile_feed_api
+from . import shooting_report_api

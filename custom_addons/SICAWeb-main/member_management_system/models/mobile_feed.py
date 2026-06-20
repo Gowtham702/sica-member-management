@@ -62,6 +62,7 @@ class SicaMobileShooting(models.Model):
     _name = 'sica.mobile.shooting'
     _description = 'SICA Mobile Shooting'
     _order = 'create_date desc'
+    member_id = fields.Many2one('res.member', string='Member')
 
     title = fields.Char(string='Title', required=True)
     description = fields.Text(string='Description')
