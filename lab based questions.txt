@@ -1,0 +1,39 @@
+1.what is compromised here?
+ans:
+	A vulnerable windows computer (target system) is being compromised here by the attacker.
+
+2.where does the vulnerability exist?
+ans:
+	the vulnerability exists in a software application, service or operation system running on the target system.
+
+3.what is the exploit name used?
+ans:
+	An exploit is a piece of code that takes advantages of a vulnerability. the exact exploit name depends on the lab (ex: MS08)
+
+4.what is the tool used for exploit?
+ans:
+	A commonly used tool is Metasploit framework in kali Linux.
+
+5. which OS are vulnerable to the exploit?
+ans:
+	the vulnerable OS depends on the exploit being used. in many windows exploitation labs version such windows XP unpatched windows system are vulnerable.
+
+6. what do you understand about payload?
+ans:
+	A payload is the code delivered after successful exploitation. it performs the intended actions, such as opening a shell or creating a remote connection.
+
+7. what do you understand about Meterpreter session?
+ans:
+	A Meterpreter session is an advantage shell provided by Metasploit that allows interaction with the compromised system such as viewing files, running commands, and gathering information.
+
+8. what is privilege escalation?
+ans:
+	privilege escalation is the process of gaining higher permissions such as moving from a normal user account to administrator or system privilege.
+
+9.to what level the attacker gained access in the attack?
+ans:
+	typically, the attacker aims to gain administrator or system level access on the target machine.
+
+10. which command will give the access to command shell of windows from kali Linux?
+ans:
+	in a Meterpreter session the command is shell . this open the widows prompt (cmd.exe) on the compromised machine.
